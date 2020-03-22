@@ -151,4 +151,4 @@ media/
 #Visual Studio data
 .vscode/*
 main_app_tool/asgi.py
-manage.py
+# manage.py
