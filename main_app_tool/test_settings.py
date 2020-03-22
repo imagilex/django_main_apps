@@ -6,6 +6,8 @@ try:
     test = ms.DATABASES(os, '')
 except ImportError:
     import main_app_tool.test_main_settings as ms
+except ModuleNotFoundError:
+    import main_app_tool.test_main_settings as ms
 
 DATABASES = {
     'default': {
