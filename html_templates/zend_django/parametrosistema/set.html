@@ -1,0 +1,118 @@
+{% extends "zend_django/html/html_struct.html" %}
+{% load i18n %}
+{% load op_helpers %}
+
+{% block content %}
+
+{% if singles %}
+
+    {% regroup singles by seccion as lista_secciones %}
+
+<form method="post" autocomplete="off" enctype="multipart/form-data" id="main-form-parametrosistema">
+    <input type="hidden" name="action" id="action" value="singles" />
+    {% csrf_token %}
+
+    {% for seccion in lista_secciones %}
+
+        <h3>{{ seccion.grouper }}</h3>
+
+        {% for parametro in seccion.list %}
+
+                {% if "PICTURE" == parametro.tipo %}
+
+                    <div class="form-row">
+                        <div class="col-md-3 form-group">
+                            <label for="{{ parametro.seccion }}_{{ parametro.nombre }}">{{ parametro.nombre_para_mostrar }}</label>
+                            <input type="file" class="form-control-file" id="{{ parametro.seccion }}_{{ parametro.nombre }}" name="{{ parametro.seccion }}_{{ parametro.nombre }}">
+                        </div>
+                        <div class="col-md-9">
+                            <img src="{{ MEDIA_URL }}{{ parametro.valor }}" />
+                        </div>
+                    </div>
+
+                {% else %}
+
+                    {% if "STRING" == parametro.tipo %}
+
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label for="{{ parametro.seccion }}_{{ parametro.nombre }}">{{ parametro.nombre_para_mostrar }}</label>
+                                <input type="text" class="form-control" id="{{ parametro.seccion }}_{{ parametro.nombre }}" name="{{ parametro.seccion }}_{{ parametro.nombre }}" value="{{ parametro.valor }}" />
+                            </div>
+                        </div>
+
+                    {% else %}
+
+                        {% if "INTEGER" == parametro.tipo %}
+
+                            <div class="form-row">
+                                <div class="col form-group">
+                                    <label for="{{ parametro.seccion }}_{{ parametro.nombre }}">{{ parametro.nombre_para_mostrar }}</label>
+                                    <input type="number" class="form-control" id="{{ parametro.seccion }}_{{ parametro.nombre }}" name="{{ parametro.seccion }}_{{ parametro.nombre }}" value="{{ parametro.valor }}" />
+                                </div>
+                            </div>
+
+                        {% else %}
+
+                            {% if "TEXT" == parametro.tipo %}
+
+                                <div class="form-row">
+                                    <div class="col form-group">
+                                        <label for="{{ parametro.seccion }}_{{ parametro.nombre }}">{{ parametro.nombre_para_mostrar }}</label>
+                                        <textarea rows="10" class="form-control" id="{{ parametro.seccion }}_{{ parametro.nombre }}" name="{{ parametro.seccion }}_{{ parametro.nombre }}">{{ parametro.valor }}</textarea>
+                                    </div>
+                                </div>
+
+                            {% else %}
+
+                                {% if "FILE" == parametro.tipo %}
+
+                                    <div class="form-row">
+                                        <div class="col-md-3 form-group">
+                                            <label for="{{ parametro.seccion }}_{{ parametro.nombre }}">{{ parametro.nombre_para_mostrar }}</label>
+                                            <input type="file" class="form-control-file" id="{{ parametro.seccion }}_{{ parametro.nombre }}" name="{{ parametro.seccion }}_{{ parametro.nombre }}">
+                                        </div>
+                                        <div class="col-md-9">
+                                            <a href="{{ MEDIA_URL }}{{ parametro.valor }}" target="_blank">
+                                                {{ parametro.valor }}
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                {% else %}
+
+                                    <div class="form-row">
+                                        <div class="col">
+                                            {{ parametro }}: {{ parametro.tipo }}
+                                        </div>
+                                    </div>
+
+                                {% endif%}
+
+                            {% endif %}
+
+                        {% endif %}
+
+                    {% endif %}
+
+                {% endif %}
+
+            {% endfor %}
+
+        {% endfor %}
+
+        <button type="submit" class="btn btn-outline-primary" id="btn-save" >
+            {% action_smart_button 'save' %}
+        </button>
+    
+    </form>
+
+{% endif%}
+
+{% if multiples %}
+
+
+
+{% endif %}
+
+{% endblock %}

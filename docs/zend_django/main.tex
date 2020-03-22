@@ -1,0 +1,41 @@
+\documentclass[letterpaper]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{color}
+\usepackage[left=2.00cm, right=1.00cm, top=2.00cm, bottom=2.00cm]{geometry}
+\decimalpoint
+
+\newcommand{\req}{$ \boxtimes $}
+\newcommand{\nreq}{$ \Box $}
+
+\definecolor{keywordColor}{RGB}{0, 0, 230}
+\definecolor{stringColor}{RGB}{206, 123, 0}
+\definecolor{commentColor}{RGB}{150, 150, 150}
+\lstset{breaklines=true, keywordstyle=\color{keywordColor}, stringstyle=\color{stringColor}, commentstyle=\color{commentColor}, basicstyle=\footnotesize, extendedchars=true, inputencoding=utf8}
+
+\begin{document}
+
+\author{Rubén Ramírez}
+\title{Zend Django App}
+% \date{January 2013}
+
+\frontmatter
+\maketitle
+\tableofcontents
+
+\mainmatter
+\include{./TeX_files/chapter01}
+\include{./TeX_files/chapter02}
+\include{./TeX_files/chapter03}
+\include{./TeX_files/chapter04}
+
+\backmatter
+% bibliography, glossary and index would go here.
+
+\end{document}
