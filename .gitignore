@@ -60,6 +60,7 @@ coverage.xml
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
+main_app_tool/wsgi.py
 
 # Flask stuff:
 instance/
@@ -127,3 +128,27 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Access Keys
+main_settings.py
+
+# Media Files
+media/
+
+# DataBase Files
+*.imgx
+
+# No LaTex Files
+*.aux
+*.log
+*.synctex.gz
+*.toc
+*.out
+
+# No ArgoUML Files
+*.zargo~
+
+#Visual Studio data
+.vscode/*
+main_app_tool/asgi.py
+manage.py

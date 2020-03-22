@@ -1,0 +1,40 @@
+{% load mainopc_helpers %}
+
+{% for opc in opciones %}
+    {% if opc.hijos.all %}
+        {% if nivel == 1 %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="main-menu-opc-{{opc.pk}}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ opc|safe }}
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="main-menu-opc-{{opc.pk}}">
+                    {% main_menu opc.hijos.all nivel user_id %}
+                </ul>
+            </li>
+        {% else %}
+            <li class="dropdown-submenu">
+                <a href="#" class="dropdown-item dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    {{ opc|safe }}
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    {% main_menu opc.hijos.all nivel user_id %}
+                </ul>
+            </li>
+        {% endif %}
+    {% else %}
+        {% if nivel == 1 %}
+            <li class="nav-item">
+                <a class="nav-link" href="{%if opc.get_vista_url %}{{ opc.get_vista_url }}{% else %}#{% endif %}">
+                    {{ opc|safe }}
+                </a>
+            </li>
+        {% else %}
+        <li>
+            <a class="dropdown-item" href="{%if opc.get_vista_url %}{{ opc.get_vista_url }}{% else %}#{% endif %}">
+                {{ opc|safe }}
+            </a>
+        </li>
+        {% endif %}
+    {% endif %}
+{% endfor %}
