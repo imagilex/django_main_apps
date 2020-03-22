@@ -1,0 +1,5 @@
+{% load static %}
+
+{% for app in apps %}
+    <link rel="stylesheet" href="{% static 'api/css' %}/{{app}}.css" /><!-- Auto API CSS -->
+{% endfor %}
