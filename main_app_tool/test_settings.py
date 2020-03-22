@@ -1,6 +1,5 @@
-from .settings import *
-
 try:
+    from .settings import *
     test = ms.SECRET_KEY
     test = ms.ALLOWED_HOSTS[0]
     test = ms.DEBUG

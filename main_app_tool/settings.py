@@ -13,9 +13,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import mimetypes
 import os
 
-import main_app_tool.main_settings as ms
-
 try:
+    import main_app_tool.main_settings as ms
     test = ms.SECRET_KEY
     test = ms.ALLOWED_HOSTS[0]
     test = ms.DEBUG
