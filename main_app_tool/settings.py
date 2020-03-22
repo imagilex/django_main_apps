@@ -15,6 +15,11 @@ import os
 
 import main_app_tool.main_settings as ms
 
+try:
+    test = ms.ALLOWED_HOSTS[0]
+except ImportError:
+    import main_app_tool.test_main_settings as ms
+
 mimetypes.add_type('text/css', '.css', True)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
