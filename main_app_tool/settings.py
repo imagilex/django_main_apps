@@ -13,16 +13,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import mimetypes
 import os
 
-try:
-    import main_app_tool.main_settings as ms
-    test = ms.SECRET_KEY
-    test = ms.ALLOWED_HOSTS[0]
-    test = ms.DEBUG
-    test = ms.DATABASES(os, '')
-except ImportError:
-    import main_app_tool.test_main_settings as ms
-except ModuleNotFoundError:
-    import main_app_tool.test_main_settings as ms
+import main_app_tool.main_settings as ms
 
 mimetypes.add_type('text/css', '.css', True)
 
