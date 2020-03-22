@@ -1,0 +1,104 @@
+{% extends "zend_django/html/html_struct.html" %}
+{% load i18n %}
+{% load op_helpers %}
+
+{% block content %}
+
+<table class="table table-striped table-sm table-responsive-md">
+    <thead>
+        <tr>
+            <th>Usuario</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Celular</th>
+            <th>Whats App</th>
+            <th></th>
+            <th colspan="3" class="text-center">
+                {% if perms.auth.add_user %}
+                <a data-action="create" href="{% url 'user_create' %}" class="btn btn-outline-secondary" role="button" title="{% crud_label 'create' %}">
+                    {% crud_icon 'create' %} {% crud_label 'create' %}
+                </a>
+                {% endif %}
+            </th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>Usuario</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Celular</th>
+            <th>Whats App</th>
+            <th></th>
+            <th colspan="3" class="text-center">
+                {% if perms.auth.add_user %}
+                <a data-action="create" href="{% url 'user_create' %}" class="btn btn-outline-secondary" role="button" title="{% crud_label 'create' %}">
+                    {% crud_icon 'create' %} {% crud_label 'create' %}
+                </a>
+                {% endif %}
+            </th>
+        </tr>
+    </tfoot>
+    <tbody id="data-tbl">
+        {% for reg in data %}
+            <tr data-object-id="{{ reg.pk }}">
+                <td>{{ reg.username }}</td>
+                <td>{{ reg.get_full_name }}</td>
+                <td>
+                    {% if reg.email %}
+                    <a data-action="send_mail" href="mailto:{{ reg.email }}" target="_blank">
+                        {% action_icon 'send_mail' %}
+                        {{ reg.email }}
+                    </a>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if reg.profile.telefono %}
+                    <a data-action="call" href="tel:{{ reg.profile.telefono }}" target="_blank">
+                        {% action_icon 'call' %}
+                        {{ reg.profile.telefono }}
+                    </a>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if reg.profile.whatsapp %}
+                    <a data-action="send_whatsapp" href="https://api.whatsapp.com/send?phone=52{{ reg.profile.whatsapp }}" target="_blank">
+                        {% action_icon 'send_whatsapp' %}
+                        {{ reg.profile.whatsapp }}
+                    </a>
+                    {% endif %}
+                </td>
+                <td class="text-center">
+                    {% if perms.auth.reset_password %}
+                    <a data-action="reset_password" href="{% url 'user_reset_password' username=reg.username %}" class="btn btn-outline-secondary" role="button" title="{% action_label 'reset_password' %}">
+                        {% action_icon 'reset_password' %}
+                    </a>
+                    {% endif %}
+                </td>
+                <td class="text-center">
+                    {% if perms.auth.view_user %}
+                    <a data-action="read" href="{% url 'user_read' pk=reg.pk %}" class="btn btn-outline-secondary" role="button" title="{% crud_label 'read' %}">
+                        {% crud_icon 'read' %}
+                    </a>
+                    {% endif %}
+                </td>
+                <td class="text-center">
+                    {% if perms.auth.change_user %}
+                    <a data-action="update" href="{% url 'user_update' pk=reg.pk %}" class="btn btn-outline-secondary" role="button" title="{% crud_label 'update' %}">
+                        {% crud_icon 'update' %}
+                    </a>
+                    {% endif %}
+                </td>
+                <td class="text-center">
+                    {% if perms.auth.delete_user %}
+                    <button data-action="delete" onclick="App.showDeletingConfirmation(`{% url 'user_delete' pk=reg.pk %}`, `usuario`, `al`)" type="button" class="btn btn-outline-secondary" title="{% crud_label 'delete' %}">
+                        {% crud_icon 'delete' %}
+                    </button>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
