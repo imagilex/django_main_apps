@@ -1,0 +1,21 @@
+from django import forms
+
+from django.contrib.auth.models import Group
+from django.contrib.auth.models import Permission
+
+
+class frmGroup(forms.ModelForm):
+
+    class Meta:
+        model = Group
+        fields = [
+            'name',
+            'permissions',
+        ]
+        labels: {
+            'name': "Perfil",
+            'permissions': "Permisos",
+        }
+        widgets = {
+            'permissions': forms.CheckboxSelectMultiple()
+        }

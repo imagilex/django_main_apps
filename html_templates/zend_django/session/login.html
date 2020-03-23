@@ -1,0 +1,20 @@
+{% extends "zend_django/html/html_struct.html" %}
+{% load crispy_forms_tags %}
+{% load op_helpers %}
+{% load parametros_helpers %}
+
+{% block extraaftermain %}
+
+<div class="body-container text-center">
+    <form class="form-signin" method="post" autocomplete="off" enctype="multipart/form-data" id="main-form" action="">
+        {% csrf_token %}
+        <img src="{{ MEDIA_URL }}{% parametro_de_sistema seccion='FormAcceso' nombre='main_logo' %}" class="mb-4" height="72" />
+        <h1 class="h3 mb-3 font-weight-normal">Acceso</h1>
+        {{ form | crispy }}
+        <button type="submit" class="btn btn-outline-primary btn-block" id="btn-save" title="{% action_label 'save' %}">
+            Entrar
+        </button>
+    </form>
+</div>
+
+{% endblock %}

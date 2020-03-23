@@ -1,0 +1,165 @@
+\chapter{Base de Datos}
+
+\section{auth\_group}
+
+\begin{tabular}{|l|l|l|l|l|l|}
+	\hline
+	\textbf{Campo} & \textbf{Tipo} & \textbf{Pk} & \textbf{NN} & \textbf{U} & \textbf{Referencia} \\
+	\hline
+	id & integer & \req & \req & \req & \\
+	name & varchar(150) & \nreq & \req & \req & \\
+	\hline
+\end{tabular}
+
+\section{auth\_group\_permissions}
+
+\begin{tabular}{|l|l|l|l|l|l|}
+	\hline
+	\textbf{Campo} & \textbf{Tipo} & \textbf{Pk} & \textbf{NN} & \textbf{U} & \textbf{Referencia} \\
+	\hline
+	id & integer & \req & \req & \req & \\
+	group\_id & integer & \nreq & \req & \nreq & auth\_group.id \\
+	permission\_id & integer & \nreq & \req & \nreq & auth\_permission.id \\
+	\hline
+\end{tabular} \\ 
+
+Grupos únicos:
+
+\begin{itemize}
+	\item (group\_id, permission\_id)
+\end{itemize}
+
+\section{auth\_permission}
+
+\begin{tabular}{|l|l|l|l|l|l|}
+	\hline
+	\textbf{Campo} & \textbf{Tipo} & \textbf{Pk} & \textbf{NN} & \textbf{U} & \textbf{Referencia} \\
+	\hline
+	id & integer & \req & \req & \req & \\
+	content\_type\_id & integer & \nreq & \req & \nreq & django\_content\_type.id \\
+	codename & varchar(100) & \nreq & \req & \nreq & \\
+	name & varchar(255) & \nreq & \req & \nreq & \\
+	\hline
+\end{tabular} \\ 
+
+Grupos únicos:
+
+\begin{itemize}
+	\item (content\_type\_id, codename)
+\end{itemize}
+
+\section{auth\_user}
+
+\begin{tabular}{|l|l|l|l|l|l|}
+	\hline
+	\textbf{Campo} & \textbf{Tipo} & \textbf{Pk} & \textbf{NN} & \textbf{U} & \textbf{Referencia} \\
+	\hline
+	id & integer & \req & \req & \req & \\
+	password & varchar(128) & \nreq & \req & \nreq & \\
+	last\_login & datetime & \nreq & \nreq & \nreq & \\
+	is\_superuser & bool  & \nreq & \req & \nreq & \\
+	username & varchar(150) & \nreq & \req & \req & \\
+	first\_name & varchar(30) & \nreq & \req & \nreq & \\
+	email & varchar(254) & \nreq & \req & \nreq & \\
+	is\_staff & bool & \nreq & \req & \nreq & \\
+	is\_active & bool & \nreq & \req & \nreq & \\
+	date\_joined & datetime & \nreq & \req & \nreq & \\
+	last\_name & varchar(150) & \nreq & \req & \nreq & \\
+	\hline
+\end{tabular}
+
+\section{auth\_user\_groups}
+
+\begin{tabular}{|l|l|l|l|l|l|}
+	\hline
+	\textbf{Campo} & \textbf{Tipo} & \textbf{Pk} & \textbf{NN} & \textbf{U} & \textbf{Referencia} \\
+	\hline
+	id & integer & \req & \req & \req & \\
+	user\_id & integer & \nreq & \req & \nreq & auth\_user.id \\
+	group\_id & integer & \nreq & \req & \nreq & auth\_group.id \\
+	\hline
+\end{tabular} \\ 
+
+Grupos únicos:
+
+\begin{itemize}
+	\item (user\_id, group\_id)
+\end{itemize}
+
+\section{auth\_user\_user\_permissions}
+
+\begin{tabular}{|l|l|l|l|l|l|}
+	\hline
+	\textbf{Campo} & \textbf{Tipo} & \textbf{Pk} & \textbf{NN} & \textbf{U} & \textbf{Referencia} \\
+	\hline
+	id & integer & \req & \req & \req & \\
+	user\_id & integer & \nreq & \req & \nreq & auth\_user.id \\
+	permission\_id & integer & \nreq & \req & \nreq & auth\_permission.id \\
+	\hline
+\end{tabular} \\
+
+Grupos únicos:
+
+\begin{itemize}
+	\item (user\_id, permission\_id)
+\end{itemize}
+
+\section{django\_admin\_log}
+
+\begin{tabular}{|l|l|l|l|l|l|}
+	\hline
+	\textbf{Campo} & \textbf{Tipo} & \textbf{Pk} & \textbf{NN} & \textbf{U} & \textbf{Referencia} \\
+	\hline
+	id & integer & \req & \req & \req & \\
+	action\_time & datetime & \nreq & \req & \nreq & \\
+	object\_id & text & \nreq & \nreq & \nreq & \\
+	object\_repr & varchar(200) & \nreq & \req & \nreq & \\
+	change\_message & text & \nreq & \req & \nreq & \\
+	content\_type\_id & integer & \nreq & \nreq & \nreq & django\_content\_type.id \\
+	user\_id & integer & \nreq & \req & \nreq & auth\_user.id \\
+	action\_flag & smallint unsigned & \nreq & \req & \nreq & \\
+	\hline
+\end{tabular}
+
+\section{django\_content\_type}
+
+\begin{tabular}{|l|l|l|l|l|l|}
+	\hline
+	\textbf{Campo} & \textbf{Tipo} & \textbf{Pk} & \textbf{NN} & \textbf{U} & \textbf{Referencia} \\
+	\hline
+	id & integer & \req & \req & \req & \\
+	app\_label & varchar(100) & \nreq & \req & \nreq & \\
+	model & varchar(100) & \nreq & \req & \nreq & \\
+	\hline
+\end{tabular} \\
+
+Grupos únicos:
+
+\begin{itemize}
+	\item (app\_label, model)
+\end{itemize}
+
+\section{django\_migrations}
+
+\begin{tabular}{|l|l|l|l|l|l|}
+	\hline
+	\textbf{Campo} & \textbf{Tipo} & \textbf{Pk} & \textbf{NN} & \textbf{U} & \textbf{Referencia} \\
+	\hline
+	id & integer & \req & \req & \req & \\
+	app & varchar(255) & \nreq & \req & \nreq & \\
+	name & varchar(255) & \nreq & \req & \nreq & \\
+	applied & datetime & \nreq & \req & \nreq & \\
+	\hline
+\end{tabular}
+
+\section{django\_session}
+
+\begin{tabular}{|l|l|l|l|l|l|}
+	\hline
+	\textbf{Campo} & \textbf{Tipo} & \textbf{Pk} & \textbf{NN} & \textbf{U} & \textbf{Referencia} \\
+	\hline
+	session\_key & varchar(40) & \req & \req & \req & \\
+	session\_data & text & \nreq & \req & \nreq & \\
+	expire\_date & datetime & \nreq & \req & \nreq & \\
+	\hline
+\end{tabular}
