@@ -1,5 +1,8 @@
 import importlib
 import os
+
+from datetime import datetime
+from django.db import connection
 from django.db.models import ProtectedError
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
@@ -160,27 +163,63 @@ class GenericDelete(View):
 
 
 class Migrate(View):
+    migr_dir = 'datamigration'
+
+    def agregar_a_db(self, filename):
+        filename = filename[:-3]
+        sql = f"""
+            INSERT INTO django_migrations(app, name, applied)
+            VALUES (
+                'data_migration',
+                '{filename}',
+                '{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}'
+                );
+        """
+        with connection.cursor() as cursor:
+            cursor.execute(sql)
+
+    def verificar_en_db(self, filename):
+        filename = filename[:-3]
+        sql = f"""
+            SELECT COUNT(*) AS n
+            FROM django_migrations
+            WHERE app = 'data_migration' AND name = '{filename}';
+        """
+        with connection.cursor() as cursor:
+            cursor.execute(sql)
+            rows = cursor.fetchall()
+            return int(rows[0][0])
+
+    def aplicar(self, filename):
+        try:
+            file = filename[0:-3]
+            modulo = importlib.import_module(f'{self.migr_dir}.{file}')
+            modulo.migration()
+            result = "ok"
+        except Exception as e:
+            result = f'{type(e).__name__}: {e}'
+        finally:
+            return {
+                'file': file,
+                'result': result,
+            }
 
     def get(self, request):
-        notas = ''
         migraciones = []
-        migr_dir = 'datamigration'
-        for root, dirs, files in os.walk(path.join(os.getcwd(), migr_dir)):
-            if path.join(os.getcwd(), migr_dir) == root:
+        for root, dirs, files in os.walk(
+                path.join(os.getcwd(), self.migr_dir)):
+            if path.join(os.getcwd(), self.migr_dir) == root:
                 for f in files:
                     if "py" == f[-2:].lower():
-                        file = f[0:-3]
-                        try:
-                            modulo = importlib.import_module(
-                                f'{migr_dir}.{file}')
-                            modulo.migration()
-                            result = 'Ok'
-                        except Exception as e:
-                            result = f'{type(e).__name__}: {e}'
-                        finally:
+                        if 0 == self.verificar_en_db(f):
+                            result = self.aplicar(f)
+                            migraciones.append(result)
+                            if result['result'] == 'ok':
+                                self.agregar_a_db(f)
+                        else:
                             migraciones.append({
-                                'file': file,
-                                'result': result,
+                                'file': f[:-3],
+                                'result': 'previo',
                             })
         return render(request, 'zend_django/html/migracion.html', {
             'titulo': "Migraciones",
@@ -190,6 +229,5 @@ class Migrate(View):
             'read_only': False,
             'alertas': [],
             'req_chart': False,
-            'notas': notas,
             'migraciones': migraciones,
         })
