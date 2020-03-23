@@ -1,0 +1,222 @@
+\chapter{Diagrama de Clases}
+
+\section{django.contrib.auth.models}
+
+\begin{tabular}{|l|}
+	\hline
+	\textbf{User} \\
+	\hline
+	username: string(150) \\
+	first\_name: string(30) \\
+	last\_name: string(30) \\
+	email: email \\
+	password: hash \\
+	groups: Group[ ] \\
+	user\_permissions: Permission[ ] \\
+	is\_staff: boolean \\
+	is\_active: boolean \\
+	is\_superuser: boolean \\
+	last\_login: datetime \\
+	date\_joined: datetime \\
+	\hline
+	is\_authenticated: boolean \\
+	is\_anonymous: boolean \\
+	\hline
+	get\_username(): string \\
+	get\_full\_name(): string \\
+	get\_short\_name(): string \\
+	set\_password(raw\_password) \\
+	check\_password(raw\_password): boolean \\
+	set\_unusable\_password() \\
+	has\_usable\_password(): boolean \\
+	get\_user\_permissions(obj=None): string[ ] \\
+	get\_group\_permissions(obj=None): string[ ] \\
+	get\_all\_permissions(obj=None): string[ ] \\
+	has\_perm(perm, obj=None): boolean \\
+	has\_perms(perm[ ], obj=None): boolean \\
+	has\_module\_perms(app\_label): boolean \\
+	email\_user(subject, message, from\_email=None, **kwargs) \\
+	\hline
+\end{tabular}\\
+
+\begin{tabular}{|l|}
+	\hline
+	\textbf{UserManager: BaseUserManager} \\
+	\hline
+	\\
+	\hline
+	create\_user(username, email=None, password=None, **extra\_fields): User \\
+	create\_superuser(username, email=None, password=None, **extra\_fields) \\
+	with\_perm(perm, is\_active=True, include\_superusers=True, backend=None, obj=None): User[ ] \\
+	\hline
+\end{tabular}\\
+
+\begin{tabular}{|l|}
+	\hline
+	\textbf{Permission} \\
+	\hline
+	name: string \\
+	content\_type: +django\_content\_type \\
+	codename: string \\
+	\hline
+	\\
+	\hline
+\end{tabular}\\
+
+\begin{tabular}{|l|}
+	\hline
+	\textbf{Group} \\
+	\hline
+	name: string \\
+	permissions:  Permission[ ] \\
+	\hline
+	\\
+	\hline
+\end{tabular}\\
+
+Formatos:
+
+\begin{itemize}
+	\item perm: ``app\_label.permission\_codename"
+\end{itemize}
+
+\section{django.contrib.contenttypes.models}
+
+\begin{tabular}{|l|}
+	\hline
+	\textbf{ContentType} \\
+	\hline
+	app\_label: string \\
+	model: string \\
+	name: string \\
+	\hline
+	get\_object\_for\_this\_type(**kwargs): \textit{ModelClassObjects} \\
+	model\_class(): \textit{ModelClass} \\
+	\hline
+\end{tabular}\\
+
+\begin{tabular}{|l|}
+	\hline
+	\textbf{ContentTypeManager} \\
+	\hline
+	\\
+	\hline
+	clear\_cache() \\
+	get\_for\_id(id): ContentType \\
+	get\_for\_model(model, for\_concrete\_model=True): ContentType \\
+	get\_for\_models(*models, for\_concrete\_model=True): dict \\
+	get\_by\_natural\_key(app\_label, model): ContentType \\
+	\hline
+\end{tabular}\\
+
+\section{django.contrib.auth.base\_user}
+
+\begin{tabular}{|l|}
+	\hline
+	\textbf{AbstractBaseUser} \\
+	\hline
+\end{tabular}
+
+\begin{tabular}{|l|}
+	\hline
+	\textbf{UserManager} \\
+	\hline
+\end{tabular}
+
+\section{Otros}
+
+\begin{tabular}{|l|}
+	\hline
+	\textbf{BaseUserManager} \\
+	\hline
+	\\
+	\hline
+	\textit{static} normalize\_email(email): string \\
+	get\_by\_natural\_key(username): User \\
+	make\_random\_password(length=10, allowed\_chars= \\ 
+	\hphantom{spaces} 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789'): string \\
+	\hline
+\end{tabular}
+
+\section{zend\_django.functional\_tests.utils\_test}
+
+\begin{tabular}{|l|}
+	\hline
+	\textbf{FuncionalTest: StaticLiveServerTestCase} \\
+	\hline
+	main\_model\_name: string = ``'' \\
+	base\_data\_model: model = None \\
+	duplicar: string = ``alfa'' \\
+	actualizar1: string = ``beta'' \\
+	actualizar2: string = ``beta\_002'' \\
+	\hline
+	setUp() \\
+	tearDown() \\
+	xPathFind(xpath, multiple=False, base\_object = None) \\
+	Wait2PresenceOf(xpath, seconds=30) \\
+	t\_list(search\_text=``alfa'') \\
+	t\_list\_to\_crud\_pages() \\
+	t\_read\_to\_crud\_pages() \\
+	t\_update\_right() \\
+	\hline
+\end{tabular} \\
+
+\begin{tabular}{|l|}
+	\hline
+	\textbf{URLsTests: SimpleTestCase} \\
+	\hline 
+	model\_name: string = ``'' \\
+	main\_views: views\_modelule = None \\
+	\hline
+	t\_url\_resolves(url, view) \\
+	t\_list\_url\_resolves() \\
+	t\_crerate\_url\_resolves() \\
+	t\_update\_url\_resolves() \\
+	t\_delete\_url\_resolves() \\
+	t\_read\_url\_resolves() \\
+	\hline
+\end{tabular} \\
+
+\begin{tabular}{|l|}
+	\hline
+	\textbf{ViewsTests: TestCase} \\
+	\hline
+	model\_name: string = ``'' \\
+	duplicar: string = ``alfa'' \\
+	actualizar1: string = ``beta'' \\
+	actualizar2: string = ``beta\_002'' \\
+	inexistente: string = ``inexistente'' \\
+	idinexistente: int = 99999 \\
+	main\_views: views\_module = None \\
+	campo\_base: string = ``'' \\
+	base\_data\_model: model = None \\
+	objs: data\_object = [] \\
+	\hline
+	getData(obj) \\
+	preSetUp() \\
+	t\_list\_get\_post(method=``get'') \\
+	t\_list\_post\_searching() \\
+	t\_list\_post\_no\_searching() \\
+	t\_list\_post\_searching\_inexistent() \\
+	t\_list\_post\_no\_searching\_inexistent() \\
+	t\_read\_get\_existente(template\_file=``zend\_django/html/form.html'') \\
+	t\_read\_get\_inexistente() \\
+	t\_read\_post(id) \\
+	t\_create\_get\_post(looking\_for, method=``get'', template\_file=``zend\_django/html/form.html'') \\
+	t\_create\_post\_well(data=None) \\
+	t\_create\_post\_duplicating(looking\_for, data=None, template\_file=``zend\_django/html/form.html'') \\
+	t\_update\_get\_post(id, looking\_for, method=``get'', template\_file=``zend\_django/html/form.html'') \\
+	t\_update\_get\_inexistente() \\
+	t\_update\_post\_well(data=None) \\
+	t\_update\_post\_duplicating(looking\_for, data=None, template\_file=``zend\_django/html/form.html'') \\
+	t\_update\_post\_inexistente\_empty() \\
+	t\_update\_post\_inexistente(data) \\
+	t\_update\_post\_inexistente\_well() \\
+	t\_update\_post\_inexistente\_duplicating() \\
+	t\_delete\_get\_existente(obj) \\
+	t\_delete\_get\_inexistente() \\
+	t\_delete\_post(id) \\
+	\hline
+\end{tabular} \\
+
+
