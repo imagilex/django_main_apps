@@ -8,6 +8,8 @@
 \usepackage{hyperref}
 \usepackage{listings}
 \usepackage{color}
+\usepackage{schemata}
+\usepackage{float}
 \usepackage[left=2.00cm, right=1.00cm, top=2.00cm, bottom=2.00cm]{geometry}
 \decimalpoint
 
@@ -19,6 +21,8 @@
 \definecolor{commentColor}{RGB}{150, 150, 150}
 \lstset{breaklines=true, keywordstyle=\color{keywordColor}, stringstyle=\color{stringColor}, commentstyle=\color{commentColor}, basicstyle=\footnotesize, extendedchars=true, inputencoding=utf8}
 
+\newcommand{\cuadrosinoptico}[2]{\schema{\schemabox{#1}}{\schemabox{#2}}}
+
 \begin{document}
 
 \author{Rubén Ramírez}
@@ -28,6 +32,7 @@
 \frontmatter
 \maketitle
 \tableofcontents
+\listoffigures
 
 \mainmatter
 \include{./TeX_files/chapter01}
