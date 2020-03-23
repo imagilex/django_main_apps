@@ -8,7 +8,6 @@ from .views import GenericDelete
 from .views import GenericList
 from .views import GenericRead
 from .views import GenericUpdate
-from zend_django.templatetags.op_helpers import crud_smart_button
 
 
 def template_base_path(file):
