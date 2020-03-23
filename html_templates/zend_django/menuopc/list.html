@@ -1,0 +1,40 @@
+{% extends "zend_django/html/html_struct.html" %}
+{% load i18n %}
+{% load op_helpers %}
+{% load mainopc_helpers %}
+
+{% block content %}
+
+<table class="table table-striped table-sm table-responsive-md">
+    <thead>
+        <tr>
+            <th>Opción</th>
+            <th colspan="3" class="text-center">
+                {% if perms.zend_django.add_menuopc %}
+                <a data-action="create" href="{% url 'menuopc_create' %}" class="btn btn-outline-secondary" role="button" title="{% crud_label 'create' %}">
+                    {% crud_icon 'create' %} {% crud_label 'create' %}
+                </a>
+                {% endif %}
+            </th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>Opción</th>
+            <th colspan="3" class="text-center">
+                {% if perms.zend_django.add_menuopc %}
+                <a data-action="create" href="{% url 'menuopc_create' %}" class="btn btn-outline-secondary" role="button" title="{% crud_label 'create' %}">
+                    {% crud_icon 'create' %} {% crud_label 'create' %}
+                </a>
+                {% endif %}
+            </th>
+        </tr>
+    </tfoot>
+    <tbody id="data-tbl">
+        {% for reg in data %}
+            {% print_menu_opc_adm nivel=-1 opcion=reg perms=perms %}
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

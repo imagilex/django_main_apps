@@ -1,0 +1,32 @@
+{% load op_helpers %}
+{% load mainopc_helpers %}
+<tr data-object-id="{{ reg.pk }}">
+    <td>
+        <span style="width: {% widthratio nivel 1 25 %}px; display: inline-block;"></span>
+        {{ reg.posicion }}) {{ reg|safe }} {{permisos}}
+    </td>
+    <td class="text-center">
+        {% if perms.zend_django.view_menuopc %}
+        <a data-action="read" href="{% url 'menuopc_read' pk=reg.pk %}" class="btn btn-outline-secondary" role="button" title="{% crud_label 'read' %}">
+            {% crud_icon 'read' %}
+        </a>
+        {% endif %}
+    </td>
+    <td class="text-center">
+        {% if perms.zend_django.change_menuopc %}
+        <a data-action="update" href="{% url 'menuopc_update' pk=reg.pk %}" class="btn btn-outline-secondary" role="button" title="{% crud_label 'update' %}">
+            {% crud_icon 'update' %}
+        </a>
+        {% endif %}
+    </td>
+    <td class="text-center">
+        {% if perms.zend_django.delete_menuopc %}
+        <button data-action="delete" onclick="App.showDeletingConfirmation(`{% url 'menuopc_delete' pk=reg.pk %}`, `opción de menú`, `la`)" type="button" class="btn btn-outline-secondary" title="{% crud_label 'delete' %}">
+            {% crud_icon 'delete' %}
+        </button>
+        {% endif %}
+    </td>
+</tr>
+{% for reg in reg.hijos.all %}
+    {% print_menu_opc_adm nivel=nivel opcion=reg perms=perms %}
+{% endfor %}

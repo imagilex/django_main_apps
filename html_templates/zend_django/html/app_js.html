@@ -1,0 +1,5 @@
+{% load static %}
+
+{% for app in apps %}
+    <script type="text/javascript" src="{% static 'js' %}/{{app}}.js"></script><!-- Auto JS -->
+{% endfor %}

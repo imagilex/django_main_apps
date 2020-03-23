@@ -1,0 +1,26 @@
+{% extends "zend_django/html/html_struct.html" %}
+
+{% block content %}
+
+{% for migracion in migraciones %}
+
+{% if migracion.result == 'Ok' %}
+    <div class="alert alert-success" role="alert">
+{% else %}
+    <div class="alert alert-warning" role="alert">
+{% endif %}
+    <div class="row">
+        <div class="col-sm-4">
+            {{ migracion.file }}
+        </div>
+        <div class="col-sm-8">
+            {{ migracion.result }}
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+
+{{ notas|safe }}
+
+{% endblock %}

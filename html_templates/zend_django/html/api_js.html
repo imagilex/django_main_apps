@@ -1,0 +1,14 @@
+{% load static %}
+
+{% for app in apps %}
+    <script type="text/javascript" src="{% static 'api/js' %}/{{app}}.js"></script><!-- Auto API JS -->
+{% endfor %}
+
+<!-- Requires UI -->
+<script type="text/javascript">
+    {% if req_ui %}
+        let req_ui = true;
+    {% else %}
+        let req_ui = false;
+    {% endif %}
+</script>
