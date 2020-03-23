@@ -1,3 +1,15 @@
+"""
+Registro de clases en módulo de administracion de django
+
+Clases cargadas:
+
+ - Permission
+ - MenuOpc
+ - ParametroSistema
+ - ParametroUsuario
+ - ParametroUsuarioValor
+ - UserProfile
+"""
 from django.contrib import admin
 from django.contrib.auth.models import Permission
 

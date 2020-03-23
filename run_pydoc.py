@@ -1,15 +1,14 @@
 import os
+import pydoc
+import subprocess
 
-print("=================================")
-print(os.getcwd())
-print("=================================")
+from main_app_tool.settings import INSTALLED_APPS
 
-for root, dirs, files in os.walk(os.getcwd()):
-    if root == os.getcwd():
-        print("=================================")
-        print(root)
-        print("=================================")
-        print(dirs)
-        print("=================================")
-        print(files)
-        print("=================================")
+apps = [app for app in INSTALLED_APPS 
+    if app.find("django.contrib") == -1 and app.find("crispy_forms") == -1]
+
+base_path = os.getcwd()
+
+for app in apps:
+    subprocess.call(['python', '-m', 'pydoc', '-w', ], stdout=sys.stdout)
+    
