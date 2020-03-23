@@ -4,8 +4,10 @@
 
 {% for migracion in migraciones %}
 
-{% if migracion.result == 'Ok' %}
+{% if migracion.result == 'ok' %}
     <div class="alert alert-success" role="alert">
+{% elif migracion.result == 'previo' %}
+    <div class="alert alert-secondary" role="alert">
 {% else %}
     <div class="alert alert-warning" role="alert">
 {% endif %}
@@ -14,7 +16,13 @@
             {{ migracion.file }}
         </div>
         <div class="col-sm-8">
-            {{ migracion.result }}
+            {% if migracion.result == 'ok' %}
+                Aplicado correctamente
+            {% elif migracion.result == 'previo' %}
+                Aplicado previamente
+            {% else %}
+                {{ migracion.result }}
+            {% endif %}
         </div>
     </div>
 </div>
