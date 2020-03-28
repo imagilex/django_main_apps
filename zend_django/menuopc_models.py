@@ -1,9 +1,19 @@
+"""
+Definición de modelos para el Menú principal
+
+Modelos
+-------
+- MenuOpc => Opción del menu principal
+"""
 from django.contrib.auth.models import Permission
 from django.db import models
 from django.urls import reverse
 
 
 class MenuOpc(models.Model):
+    """
+    Modelo de opción del menú principal
+    """
     nombre = models.CharField(max_length=50)
     vista = models.CharField(max_length=50, blank=True)
     posicion = models.PositiveSmallIntegerField()
@@ -22,11 +32,32 @@ class MenuOpc(models.Model):
         return self.nombre
 
     def get_vista_url(self):
+        """
+        Obtiene la url de la vista correspondiente a la opción del menú
+
+        Returns
+        -------
+        string
+            URL de la vista o None en caso de que no halla una vista asociada
+        """
         if "" != self.vista:
             return reverse(self.vista)
         return None
 
     def user_has_option(self, user):
+        """
+        Indica si un usuario tiene un permiso sobre la opcion del menu o
+        alguno de los hijos de la opción
+
+        Parameters
+        ----------
+        user : objeto User
+
+        Returns
+        -------
+        boolean
+            True en caso de que sí se tengan permisos o False en caso contrario
+        """
         if len(self.hijos.all()) == 0:
             if len(self.permisos_requeridos.all()) == 0:
                 return True

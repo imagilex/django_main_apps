@@ -1,12 +1,20 @@
+"""
+Ejecucion de PyDoc para generar documentos y depositarla en el directorio
+./docs/pydoc
+"""
 import os
-import pydoc
 import subprocess
+import glob
+import shutil
 
 def main():
+    docs_dir = 'docs\pydoc'
     subprocess.call(
         ['python', '-m', 'pydoc', '-w', '.\\'])
-    subprocess.call(
-        ['move', '*.html', 'docs\pydoc'])
+    
+    for file in glob.glob("*.html"):
+        os.remove(os.path.join(docs_dir, file))
+        shutil.move(file, docs_dir)
 
 if __name__ == "__main__":
     main()

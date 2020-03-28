@@ -1,3 +1,17 @@
+"""
+Actualizacion de branches base
+
+Branches
+--------
+- env_dev
+- env_qa
+- master
+- package_sie
+- package_cbkyt 
+- app_zend_django
+- app_reports
+- app_calendar_events
+"""
 import os
 import subprocess
 

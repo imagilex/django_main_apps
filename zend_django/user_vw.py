@@ -1,3 +1,15 @@
+"""
+Vistas relacionadas con el modelo User (Usuarios)
+
+Vistas
+------
+- List
+- Read
+- Create
+- Update
+- Delete
+- ResetPassword
+"""
 from django.contrib.auth.models import User as main_model
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
@@ -218,6 +230,19 @@ class Delete(GenericDelete):
 
 
 class ResetPassword(View):
+    """
+    Reseteo de contraseñas
+
+    Miembros
+    --------
+    - main_data_model = User
+
+    Métodos
+    -------
+    - base_render(request, form)
+    - get(request, username='')
+    - post(request, username='')
+    """
     main_data_model = main_model
 
     def base_render(self, request, form):

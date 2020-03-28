@@ -1,3 +1,14 @@
+"""
+Vistas relacionadas con el modelo ParametroSistema (Parámetros de Sistema)
+
+Vistas
+------
+- List
+- Read
+- Create
+- Update
+- Delete
+"""
 from django.conf import settings
 from django.db.models import Q
 from django.shortcuts import render
@@ -73,6 +84,22 @@ class Delete(GenericDelete):
 
 
 class Set(View):
+    """
+    Vista para establecer los valores de los Parámetros de Sistema.
+
+    Miembros
+    --------
+    - html_template = template_base_path("set")
+    - titulo = "Parámetros"
+    - titulo_descripcion = "de sistema (establecer)"
+    - main_data_model = main_model
+    - model_name = "parametrosistema"
+
+    Métodos
+    -------
+    - get(request)
+    - post(request)
+    """
     html_template = template_base_path("set")
     titulo = "Parámetros"
     titulo_descripcion = "de sistema (establecer)"

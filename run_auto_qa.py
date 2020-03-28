@@ -1,3 +1,10 @@
+"""
+Ejecución de programación para gestion de calidad en código fuente
+
+1 - Fiximports: separado y ordenado de importado de librerias, funciones, etc
+2 - PyCodeStyle: verificación de especificaciones PEP8
+3 - ImportChecker: verificacion de uso de elementos importados
+"""
 import os
 import subprocess
 import sys

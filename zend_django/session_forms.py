@@ -1,8 +1,26 @@
+"""
+Formularios para acceso a sistema (inicio de sesión)
+
+Formularios
+-----------
+frmLogin
+    Formulario de inicio de sesión
+    - username
+    - password
+"""
 from django import forms
 from django.contrib import auth
 
 
 class frmLogin(forms.Form):
+    """
+    Formulario de inicio de sesión
+
+    Campos
+    ------
+    - username
+    - password
+    """
     username = forms.CharField(
         max_length=50, label="Usuario",
         widget=forms.TextInput(attrs={'autofocus': "autofocus"}))

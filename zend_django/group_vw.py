@@ -1,3 +1,14 @@
+"""
+Vistas relacionadas con el modelo Group (Perifles de usuario)
+
+Vistas
+------
+- List
+- Read
+- Create
+- Update
+- Delete
+"""
 from django.contrib.auth.models import Group as main_model
 from django.contrib.auth.models import Permission
 from django.db.models import Q
