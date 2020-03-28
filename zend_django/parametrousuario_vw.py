@@ -1,3 +1,14 @@
+"""
+Vistas relacionadas con el modelo ParametroUsuario (Parámetros de Usuario)
+
+Vistas
+------
+- List
+- Read
+- Create
+- Update
+- Delete
+"""
 from django.db.models import Q
 
 from .parametros_models import ParametroUsuario as main_model

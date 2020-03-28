@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module zend_django.item_vw</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="zend_django.html"><font color="#ffffff">zend_django</font></a>.item_vw</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cdjango_apps%5Cdjango_main_apps%5Czend_django%5Citem_vw.py">c:\django_apps\django_main_apps\zend_django\item_vw.py</a></font></td></tr></table>
+    <p><tt>Vistas&nbsp;de&nbsp;items<br>
+&nbsp;<br>
+Vistas<br>
+------<br>
+-&nbsp;<a href="#ItemNoEncontrado">ItemNoEncontrado</a><br>
+-&nbsp;<a href="#ItemConRelaciones">ItemConRelaciones</a></tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="django.views.generic.base.html#View">django.views.generic.base.View</a>(<a href="builtins.html#object">builtins.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="zend_django.item_vw.html#ItemConRelaciones">ItemConRelaciones</a>
+</font></dt><dt><font face="helvetica, arial"><a href="zend_django.item_vw.html#ItemNoEncontrado">ItemNoEncontrado</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ItemConRelaciones">class <strong>ItemConRelaciones</strong></a>(<a href="django.views.generic.base.html#View">django.views.generic.base.View</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#ItemConRelaciones">ItemConRelaciones</a>(**kwargs)<br>
+&nbsp;<br>
+Vista&nbsp;disparada&nbsp;para&nbsp;momentos&nbsp;en&nbsp;que&nbsp;no&nbsp;se&nbsp;detecta&nbsp;que&nbsp;un&nbsp;objeto&nbsp;tiene<br>
+fuertes&nbsp;relaciones&nbsp;con&nbsp;otros&nbsp;elementos&nbsp;y&nbsp;ello&nbsp;impide&nbsp;su&nbsp;eliminación<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="zend_django.item_vw.html#ItemConRelaciones">ItemConRelaciones</a></dd>
+<dd><a href="django.views.generic.base.html#View">django.views.generic.base.View</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ItemConRelaciones-get"><strong>get</strong></a>(self, request)</dt></dl>
+
+<hr>
+Methods inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><a name="ItemConRelaciones-__init__"><strong>__init__</strong></a>(self, **kwargs)</dt><dd><tt>Constructor.&nbsp;Called&nbsp;in&nbsp;the&nbsp;URLconf;&nbsp;can&nbsp;contain&nbsp;helpful&nbsp;extra<br>
+keyword&nbsp;arguments,&nbsp;and&nbsp;other&nbsp;things.</tt></dd></dl>
+
+<dl><dt><a name="ItemConRelaciones-dispatch"><strong>dispatch</strong></a>(self, request, *args, **kwargs)</dt></dl>
+
+<dl><dt><a name="ItemConRelaciones-http_method_not_allowed"><strong>http_method_not_allowed</strong></a>(self, request, *args, **kwargs)</dt></dl>
+
+<dl><dt><a name="ItemConRelaciones-options"><strong>options</strong></a>(self, request, *args, **kwargs)</dt><dd><tt>Handle&nbsp;responding&nbsp;to&nbsp;requests&nbsp;for&nbsp;the&nbsp;OPTIONS&nbsp;HTTP&nbsp;verb.</tt></dd></dl>
+
+<dl><dt><a name="ItemConRelaciones-setup"><strong>setup</strong></a>(self, request, *args, **kwargs)</dt><dd><tt>Initialize&nbsp;attributes&nbsp;shared&nbsp;by&nbsp;all&nbsp;view&nbsp;methods.</tt></dd></dl>
+
+<hr>
+Class methods inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><a name="ItemConRelaciones-as_view"><strong>as_view</strong></a>(**initkwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Main&nbsp;entry&nbsp;point&nbsp;for&nbsp;a&nbsp;request-response&nbsp;process.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><strong>http_method_names</strong> = ['get', 'post', 'put', 'patch', 'delete', 'head', 'options', 'trace']</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ItemNoEncontrado">class <strong>ItemNoEncontrado</strong></a>(<a href="django.views.generic.base.html#View">django.views.generic.base.View</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#ItemNoEncontrado">ItemNoEncontrado</a>(**kwargs)<br>
+&nbsp;<br>
+Vista&nbsp;disparada&nbsp;para&nbsp;momentos&nbsp;en&nbsp;que&nbsp;no&nbsp;se&nbsp;localiza&nbsp;un&nbsp;objeto&nbsp;en&nbsp;la<br>
+base&nbsp;de&nbsp;datos&nbsp;para&nbsp;alguna&nbsp;de&nbsp;sus&nbsp;operaciones&nbsp;CRUD<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="zend_django.item_vw.html#ItemNoEncontrado">ItemNoEncontrado</a></dd>
+<dd><a href="django.views.generic.base.html#View">django.views.generic.base.View</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ItemNoEncontrado-get"><strong>get</strong></a>(self, request)</dt></dl>
+
+<hr>
+Methods inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><a name="ItemNoEncontrado-__init__"><strong>__init__</strong></a>(self, **kwargs)</dt><dd><tt>Constructor.&nbsp;Called&nbsp;in&nbsp;the&nbsp;URLconf;&nbsp;can&nbsp;contain&nbsp;helpful&nbsp;extra<br>
+keyword&nbsp;arguments,&nbsp;and&nbsp;other&nbsp;things.</tt></dd></dl>
+
+<dl><dt><a name="ItemNoEncontrado-dispatch"><strong>dispatch</strong></a>(self, request, *args, **kwargs)</dt></dl>
+
+<dl><dt><a name="ItemNoEncontrado-http_method_not_allowed"><strong>http_method_not_allowed</strong></a>(self, request, *args, **kwargs)</dt></dl>
+
+<dl><dt><a name="ItemNoEncontrado-options"><strong>options</strong></a>(self, request, *args, **kwargs)</dt><dd><tt>Handle&nbsp;responding&nbsp;to&nbsp;requests&nbsp;for&nbsp;the&nbsp;OPTIONS&nbsp;HTTP&nbsp;verb.</tt></dd></dl>
+
+<dl><dt><a name="ItemNoEncontrado-setup"><strong>setup</strong></a>(self, request, *args, **kwargs)</dt><dd><tt>Initialize&nbsp;attributes&nbsp;shared&nbsp;by&nbsp;all&nbsp;view&nbsp;methods.</tt></dd></dl>
+
+<hr>
+Class methods inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><a name="ItemNoEncontrado-as_view"><strong>as_view</strong></a>(**initkwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Main&nbsp;entry&nbsp;point&nbsp;for&nbsp;a&nbsp;request-response&nbsp;process.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><strong>http_method_names</strong> = ['get', 'post', 'put', 'patch', 'delete', 'head', 'options', 'trace']</dl>
+
+</td></tr></table></td></tr></table>
+</body></html>

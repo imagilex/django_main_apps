@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module zend_django.templatetags.html_helpers</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="zend_django.html"><font color="#ffffff">zend_django</font></a>.<a href="zend_django.templatetags.html"><font color="#ffffff">templatetags</font></a>.html_helpers</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cdjango_apps%5Cdjango_main_apps%5Czend_django%5Ctemplatetags%5Chtml_helpers.py">c:\django_apps\django_main_apps\zend_django\templatetags\html_helpers.py</a></font></td></tr></table>
+    <p><tt>Funciones&nbsp;de&nbsp;ayuda&nbsp;para&nbsp;la&nbsp;generación,&nbsp;automatización&nbsp;y&nbsp;correcta&nbsp;ejecución<br>
+de&nbsp;plantillas&nbsp;base&nbsp;de&nbsp;html.<br>
+&nbsp;<br>
+La&nbsp;mayoria&nbsp;de&nbsp;las&nbsp;funciones&nbsp;son&nbsp;tags&nbsp;utilizables&nbsp;en&nbsp;las&nbsp;plantillas&nbsp;html&nbsp;en<br>
+la&nbsp;forma:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{%&nbsp;tag&nbsp;[param1=valor1[,&nbsp;param2=valor2[,&nbsp;...]]]&nbsp;%}<br>
+&nbsp;<br>
+Cargar&nbsp;con&nbsp;{%&nbsp;load&nbsp;html_helpers&nbsp;%}</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="django.template.html">django.template</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-generate_get_css_apps"><strong>generate_get_css_apps</strong></a>()</dt><dd><tt>Inclusion&nbsp;tag:&nbsp;{%&nbsp;generate_get_css_apps&nbsp;%}<br>
+Genera&nbsp;las&nbsp;etiquetas&nbsp;para&nbsp;incluir&nbsp;los&nbsp;css&nbsp;correspondientes&nbsp;a&nbsp;las<br>
+aplicaciones&nbsp;instaladas<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+dict<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Diccionario&nbsp;con&nbsp;las&nbsp;claves&nbsp;'app'&nbsp;:&nbsp;list</tt></dd></dl>
+ <dl><dt><a name="-generate_get_js_apps"><strong>generate_get_js_apps</strong></a>()</dt><dd><tt>Inclusion&nbsp;tag:&nbsp;{%&nbsp;generate_get_js_apps&nbsp;%}<br>
+Genera&nbsp;las&nbsp;etiquetas&nbsp;para&nbsp;incluir&nbsp;los&nbsp;js&nbsp;correspondientes&nbsp;a&nbsp;las<br>
+aplicaciones&nbsp;instaladas<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+dict<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Diccionario&nbsp;con&nbsp;las&nbsp;claves&nbsp;'app'&nbsp;:&nbsp;list</tt></dd></dl>
+ <dl><dt><a name="-get_apps"><strong>get_apps</strong></a>()</dt><dd><tt>Obtiene&nbsp;todas&nbsp;las&nbsp;apps&nbsp;registradas&nbsp;en&nbsp;settings.INSTALLED_APPS<br>
+que&nbsp;no&nbsp;son&nbsp;crispy_forms&nbsp;ni&nbsp;pertenecen&nbsp;a&nbsp;django.contrib<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Lista&nbsp;con&nbsp;las&nbsp;aplicaciones&nbsp;registradas</tt></dd></dl>
+ <dl><dt><a name="-requiere_ui_css"><strong>requiere_ui_css</strong></a>(context)</dt><dd><tt>Inclusion&nbsp;tag:&nbsp;{%&nbsp;requiere_ui_css&nbsp;%}<br>
+Genera&nbsp;las&nbsp;etiquetas&nbsp;para&nbsp;incluir&nbsp;los&nbsp;css&nbsp;de&nbsp;apoyo&nbsp;para<br>
+navegadores&nbsp;que&nbsp;no&nbsp;soportan/implementan&nbsp;controles&nbsp;html5,&nbsp;como&nbsp;safari.<br>
+Se&nbsp;basa&nbsp;la&nbsp;cadena&nbsp;del&nbsp;HTTP_USER_AGENT&nbsp;recibido&nbsp;a&nbsp;través&nbsp;del&nbsp;request.<br>
+&nbsp;<br>
+Navegadores&nbsp;que&nbsp;si&nbsp;generan&nbsp;controles&nbsp;html5&nbsp;son:<br>
+&nbsp;-&nbsp;chrome<br>
+&nbsp;-&nbsp;chromium<br>
+&nbsp;-&nbsp;edge<br>
+&nbsp;-&nbsp;mobi<br>
+&nbsp;-&nbsp;phone<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+context&nbsp;:&nbsp;contexto&nbsp;de&nbsp;request<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Contexto&nbsp;recibido&nbsp;al&nbsp;incluir&nbsp;el&nbsp;tag,&nbsp;se&nbsp;tutiliza<br>
+&nbsp;&nbsp;&nbsp;&nbsp;context.request.META["HTTP_USER_AGENT"]<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+dict<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Diccionario&nbsp;con&nbsp;la&nbsp;claves&nbsp;'apps'&nbsp;:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;en&nbsp;caso&nbsp;de&nbsp;que&nbsp;sí&nbsp;se&nbsp;requieran&nbsp;controles&nbsp;UI&nbsp;o&nbsp;diccionario<br>
+&nbsp;&nbsp;&nbsp;&nbsp;vacío&nbsp;({})&nbsp;en&nbsp;caso&nbsp;de&nbsp;que&nbsp;no&nbsp;se&nbsp;requieran&nbsp;los&nbsp;controles</tt></dd></dl>
+ <dl><dt><a name="-requiere_ui_js"><strong>requiere_ui_js</strong></a>(context)</dt><dd><tt>Inclusion&nbsp;tag:&nbsp;{%&nbsp;requiere_ui_js&nbsp;%}<br>
+Genera&nbsp;las&nbsp;etiquetas&nbsp;para&nbsp;incluir&nbsp;los&nbsp;js&nbsp;de&nbsp;apoyo&nbsp;para<br>
+navegadores&nbsp;que&nbsp;no&nbsp;soportan/implementan&nbsp;controles&nbsp;html5,&nbsp;como&nbsp;safari.<br>
+Se&nbsp;basa&nbsp;la&nbsp;cadena&nbsp;del&nbsp;HTTP_USER_AGENT&nbsp;recibido&nbsp;a&nbsp;través&nbsp;del&nbsp;request.<br>
+&nbsp;<br>
+Navegadores&nbsp;que&nbsp;si&nbsp;generan&nbsp;controles&nbsp;html5&nbsp;son:<br>
+&nbsp;-&nbsp;chrome<br>
+&nbsp;-&nbsp;chromium<br>
+&nbsp;-&nbsp;edge<br>
+&nbsp;-&nbsp;mobi<br>
+&nbsp;-&nbsp;phone<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+context&nbsp;:&nbsp;contexto&nbsp;de&nbsp;request<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Contexto&nbsp;recibido&nbsp;al&nbsp;incluir&nbsp;el&nbsp;tag,&nbsp;se&nbsp;tutiliza<br>
+&nbsp;&nbsp;&nbsp;&nbsp;context.request.META["HTTP_USER_AGENT"]<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+dict<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Diccionario&nbsp;con&nbsp;las&nbsp;claves&nbsp;'apps'&nbsp;:&nbsp;list&nbsp;y&nbsp;'req_ui'&nbsp;:&nbsp;True<br>
+&nbsp;&nbsp;&nbsp;&nbsp;en&nbsp;caso&nbsp;de&nbsp;que&nbsp;sí&nbsp;se&nbsp;requieran&nbsp;controles&nbsp;UI&nbsp;o&nbsp;diccionario<br>
+&nbsp;&nbsp;&nbsp;&nbsp;vacío&nbsp;({})&nbsp;en&nbsp;caso&nbsp;de&nbsp;que&nbsp;no&nbsp;se&nbsp;requieran&nbsp;los&nbsp;controles</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>register</strong> = &lt;django.template.library.Library object&gt;<br>
+<strong>settings</strong> = &lt;LazySettings "main_app_tool.settings"&gt;</td></tr></table>
+</body></html>

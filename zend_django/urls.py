@@ -1,3 +1,14 @@
+"""
+URL's para acceso a vista de la aplicacion zend_django
+
+base_path =>
+
+Perm                   => View             => Path
+--------------------------------------------------
+-                         item_con_relaciones    => item-con-relaciones/
+-                         item_no_encontrado    => item-no-encontrado/
+- auth.apply_migration => aplicar_migraciones_vw => migrar/
+"""
 from django.contrib.auth.decorators import permission_required
 from django.urls import include
 from django.urls import path

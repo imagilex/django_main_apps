@@ -1,3 +1,14 @@
+"""
+Vistas relacionadas con el modelo Permission (Permisos)
+
+Vistas
+------
+- List
+- Read
+- Create
+- Update
+- Delete
+"""
 from django.contrib.auth.models import Permission as main_model
 from django.db.models import Q
 

@@ -22,8 +22,9 @@
         <link rel="icon" href="{{ MEDIA_URL }}{% parametro_de_sistema seccion='SitioGeneral' nombre='favicon' %}" type="image/png" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
 
+        <!-- generate_get_css_apps -->
         {% generate_get_css_apps %}
-
+        <!-- requiere_ui_css -->
         {% requiere_ui_css %}
         
         <script type="text/javascript">
@@ -33,7 +34,9 @@
     </head>
     <body>
 
+        <!-- main_menu.html -->
         {% include "zend_django/menuopc/main_menu.html" %}
+        <!-- - main_menu.html -->
 
         <!-- html_struct/extraaftermain -->
         {% block extraaftermain %}
@@ -41,8 +44,6 @@
         <!-- html_struct/extraaftermain end -->
 
         <div class="container">
-            
-            <div class="height_25"></div>
 
             {% if toolbar %}
                 <!-- html_struct/toolbal.html -->
@@ -130,11 +131,9 @@
         
         {% if True == footer %}
             <!-- html_struct/footer.html -->
-            {% include "global/footer.html" %}
+            {% include "zend_django/html/footer.html" %}
             <!-- html_struct/footer.html end -->
         {% endif %}
-        
-        <div class="height_25"></div>
 
         <!-- Herramientas Externas -->
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -143,8 +142,10 @@
         <script src="https://kit.fontawesome.com/f55fffcff6.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.3/handlebars.min.js" integrity="sha256-/PJBs6QWvXijOFIX04kZpLb6ZtSQckdOIavLWKKOgXU=" crossorigin="anonymous"></script>
 
+        <!-- generate_get_js_apps -->
         {% generate_get_js_apps %}
 
+        <!-- requiere_ui_js -->
         {% requiere_ui_js %}
         
 		{% if req_chart %}
