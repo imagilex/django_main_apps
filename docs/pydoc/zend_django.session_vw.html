@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module zend_django.session_vw</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="zend_django.html"><font color="#ffffff">zend_django</font></a>.session_vw</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cdjango_apps%5Cdjango_main_apps%5Czend_django%5Csession_vw.py">c:\django_apps\django_main_apps\zend_django\session_vw.py</a></font></td></tr></table>
+    <p><tt>Vistas&nbsp;relacionadas&nbsp;con&nbsp;el&nbsp;acceso&nbsp;a&nbsp;la&nbsp;herramienta&nbsp;a&nbsp;través&nbsp;de&nbsp;la&nbsp;apertura<br>
+y&nbsp;cierre&nbsp;de&nbsp;sesiones<br>
+&nbsp;<br>
+Vistas<br>
+------<br>
+-&nbsp;<a href="#Login">Login</a><br>
+-&nbsp;<a href="#Logout">Logout</a><br>
+-&nbsp;<a href="#ImIn">ImIn</a></tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="django.contrib.auth.html">django.contrib.auth</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="django.views.generic.base.html#View">django.views.generic.base.View</a>(<a href="builtins.html#object">builtins.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="zend_django.session_vw.html#ImIn">ImIn</a>
+</font></dt><dt><font face="helvetica, arial"><a href="zend_django.session_vw.html#Login">Login</a>
+</font></dt><dt><font face="helvetica, arial"><a href="zend_django.session_vw.html#Logout">Logout</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ImIn">class <strong>ImIn</strong></a>(<a href="django.views.generic.base.html#View">django.views.generic.base.View</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#ImIn">ImIn</a>(**kwargs)<br>
+&nbsp;<br>
+Acceso&nbsp;inicial&nbsp;una&nbsp;vez&nbsp;que&nbsp;se&nbsp;inicia&nbsp;sesión&nbsp;en&nbsp;la&nbsp;herramienta&nbsp;o&nbsp;bien&nbsp;se<br>
+trata&nbsp;de&nbsp;accesar&nbsp;a&nbsp;vistas&nbsp;para&nbsp;las&nbsp;cuales&nbsp;no&nbsp;se&nbsp;cuenta&nbsp;con&nbsp;permiso&nbsp;de<br>
+acceso.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="zend_django.session_vw.html#ImIn">ImIn</a></dd>
+<dd><a href="django.views.generic.base.html#View">django.views.generic.base.View</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ImIn-base_render"><strong>base_render</strong></a>(self, request)</dt></dl>
+
+<dl><dt><a name="ImIn-get"><strong>get</strong></a>(self, request)</dt></dl>
+
+<dl><dt><a name="ImIn-post"><strong>post</strong></a>(self, request)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>html_template</strong> = 'zend_django/html/html_struct.html'</dl>
+
+<hr>
+Methods inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><a name="ImIn-__init__"><strong>__init__</strong></a>(self, **kwargs)</dt><dd><tt>Constructor.&nbsp;Called&nbsp;in&nbsp;the&nbsp;URLconf;&nbsp;can&nbsp;contain&nbsp;helpful&nbsp;extra<br>
+keyword&nbsp;arguments,&nbsp;and&nbsp;other&nbsp;things.</tt></dd></dl>
+
+<dl><dt><a name="ImIn-dispatch"><strong>dispatch</strong></a>(self, request, *args, **kwargs)</dt></dl>
+
+<dl><dt><a name="ImIn-http_method_not_allowed"><strong>http_method_not_allowed</strong></a>(self, request, *args, **kwargs)</dt></dl>
+
+<dl><dt><a name="ImIn-options"><strong>options</strong></a>(self, request, *args, **kwargs)</dt><dd><tt>Handle&nbsp;responding&nbsp;to&nbsp;requests&nbsp;for&nbsp;the&nbsp;OPTIONS&nbsp;HTTP&nbsp;verb.</tt></dd></dl>
+
+<dl><dt><a name="ImIn-setup"><strong>setup</strong></a>(self, request, *args, **kwargs)</dt><dd><tt>Initialize&nbsp;attributes&nbsp;shared&nbsp;by&nbsp;all&nbsp;view&nbsp;methods.</tt></dd></dl>
+
+<hr>
+Class methods inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><a name="ImIn-as_view"><strong>as_view</strong></a>(**initkwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Main&nbsp;entry&nbsp;point&nbsp;for&nbsp;a&nbsp;request-response&nbsp;process.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><strong>http_method_names</strong> = ['get', 'post', 'put', 'patch', 'delete', 'head', 'options', 'trace']</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Login">class <strong>Login</strong></a>(<a href="django.views.generic.base.html#View">django.views.generic.base.View</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Login">Login</a>(**kwargs)<br>
+&nbsp;<br>
+Acceso&nbsp;a&nbsp;la&nbsp;herramienta,&nbsp;apertura&nbsp;de&nbsp;sesisón<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="zend_django.session_vw.html#Login">Login</a></dd>
+<dd><a href="django.views.generic.base.html#View">django.views.generic.base.View</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Login-base_render"><strong>base_render</strong></a>(self, request, form)</dt></dl>
+
+<dl><dt><a name="Login-get"><strong>get</strong></a>(self, request)</dt></dl>
+
+<dl><dt><a name="Login-post"><strong>post</strong></a>(self, request)</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>base_data_form</strong> = &lt;class 'zend_django.session_forms.frmLogin'&gt;<dd><tt>Formulario&nbsp;de&nbsp;inicio&nbsp;de&nbsp;sesión<br>
+&nbsp;<br>
+Campos<br>
+------<br>
+-&nbsp;username<br>
+-&nbsp;password</tt></dl>
+
+<dl><dt><strong>html_template</strong> = 'zend_django/session/login.html'</dl>
+
+<hr>
+Methods inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><a name="Login-__init__"><strong>__init__</strong></a>(self, **kwargs)</dt><dd><tt>Constructor.&nbsp;Called&nbsp;in&nbsp;the&nbsp;URLconf;&nbsp;can&nbsp;contain&nbsp;helpful&nbsp;extra<br>
+keyword&nbsp;arguments,&nbsp;and&nbsp;other&nbsp;things.</tt></dd></dl>
+
+<dl><dt><a name="Login-dispatch"><strong>dispatch</strong></a>(self, request, *args, **kwargs)</dt></dl>
+
+<dl><dt><a name="Login-http_method_not_allowed"><strong>http_method_not_allowed</strong></a>(self, request, *args, **kwargs)</dt></dl>
+
+<dl><dt><a name="Login-options"><strong>options</strong></a>(self, request, *args, **kwargs)</dt><dd><tt>Handle&nbsp;responding&nbsp;to&nbsp;requests&nbsp;for&nbsp;the&nbsp;OPTIONS&nbsp;HTTP&nbsp;verb.</tt></dd></dl>
+
+<dl><dt><a name="Login-setup"><strong>setup</strong></a>(self, request, *args, **kwargs)</dt><dd><tt>Initialize&nbsp;attributes&nbsp;shared&nbsp;by&nbsp;all&nbsp;view&nbsp;methods.</tt></dd></dl>
+
+<hr>
+Class methods inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><a name="Login-as_view"><strong>as_view</strong></a>(**initkwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Main&nbsp;entry&nbsp;point&nbsp;for&nbsp;a&nbsp;request-response&nbsp;process.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><strong>http_method_names</strong> = ['get', 'post', 'put', 'patch', 'delete', 'head', 'options', 'trace']</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Logout">class <strong>Logout</strong></a>(<a href="django.views.generic.base.html#View">django.views.generic.base.View</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Logout">Logout</a>(**kwargs)<br>
+&nbsp;<br>
+Cierre&nbsp;de&nbsp;sesión<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="zend_django.session_vw.html#Logout">Logout</a></dd>
+<dd><a href="django.views.generic.base.html#View">django.views.generic.base.View</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Logout-base_render"><strong>base_render</strong></a>(self, request)</dt></dl>
+
+<dl><dt><a name="Logout-get"><strong>get</strong></a>(self, request)</dt></dl>
+
+<dl><dt><a name="Logout-post"><strong>post</strong></a>(self, request)</dt></dl>
+
+<hr>
+Methods inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><a name="Logout-__init__"><strong>__init__</strong></a>(self, **kwargs)</dt><dd><tt>Constructor.&nbsp;Called&nbsp;in&nbsp;the&nbsp;URLconf;&nbsp;can&nbsp;contain&nbsp;helpful&nbsp;extra<br>
+keyword&nbsp;arguments,&nbsp;and&nbsp;other&nbsp;things.</tt></dd></dl>
+
+<dl><dt><a name="Logout-dispatch"><strong>dispatch</strong></a>(self, request, *args, **kwargs)</dt></dl>
+
+<dl><dt><a name="Logout-http_method_not_allowed"><strong>http_method_not_allowed</strong></a>(self, request, *args, **kwargs)</dt></dl>
+
+<dl><dt><a name="Logout-options"><strong>options</strong></a>(self, request, *args, **kwargs)</dt><dd><tt>Handle&nbsp;responding&nbsp;to&nbsp;requests&nbsp;for&nbsp;the&nbsp;OPTIONS&nbsp;HTTP&nbsp;verb.</tt></dd></dl>
+
+<dl><dt><a name="Logout-setup"><strong>setup</strong></a>(self, request, *args, **kwargs)</dt><dd><tt>Initialize&nbsp;attributes&nbsp;shared&nbsp;by&nbsp;all&nbsp;view&nbsp;methods.</tt></dd></dl>
+
+<hr>
+Class methods inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><a name="Logout-as_view"><strong>as_view</strong></a>(**initkwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Main&nbsp;entry&nbsp;point&nbsp;for&nbsp;a&nbsp;request-response&nbsp;process.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><strong>http_method_names</strong> = ['get', 'post', 'put', 'patch', 'delete', 'head', 'options', 'trace']</dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-template_base_path"><strong>template_base_path</strong></a>(file)</dt></dl>
+</td></tr></table>
+</body></html>

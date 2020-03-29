@@ -1,9 +1,19 @@
+"""
+Definición de modelos de Perfil de Usuario
+
+Modelos
+-------
+UserProfile => Perfil de usuario (campos extra para el usuario)
+"""
 from django.db import models
 
 from django.contrib.auth.models import User
 
 
 class UserProfile(models.Model):
+    """
+    Modelo de Perfil de Usuario (campos extra para el usuario)
+    """
     apellido_materno = models.CharField(max_length=50, blank=True)
     telefono = models.CharField(max_length=10, blank=True)
     celular = models.CharField(max_length=10, blank=True)

@@ -1,6 +1,6 @@
 from time import time
 
-from zend_django.functional_tests.utils_test import ViewsTests
+from zend_django.pruebas_funcionales.util_pruebas import ViewsTests
 
 import zend_django.permission_vw as views
 

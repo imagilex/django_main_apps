@@ -3,8 +3,8 @@ from time import time
 
 import zend_django.menuopc_vw as views
 
-from zend_django.functional_tests.utils_test import ViewsTests
 from zend_django.menuopc_models import MenuOpc as main_model
+from zend_django.pruebas_funcionales.util_pruebas import ViewsTests
 
 
 class TestMenuOpcViews(ViewsTests):

@@ -1,0 +1,35 @@
+\chapter{Utilerías JS}
+
+\section{zend\_django.js}
+
+\subsection{Date}
+
+\begin{description}
+	\item[String asMySQL()] Devuelve la fecha en formato MySQL YYYY-MM-DD
+	\item[String asMx()] Devuelve la fecha en formato europeo DD-MM-YYYY
+	\item[String theTime()] Devuelve la hora en formato hh:mm
+	\item[Date fromMX(String date)] Recibe una cadena en formato DD-MM-YYYY y devuelve el objeto tipo Date correspondiente
+	\item[Date addDays(int dias)] Suma un numero de días a la fecha
+\end{description}
+
+\subsection{Number}
+
+\begin{description}
+	\item[String asMoney()] Devuelve el número como cadena en formato de moneda (con dos decimales)
+\end{description}
+
+\subsection{clsApp : App}
+
+\begin{description}
+	\item[void checkInputIn(String idcontainer)] Activa todas las casillas de verificación contenidas en el contenedor con id = idcontainer
+	\item[void uncheckInputIn(String idcontainer)] Desactiva todas las casillas de verificación contenidas en el contenedor con id = idcontainer
+	\item[void openPanel(String body, String title, boolean close=true, String footer=null,]
+	\item[\quad String idmodal=``modal-panel-message'')] Genera un nuevo panel bootstrap con el contenido de body y el identificador indicado en idmodal
+	\item[void closePanel(String idmodal=``modal-panel-message'')] Cierra el panel bootstrap identificado por idmodal
+	\item[void setUIControls] Genera los controles UI para navegadores que no soportan controles HTML5 para controles input tipo date
+	\item[void setReadOnlyForm(String container\_selector=``\#main-form'')] Aplica readonly a los controles de formulario contenidos en el contenedor indicado por container\_selector
+	\item [void showPrivacyPolicy()] Abre en un panel bootstrap el contenido de politica de privacidad, establecido en el elemento HTML con el selector \textit{\#privacy-policy-template}
+	\item[void showDeletingConfirmation(String url, String elemento=``elemento'', String pre\_elemento=``el'')] Muestra el panel bootstrap de confirmación de eliminación de `el` `elemento`, el boton de \textit{Aceptar} es un hipervínculo a url
+	\item[boolean isEmpty(variant valor)] Indica si es una cadena vacia o vale 0 (cero)
+	\item[boolean validate\_required\_fields(String container)] Verifica si todos los controloes dentro del container (selector) tienen un valor establecido
+\end{description}

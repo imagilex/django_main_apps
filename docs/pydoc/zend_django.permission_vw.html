@@ -1,0 +1,614 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module zend_django.permission_vw</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="zend_django.html"><font color="#ffffff">zend_django</font></a>.permission_vw</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cdjango_apps%5Cdjango_main_apps%5Czend_django%5Cpermission_vw.py">c:\django_apps\django_main_apps\zend_django\permission_vw.py</a></font></td></tr></table>
+    <p><tt>Vistas&nbsp;relacionadas&nbsp;con&nbsp;el&nbsp;modelo&nbsp;Permission&nbsp;(Permisos)<br>
+&nbsp;<br>
+Vistas<br>
+------<br>
+-&nbsp;<a href="#List">List</a><br>
+-&nbsp;<a href="#Read">Read</a><br>
+-&nbsp;<a href="#Create">Create</a><br>
+-&nbsp;<a href="#Update">Update</a><br>
+-&nbsp;<a href="#Delete">Delete</a></tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="zend_django.views.html#GenericCreate">zend_django.views.GenericCreate</a>(<a href="django.views.generic.base.html#View">django.views.generic.base.View</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="zend_django.permission_vw.html#Create">Create</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="zend_django.views.html#GenericDelete">zend_django.views.GenericDelete</a>(<a href="django.views.generic.base.html#View">django.views.generic.base.View</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="zend_django.permission_vw.html#Delete">Delete</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="zend_django.views.html#GenericList">zend_django.views.GenericList</a>(<a href="django.views.generic.base.html#View">django.views.generic.base.View</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="zend_django.permission_vw.html#List">List</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="zend_django.views.html#GenericRead">zend_django.views.GenericRead</a>(<a href="django.views.generic.base.html#View">django.views.generic.base.View</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="zend_django.permission_vw.html#Read">Read</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="zend_django.views.html#GenericUpdate">zend_django.views.GenericUpdate</a>(<a href="django.views.generic.base.html#View">django.views.generic.base.View</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="zend_django.permission_vw.html#Update">Update</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Create">class <strong>Create</strong></a>(<a href="zend_django.views.html#GenericCreate">zend_django.views.GenericCreate</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Create">Create</a>(**kwargs)<br>
+&nbsp;<br>
+Creación&nbsp;de&nbsp;objetos<br>
+&nbsp;<br>
+Miembros<br>
+--------<br>
+-&nbsp;html_template&nbsp;=&nbsp;"zend_django/html/form.html"<br>
+-&nbsp;titulo&nbsp;=&nbsp;""<br>
+-&nbsp;model_name&nbsp;=&nbsp;""<br>
+-&nbsp;base_data_form&nbsp;=&nbsp;None<br>
+&nbsp;<br>
+Métodos<br>
+-------<br>
+-&nbsp;<a href="#Create-base_render">base_render</a>(request,&nbsp;forms)<br>
+-&nbsp;<a href="#Create-get">get</a>(request)<br>
+-&nbsp;<a href="#Create-post">post</a>(request)<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="zend_django.permission_vw.html#Create">Create</a></dd>
+<dd><a href="zend_django.views.html#GenericCreate">zend_django.views.GenericCreate</a></dd>
+<dd><a href="django.views.generic.base.html#View">django.views.generic.base.View</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>base_data_form</strong> = &lt;class 'zend_django.permission_forms.frmPermission'&gt;<dd><tt>Formulario&nbsp;principal&nbsp;del&nbsp;modelo&nbsp;Permission<br>
+&nbsp;<br>
+Campos<br>
+------<br>
+-&nbsp;name<br>
+-&nbsp;content_type<br>
+-&nbsp;codename</tt></dl>
+
+<dl><dt><strong>model_name</strong> = 'permission'</dl>
+
+<dl><dt><strong>titulo</strong> = 'Permiso'</dl>
+
+<hr>
+Methods inherited from <a href="zend_django.views.html#GenericCreate">zend_django.views.GenericCreate</a>:<br>
+<dl><dt><a name="Create-base_render"><strong>base_render</strong></a>(self, request, forms)</dt></dl>
+
+<dl><dt><a name="Create-get"><strong>get</strong></a>(self, request)</dt></dl>
+
+<dl><dt><a name="Create-post"><strong>post</strong></a>(self, request)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="zend_django.views.html#GenericCreate">zend_django.views.GenericCreate</a>:<br>
+<dl><dt><strong>__metaclass__</strong> = &lt;class 'abc.ABCMeta'&gt;<dd><tt>Metaclass&nbsp;for&nbsp;defining&nbsp;Abstract&nbsp;Base&nbsp;Classes&nbsp;(ABCs).<br>
+&nbsp;<br>
+Use&nbsp;this&nbsp;metaclass&nbsp;to&nbsp;create&nbsp;an&nbsp;ABC.&nbsp;&nbsp;An&nbsp;ABC&nbsp;can&nbsp;be&nbsp;subclassed<br>
+directly,&nbsp;and&nbsp;then&nbsp;acts&nbsp;as&nbsp;a&nbsp;mix-in&nbsp;class.&nbsp;&nbsp;You&nbsp;can&nbsp;also&nbsp;register<br>
+unrelated&nbsp;concrete&nbsp;classes&nbsp;(even&nbsp;built-in&nbsp;classes)&nbsp;and&nbsp;unrelated<br>
+ABCs&nbsp;as&nbsp;'virtual&nbsp;subclasses'&nbsp;--&nbsp;these&nbsp;and&nbsp;their&nbsp;descendants&nbsp;will<br>
+be&nbsp;considered&nbsp;subclasses&nbsp;of&nbsp;the&nbsp;registering&nbsp;ABC&nbsp;by&nbsp;the&nbsp;built-in<br>
+issubclass()&nbsp;function,&nbsp;but&nbsp;the&nbsp;registering&nbsp;ABC&nbsp;won't&nbsp;show&nbsp;up&nbsp;in<br>
+their&nbsp;MRO&nbsp;(Method&nbsp;Resolution&nbsp;Order)&nbsp;nor&nbsp;will&nbsp;method<br>
+implementations&nbsp;defined&nbsp;by&nbsp;the&nbsp;registering&nbsp;ABC&nbsp;be&nbsp;callable&nbsp;(not<br>
+even&nbsp;via&nbsp;super()).</tt></dl>
+
+<dl><dt><strong>html_template</strong> = 'zend_django/html/form.html'</dl>
+
+<hr>
+Methods inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><a name="Create-__init__"><strong>__init__</strong></a>(self, **kwargs)</dt><dd><tt>Constructor.&nbsp;Called&nbsp;in&nbsp;the&nbsp;URLconf;&nbsp;can&nbsp;contain&nbsp;helpful&nbsp;extra<br>
+keyword&nbsp;arguments,&nbsp;and&nbsp;other&nbsp;things.</tt></dd></dl>
+
+<dl><dt><a name="Create-dispatch"><strong>dispatch</strong></a>(self, request, *args, **kwargs)</dt></dl>
+
+<dl><dt><a name="Create-http_method_not_allowed"><strong>http_method_not_allowed</strong></a>(self, request, *args, **kwargs)</dt></dl>
+
+<dl><dt><a name="Create-options"><strong>options</strong></a>(self, request, *args, **kwargs)</dt><dd><tt>Handle&nbsp;responding&nbsp;to&nbsp;requests&nbsp;for&nbsp;the&nbsp;OPTIONS&nbsp;HTTP&nbsp;verb.</tt></dd></dl>
+
+<dl><dt><a name="Create-setup"><strong>setup</strong></a>(self, request, *args, **kwargs)</dt><dd><tt>Initialize&nbsp;attributes&nbsp;shared&nbsp;by&nbsp;all&nbsp;view&nbsp;methods.</tt></dd></dl>
+
+<hr>
+Class methods inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><a name="Create-as_view"><strong>as_view</strong></a>(**initkwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Main&nbsp;entry&nbsp;point&nbsp;for&nbsp;a&nbsp;request-response&nbsp;process.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><strong>http_method_names</strong> = ['get', 'post', 'put', 'patch', 'delete', 'head', 'options', 'trace']</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Delete">class <strong>Delete</strong></a>(<a href="zend_django.views.html#GenericDelete">zend_django.views.GenericDelete</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Delete">Delete</a>(**kwargs)<br>
+&nbsp;<br>
+Borrado/Eliminado&nbsp;de&nbsp;objetos<br>
+&nbsp;<br>
+Miembros<br>
+--------<br>
+-&nbsp;model_name&nbsp;=&nbsp;""<br>
+-&nbsp;main_data_model&nbsp;=&nbsp;None<br>
+&nbsp;<br>
+Métodos<br>
+-------<br>
+-&nbsp;<a href="#Delete-get">get</a>(request,&nbsp;pk)<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="zend_django.permission_vw.html#Delete">Delete</a></dd>
+<dd><a href="zend_django.views.html#GenericDelete">zend_django.views.GenericDelete</a></dd>
+<dd><a href="django.views.generic.base.html#View">django.views.generic.base.View</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>main_data_model</strong> = &lt;class 'django.contrib.auth.models.Permission'&gt;<dd><tt>The&nbsp;permissions&nbsp;system&nbsp;provides&nbsp;a&nbsp;way&nbsp;to&nbsp;assign&nbsp;permissions&nbsp;to&nbsp;specific<br>
+users&nbsp;and&nbsp;groups&nbsp;of&nbsp;users.<br>
+&nbsp;<br>
+The&nbsp;permission&nbsp;system&nbsp;is&nbsp;used&nbsp;by&nbsp;the&nbsp;Django&nbsp;admin&nbsp;site,&nbsp;but&nbsp;may&nbsp;also&nbsp;be<br>
+useful&nbsp;in&nbsp;your&nbsp;own&nbsp;code.&nbsp;The&nbsp;Django&nbsp;admin&nbsp;site&nbsp;uses&nbsp;permissions&nbsp;as&nbsp;follows:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;The&nbsp;"add"&nbsp;permission&nbsp;limits&nbsp;the&nbsp;user's&nbsp;ability&nbsp;to&nbsp;view&nbsp;the&nbsp;"add"&nbsp;form<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;add&nbsp;an&nbsp;object.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;The&nbsp;"change"&nbsp;permission&nbsp;limits&nbsp;a&nbsp;user's&nbsp;ability&nbsp;to&nbsp;view&nbsp;the&nbsp;change<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list,&nbsp;view&nbsp;the&nbsp;"change"&nbsp;form&nbsp;and&nbsp;change&nbsp;an&nbsp;object.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;The&nbsp;"delete"&nbsp;permission&nbsp;limits&nbsp;the&nbsp;ability&nbsp;to&nbsp;delete&nbsp;an&nbsp;object.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;The&nbsp;"view"&nbsp;permission&nbsp;limits&nbsp;the&nbsp;ability&nbsp;to&nbsp;view&nbsp;an&nbsp;object.<br>
+&nbsp;<br>
+Permissions&nbsp;are&nbsp;set&nbsp;globally&nbsp;per&nbsp;type&nbsp;of&nbsp;object,&nbsp;not&nbsp;per&nbsp;specific&nbsp;object<br>
+instance.&nbsp;It&nbsp;is&nbsp;possible&nbsp;to&nbsp;say&nbsp;"Mary&nbsp;may&nbsp;change&nbsp;news&nbsp;stories,"&nbsp;but&nbsp;it's<br>
+not&nbsp;currently&nbsp;possible&nbsp;to&nbsp;say&nbsp;"Mary&nbsp;may&nbsp;change&nbsp;news&nbsp;stories,&nbsp;but&nbsp;only&nbsp;the<br>
+ones&nbsp;she&nbsp;created&nbsp;herself"&nbsp;or&nbsp;"Mary&nbsp;may&nbsp;only&nbsp;change&nbsp;news&nbsp;stories&nbsp;that&nbsp;have&nbsp;a<br>
+certain&nbsp;status&nbsp;or&nbsp;publication&nbsp;date."<br>
+&nbsp;<br>
+The&nbsp;permissions&nbsp;listed&nbsp;above&nbsp;are&nbsp;automatically&nbsp;created&nbsp;for&nbsp;each&nbsp;model.</tt></dl>
+
+<dl><dt><strong>model_name</strong> = 'permission'</dl>
+
+<hr>
+Methods inherited from <a href="zend_django.views.html#GenericDelete">zend_django.views.GenericDelete</a>:<br>
+<dl><dt><a name="Delete-get"><strong>get</strong></a>(self, request, pk)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="zend_django.views.html#GenericDelete">zend_django.views.GenericDelete</a>:<br>
+<dl><dt><strong>__metaclass__</strong> = &lt;class 'abc.ABCMeta'&gt;<dd><tt>Metaclass&nbsp;for&nbsp;defining&nbsp;Abstract&nbsp;Base&nbsp;Classes&nbsp;(ABCs).<br>
+&nbsp;<br>
+Use&nbsp;this&nbsp;metaclass&nbsp;to&nbsp;create&nbsp;an&nbsp;ABC.&nbsp;&nbsp;An&nbsp;ABC&nbsp;can&nbsp;be&nbsp;subclassed<br>
+directly,&nbsp;and&nbsp;then&nbsp;acts&nbsp;as&nbsp;a&nbsp;mix-in&nbsp;class.&nbsp;&nbsp;You&nbsp;can&nbsp;also&nbsp;register<br>
+unrelated&nbsp;concrete&nbsp;classes&nbsp;(even&nbsp;built-in&nbsp;classes)&nbsp;and&nbsp;unrelated<br>
+ABCs&nbsp;as&nbsp;'virtual&nbsp;subclasses'&nbsp;--&nbsp;these&nbsp;and&nbsp;their&nbsp;descendants&nbsp;will<br>
+be&nbsp;considered&nbsp;subclasses&nbsp;of&nbsp;the&nbsp;registering&nbsp;ABC&nbsp;by&nbsp;the&nbsp;built-in<br>
+issubclass()&nbsp;function,&nbsp;but&nbsp;the&nbsp;registering&nbsp;ABC&nbsp;won't&nbsp;show&nbsp;up&nbsp;in<br>
+their&nbsp;MRO&nbsp;(Method&nbsp;Resolution&nbsp;Order)&nbsp;nor&nbsp;will&nbsp;method<br>
+implementations&nbsp;defined&nbsp;by&nbsp;the&nbsp;registering&nbsp;ABC&nbsp;be&nbsp;callable&nbsp;(not<br>
+even&nbsp;via&nbsp;super()).</tt></dl>
+
+<hr>
+Methods inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><a name="Delete-__init__"><strong>__init__</strong></a>(self, **kwargs)</dt><dd><tt>Constructor.&nbsp;Called&nbsp;in&nbsp;the&nbsp;URLconf;&nbsp;can&nbsp;contain&nbsp;helpful&nbsp;extra<br>
+keyword&nbsp;arguments,&nbsp;and&nbsp;other&nbsp;things.</tt></dd></dl>
+
+<dl><dt><a name="Delete-dispatch"><strong>dispatch</strong></a>(self, request, *args, **kwargs)</dt></dl>
+
+<dl><dt><a name="Delete-http_method_not_allowed"><strong>http_method_not_allowed</strong></a>(self, request, *args, **kwargs)</dt></dl>
+
+<dl><dt><a name="Delete-options"><strong>options</strong></a>(self, request, *args, **kwargs)</dt><dd><tt>Handle&nbsp;responding&nbsp;to&nbsp;requests&nbsp;for&nbsp;the&nbsp;OPTIONS&nbsp;HTTP&nbsp;verb.</tt></dd></dl>
+
+<dl><dt><a name="Delete-setup"><strong>setup</strong></a>(self, request, *args, **kwargs)</dt><dd><tt>Initialize&nbsp;attributes&nbsp;shared&nbsp;by&nbsp;all&nbsp;view&nbsp;methods.</tt></dd></dl>
+
+<hr>
+Class methods inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><a name="Delete-as_view"><strong>as_view</strong></a>(**initkwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Main&nbsp;entry&nbsp;point&nbsp;for&nbsp;a&nbsp;request-response&nbsp;process.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><strong>http_method_names</strong> = ['get', 'post', 'put', 'patch', 'delete', 'head', 'options', 'trace']</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="List">class <strong>List</strong></a>(<a href="zend_django.views.html#GenericList">zend_django.views.GenericList</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#List">List</a>(**kwargs)<br>
+&nbsp;<br>
+Listado&nbsp;de&nbsp;obetos<br>
+&nbsp;<br>
+Miembros<br>
+--------<br>
+-&nbsp;html_template&nbsp;=&nbsp;""<br>
+-&nbsp;titulo&nbsp;=&nbsp;""<br>
+-&nbsp;titulo_descripcion&nbsp;=&nbsp;""<br>
+-&nbsp;main_data_model&nbsp;=&nbsp;None<br>
+-&nbsp;model_name&nbsp;=&nbsp;""<br>
+&nbsp;<br>
+Métodos<br>
+-------<br>
+-&nbsp;*<a href="#List-get_data">get_data</a>(search_value="")&nbsp;:&nbsp;[]<br>
+-&nbsp;<a href="#List-base_render">base_render</a>(request,&nbsp;data,&nbsp;search_value)<br>
+-&nbsp;<a href="#List-get">get</a>(request)<br>
+-&nbsp;*<a href="#List-post">post</a>(request)<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="zend_django.permission_vw.html#List">List</a></dd>
+<dd><a href="zend_django.views.html#GenericList">zend_django.views.GenericList</a></dd>
+<dd><a href="django.views.generic.base.html#View">django.views.generic.base.View</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="List-get_data"><strong>get_data</strong></a>(self, search_value='')</dt></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>html_template</strong> = 'zend_django/permission/list.html'</dl>
+
+<dl><dt><strong>main_data_model</strong> = &lt;class 'django.contrib.auth.models.Permission'&gt;<dd><tt>The&nbsp;permissions&nbsp;system&nbsp;provides&nbsp;a&nbsp;way&nbsp;to&nbsp;assign&nbsp;permissions&nbsp;to&nbsp;specific<br>
+users&nbsp;and&nbsp;groups&nbsp;of&nbsp;users.<br>
+&nbsp;<br>
+The&nbsp;permission&nbsp;system&nbsp;is&nbsp;used&nbsp;by&nbsp;the&nbsp;Django&nbsp;admin&nbsp;site,&nbsp;but&nbsp;may&nbsp;also&nbsp;be<br>
+useful&nbsp;in&nbsp;your&nbsp;own&nbsp;code.&nbsp;The&nbsp;Django&nbsp;admin&nbsp;site&nbsp;uses&nbsp;permissions&nbsp;as&nbsp;follows:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;The&nbsp;"add"&nbsp;permission&nbsp;limits&nbsp;the&nbsp;user's&nbsp;ability&nbsp;to&nbsp;view&nbsp;the&nbsp;"add"&nbsp;form<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;add&nbsp;an&nbsp;object.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;The&nbsp;"change"&nbsp;permission&nbsp;limits&nbsp;a&nbsp;user's&nbsp;ability&nbsp;to&nbsp;view&nbsp;the&nbsp;change<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list,&nbsp;view&nbsp;the&nbsp;"change"&nbsp;form&nbsp;and&nbsp;change&nbsp;an&nbsp;object.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;The&nbsp;"delete"&nbsp;permission&nbsp;limits&nbsp;the&nbsp;ability&nbsp;to&nbsp;delete&nbsp;an&nbsp;object.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;The&nbsp;"view"&nbsp;permission&nbsp;limits&nbsp;the&nbsp;ability&nbsp;to&nbsp;view&nbsp;an&nbsp;object.<br>
+&nbsp;<br>
+Permissions&nbsp;are&nbsp;set&nbsp;globally&nbsp;per&nbsp;type&nbsp;of&nbsp;object,&nbsp;not&nbsp;per&nbsp;specific&nbsp;object<br>
+instance.&nbsp;It&nbsp;is&nbsp;possible&nbsp;to&nbsp;say&nbsp;"Mary&nbsp;may&nbsp;change&nbsp;news&nbsp;stories,"&nbsp;but&nbsp;it's<br>
+not&nbsp;currently&nbsp;possible&nbsp;to&nbsp;say&nbsp;"Mary&nbsp;may&nbsp;change&nbsp;news&nbsp;stories,&nbsp;but&nbsp;only&nbsp;the<br>
+ones&nbsp;she&nbsp;created&nbsp;herself"&nbsp;or&nbsp;"Mary&nbsp;may&nbsp;only&nbsp;change&nbsp;news&nbsp;stories&nbsp;that&nbsp;have&nbsp;a<br>
+certain&nbsp;status&nbsp;or&nbsp;publication&nbsp;date."<br>
+&nbsp;<br>
+The&nbsp;permissions&nbsp;listed&nbsp;above&nbsp;are&nbsp;automatically&nbsp;created&nbsp;for&nbsp;each&nbsp;model.</tt></dl>
+
+<dl><dt><strong>model_name</strong> = 'permission'</dl>
+
+<dl><dt><strong>titulo</strong> = 'Permisos'</dl>
+
+<dl><dt><strong>titulo_descripcion</strong> = 'de usuario'</dl>
+
+<hr>
+Methods inherited from <a href="zend_django.views.html#GenericList">zend_django.views.GenericList</a>:<br>
+<dl><dt><a name="List-base_render"><strong>base_render</strong></a>(self, request, data, search_value)</dt></dl>
+
+<dl><dt><a name="List-get"><strong>get</strong></a>(self, request)</dt></dl>
+
+<dl><dt><a name="List-post"><strong>post</strong></a>(self, request)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="zend_django.views.html#GenericList">zend_django.views.GenericList</a>:<br>
+<dl><dt><strong>__metaclass__</strong> = &lt;class 'abc.ABCMeta'&gt;<dd><tt>Metaclass&nbsp;for&nbsp;defining&nbsp;Abstract&nbsp;Base&nbsp;Classes&nbsp;(ABCs).<br>
+&nbsp;<br>
+Use&nbsp;this&nbsp;metaclass&nbsp;to&nbsp;create&nbsp;an&nbsp;ABC.&nbsp;&nbsp;An&nbsp;ABC&nbsp;can&nbsp;be&nbsp;subclassed<br>
+directly,&nbsp;and&nbsp;then&nbsp;acts&nbsp;as&nbsp;a&nbsp;mix-in&nbsp;class.&nbsp;&nbsp;You&nbsp;can&nbsp;also&nbsp;register<br>
+unrelated&nbsp;concrete&nbsp;classes&nbsp;(even&nbsp;built-in&nbsp;classes)&nbsp;and&nbsp;unrelated<br>
+ABCs&nbsp;as&nbsp;'virtual&nbsp;subclasses'&nbsp;--&nbsp;these&nbsp;and&nbsp;their&nbsp;descendants&nbsp;will<br>
+be&nbsp;considered&nbsp;subclasses&nbsp;of&nbsp;the&nbsp;registering&nbsp;ABC&nbsp;by&nbsp;the&nbsp;built-in<br>
+issubclass()&nbsp;function,&nbsp;but&nbsp;the&nbsp;registering&nbsp;ABC&nbsp;won't&nbsp;show&nbsp;up&nbsp;in<br>
+their&nbsp;MRO&nbsp;(Method&nbsp;Resolution&nbsp;Order)&nbsp;nor&nbsp;will&nbsp;method<br>
+implementations&nbsp;defined&nbsp;by&nbsp;the&nbsp;registering&nbsp;ABC&nbsp;be&nbsp;callable&nbsp;(not<br>
+even&nbsp;via&nbsp;super()).</tt></dl>
+
+<hr>
+Methods inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><a name="List-__init__"><strong>__init__</strong></a>(self, **kwargs)</dt><dd><tt>Constructor.&nbsp;Called&nbsp;in&nbsp;the&nbsp;URLconf;&nbsp;can&nbsp;contain&nbsp;helpful&nbsp;extra<br>
+keyword&nbsp;arguments,&nbsp;and&nbsp;other&nbsp;things.</tt></dd></dl>
+
+<dl><dt><a name="List-dispatch"><strong>dispatch</strong></a>(self, request, *args, **kwargs)</dt></dl>
+
+<dl><dt><a name="List-http_method_not_allowed"><strong>http_method_not_allowed</strong></a>(self, request, *args, **kwargs)</dt></dl>
+
+<dl><dt><a name="List-options"><strong>options</strong></a>(self, request, *args, **kwargs)</dt><dd><tt>Handle&nbsp;responding&nbsp;to&nbsp;requests&nbsp;for&nbsp;the&nbsp;OPTIONS&nbsp;HTTP&nbsp;verb.</tt></dd></dl>
+
+<dl><dt><a name="List-setup"><strong>setup</strong></a>(self, request, *args, **kwargs)</dt><dd><tt>Initialize&nbsp;attributes&nbsp;shared&nbsp;by&nbsp;all&nbsp;view&nbsp;methods.</tt></dd></dl>
+
+<hr>
+Class methods inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><a name="List-as_view"><strong>as_view</strong></a>(**initkwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Main&nbsp;entry&nbsp;point&nbsp;for&nbsp;a&nbsp;request-response&nbsp;process.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><strong>http_method_names</strong> = ['get', 'post', 'put', 'patch', 'delete', 'head', 'options', 'trace']</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Read">class <strong>Read</strong></a>(<a href="zend_django.views.html#GenericRead">zend_django.views.GenericRead</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Read">Read</a>(**kwargs)<br>
+&nbsp;<br>
+Visualización&nbsp;de&nbsp;objetos<br>
+&nbsp;<br>
+Miembros<br>
+--------<br>
+-&nbsp;html_template&nbsp;=&nbsp;"zend_django/html/form.html"<br>
+-&nbsp;titulo_descripcion&nbsp;=&nbsp;""<br>
+-&nbsp;model_name&nbsp;=&nbsp;""<br>
+-&nbsp;base_data_form&nbsp;=&nbsp;None<br>
+-&nbsp;main_data_model&nbsp;=&nbsp;None<br>
+&nbsp;<br>
+Métodos<br>
+-------<br>
+-&nbsp;<a href="#Read-get">get</a>(request,&nbsp;pk)<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="zend_django.permission_vw.html#Read">Read</a></dd>
+<dd><a href="zend_django.views.html#GenericRead">zend_django.views.GenericRead</a></dd>
+<dd><a href="django.views.generic.base.html#View">django.views.generic.base.View</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>base_data_form</strong> = &lt;class 'zend_django.permission_forms.frmPermission'&gt;<dd><tt>Formulario&nbsp;principal&nbsp;del&nbsp;modelo&nbsp;Permission<br>
+&nbsp;<br>
+Campos<br>
+------<br>
+-&nbsp;name<br>
+-&nbsp;content_type<br>
+-&nbsp;codename</tt></dl>
+
+<dl><dt><strong>main_data_model</strong> = &lt;class 'django.contrib.auth.models.Permission'&gt;<dd><tt>The&nbsp;permissions&nbsp;system&nbsp;provides&nbsp;a&nbsp;way&nbsp;to&nbsp;assign&nbsp;permissions&nbsp;to&nbsp;specific<br>
+users&nbsp;and&nbsp;groups&nbsp;of&nbsp;users.<br>
+&nbsp;<br>
+The&nbsp;permission&nbsp;system&nbsp;is&nbsp;used&nbsp;by&nbsp;the&nbsp;Django&nbsp;admin&nbsp;site,&nbsp;but&nbsp;may&nbsp;also&nbsp;be<br>
+useful&nbsp;in&nbsp;your&nbsp;own&nbsp;code.&nbsp;The&nbsp;Django&nbsp;admin&nbsp;site&nbsp;uses&nbsp;permissions&nbsp;as&nbsp;follows:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;The&nbsp;"add"&nbsp;permission&nbsp;limits&nbsp;the&nbsp;user's&nbsp;ability&nbsp;to&nbsp;view&nbsp;the&nbsp;"add"&nbsp;form<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;add&nbsp;an&nbsp;object.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;The&nbsp;"change"&nbsp;permission&nbsp;limits&nbsp;a&nbsp;user's&nbsp;ability&nbsp;to&nbsp;view&nbsp;the&nbsp;change<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list,&nbsp;view&nbsp;the&nbsp;"change"&nbsp;form&nbsp;and&nbsp;change&nbsp;an&nbsp;object.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;The&nbsp;"delete"&nbsp;permission&nbsp;limits&nbsp;the&nbsp;ability&nbsp;to&nbsp;delete&nbsp;an&nbsp;object.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;The&nbsp;"view"&nbsp;permission&nbsp;limits&nbsp;the&nbsp;ability&nbsp;to&nbsp;view&nbsp;an&nbsp;object.<br>
+&nbsp;<br>
+Permissions&nbsp;are&nbsp;set&nbsp;globally&nbsp;per&nbsp;type&nbsp;of&nbsp;object,&nbsp;not&nbsp;per&nbsp;specific&nbsp;object<br>
+instance.&nbsp;It&nbsp;is&nbsp;possible&nbsp;to&nbsp;say&nbsp;"Mary&nbsp;may&nbsp;change&nbsp;news&nbsp;stories,"&nbsp;but&nbsp;it's<br>
+not&nbsp;currently&nbsp;possible&nbsp;to&nbsp;say&nbsp;"Mary&nbsp;may&nbsp;change&nbsp;news&nbsp;stories,&nbsp;but&nbsp;only&nbsp;the<br>
+ones&nbsp;she&nbsp;created&nbsp;herself"&nbsp;or&nbsp;"Mary&nbsp;may&nbsp;only&nbsp;change&nbsp;news&nbsp;stories&nbsp;that&nbsp;have&nbsp;a<br>
+certain&nbsp;status&nbsp;or&nbsp;publication&nbsp;date."<br>
+&nbsp;<br>
+The&nbsp;permissions&nbsp;listed&nbsp;above&nbsp;are&nbsp;automatically&nbsp;created&nbsp;for&nbsp;each&nbsp;model.</tt></dl>
+
+<dl><dt><strong>model_name</strong> = 'permission'</dl>
+
+<dl><dt><strong>titulo_descripcion</strong> = 'Permiso'</dl>
+
+<hr>
+Methods inherited from <a href="zend_django.views.html#GenericRead">zend_django.views.GenericRead</a>:<br>
+<dl><dt><a name="Read-get"><strong>get</strong></a>(self, request, pk)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="zend_django.views.html#GenericRead">zend_django.views.GenericRead</a>:<br>
+<dl><dt><strong>__metaclass__</strong> = &lt;class 'abc.ABCMeta'&gt;<dd><tt>Metaclass&nbsp;for&nbsp;defining&nbsp;Abstract&nbsp;Base&nbsp;Classes&nbsp;(ABCs).<br>
+&nbsp;<br>
+Use&nbsp;this&nbsp;metaclass&nbsp;to&nbsp;create&nbsp;an&nbsp;ABC.&nbsp;&nbsp;An&nbsp;ABC&nbsp;can&nbsp;be&nbsp;subclassed<br>
+directly,&nbsp;and&nbsp;then&nbsp;acts&nbsp;as&nbsp;a&nbsp;mix-in&nbsp;class.&nbsp;&nbsp;You&nbsp;can&nbsp;also&nbsp;register<br>
+unrelated&nbsp;concrete&nbsp;classes&nbsp;(even&nbsp;built-in&nbsp;classes)&nbsp;and&nbsp;unrelated<br>
+ABCs&nbsp;as&nbsp;'virtual&nbsp;subclasses'&nbsp;--&nbsp;these&nbsp;and&nbsp;their&nbsp;descendants&nbsp;will<br>
+be&nbsp;considered&nbsp;subclasses&nbsp;of&nbsp;the&nbsp;registering&nbsp;ABC&nbsp;by&nbsp;the&nbsp;built-in<br>
+issubclass()&nbsp;function,&nbsp;but&nbsp;the&nbsp;registering&nbsp;ABC&nbsp;won't&nbsp;show&nbsp;up&nbsp;in<br>
+their&nbsp;MRO&nbsp;(Method&nbsp;Resolution&nbsp;Order)&nbsp;nor&nbsp;will&nbsp;method<br>
+implementations&nbsp;defined&nbsp;by&nbsp;the&nbsp;registering&nbsp;ABC&nbsp;be&nbsp;callable&nbsp;(not<br>
+even&nbsp;via&nbsp;super()).</tt></dl>
+
+<dl><dt><strong>html_template</strong> = 'zend_django/html/form.html'</dl>
+
+<hr>
+Methods inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><a name="Read-__init__"><strong>__init__</strong></a>(self, **kwargs)</dt><dd><tt>Constructor.&nbsp;Called&nbsp;in&nbsp;the&nbsp;URLconf;&nbsp;can&nbsp;contain&nbsp;helpful&nbsp;extra<br>
+keyword&nbsp;arguments,&nbsp;and&nbsp;other&nbsp;things.</tt></dd></dl>
+
+<dl><dt><a name="Read-dispatch"><strong>dispatch</strong></a>(self, request, *args, **kwargs)</dt></dl>
+
+<dl><dt><a name="Read-http_method_not_allowed"><strong>http_method_not_allowed</strong></a>(self, request, *args, **kwargs)</dt></dl>
+
+<dl><dt><a name="Read-options"><strong>options</strong></a>(self, request, *args, **kwargs)</dt><dd><tt>Handle&nbsp;responding&nbsp;to&nbsp;requests&nbsp;for&nbsp;the&nbsp;OPTIONS&nbsp;HTTP&nbsp;verb.</tt></dd></dl>
+
+<dl><dt><a name="Read-setup"><strong>setup</strong></a>(self, request, *args, **kwargs)</dt><dd><tt>Initialize&nbsp;attributes&nbsp;shared&nbsp;by&nbsp;all&nbsp;view&nbsp;methods.</tt></dd></dl>
+
+<hr>
+Class methods inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><a name="Read-as_view"><strong>as_view</strong></a>(**initkwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Main&nbsp;entry&nbsp;point&nbsp;for&nbsp;a&nbsp;request-response&nbsp;process.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><strong>http_method_names</strong> = ['get', 'post', 'put', 'patch', 'delete', 'head', 'options', 'trace']</dl>
+
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Update">class <strong>Update</strong></a>(<a href="zend_django.views.html#GenericUpdate">zend_django.views.GenericUpdate</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#Update">Update</a>(**kwargs)<br>
+&nbsp;<br>
+Actualización&nbsp;de&nbsp;objetos<br>
+&nbsp;<br>
+Miembros<br>
+--------<br>
+-&nbsp;html_template&nbsp;=&nbsp;"zend_django/html/form.html"<br>
+-&nbsp;titulo&nbsp;=&nbsp;""<br>
+-&nbsp;model_name&nbsp;=&nbsp;""<br>
+-&nbsp;base_data_form&nbsp;=&nbsp;None<br>
+-&nbsp;main_data_model&nbsp;=&nbsp;None<br>
+&nbsp;<br>
+Métodos<br>
+-------<br>
+-&nbsp;<a href="#Update-base_render">base_render</a>(request,&nbsp;form)<br>
+-&nbsp;<a href="#Update-get">get</a>(request,&nbsp;pk)<br>
+-&nbsp;<a href="#Update-post">post</a>(request,&nbsp;pk)<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="zend_django.permission_vw.html#Update">Update</a></dd>
+<dd><a href="zend_django.views.html#GenericUpdate">zend_django.views.GenericUpdate</a></dd>
+<dd><a href="django.views.generic.base.html#View">django.views.generic.base.View</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>base_data_form</strong> = &lt;class 'zend_django.permission_forms.frmPermission'&gt;<dd><tt>Formulario&nbsp;principal&nbsp;del&nbsp;modelo&nbsp;Permission<br>
+&nbsp;<br>
+Campos<br>
+------<br>
+-&nbsp;name<br>
+-&nbsp;content_type<br>
+-&nbsp;codename</tt></dl>
+
+<dl><dt><strong>main_data_model</strong> = &lt;class 'django.contrib.auth.models.Permission'&gt;<dd><tt>The&nbsp;permissions&nbsp;system&nbsp;provides&nbsp;a&nbsp;way&nbsp;to&nbsp;assign&nbsp;permissions&nbsp;to&nbsp;specific<br>
+users&nbsp;and&nbsp;groups&nbsp;of&nbsp;users.<br>
+&nbsp;<br>
+The&nbsp;permission&nbsp;system&nbsp;is&nbsp;used&nbsp;by&nbsp;the&nbsp;Django&nbsp;admin&nbsp;site,&nbsp;but&nbsp;may&nbsp;also&nbsp;be<br>
+useful&nbsp;in&nbsp;your&nbsp;own&nbsp;code.&nbsp;The&nbsp;Django&nbsp;admin&nbsp;site&nbsp;uses&nbsp;permissions&nbsp;as&nbsp;follows:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;The&nbsp;"add"&nbsp;permission&nbsp;limits&nbsp;the&nbsp;user's&nbsp;ability&nbsp;to&nbsp;view&nbsp;the&nbsp;"add"&nbsp;form<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;add&nbsp;an&nbsp;object.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;The&nbsp;"change"&nbsp;permission&nbsp;limits&nbsp;a&nbsp;user's&nbsp;ability&nbsp;to&nbsp;view&nbsp;the&nbsp;change<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list,&nbsp;view&nbsp;the&nbsp;"change"&nbsp;form&nbsp;and&nbsp;change&nbsp;an&nbsp;object.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;The&nbsp;"delete"&nbsp;permission&nbsp;limits&nbsp;the&nbsp;ability&nbsp;to&nbsp;delete&nbsp;an&nbsp;object.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;The&nbsp;"view"&nbsp;permission&nbsp;limits&nbsp;the&nbsp;ability&nbsp;to&nbsp;view&nbsp;an&nbsp;object.<br>
+&nbsp;<br>
+Permissions&nbsp;are&nbsp;set&nbsp;globally&nbsp;per&nbsp;type&nbsp;of&nbsp;object,&nbsp;not&nbsp;per&nbsp;specific&nbsp;object<br>
+instance.&nbsp;It&nbsp;is&nbsp;possible&nbsp;to&nbsp;say&nbsp;"Mary&nbsp;may&nbsp;change&nbsp;news&nbsp;stories,"&nbsp;but&nbsp;it's<br>
+not&nbsp;currently&nbsp;possible&nbsp;to&nbsp;say&nbsp;"Mary&nbsp;may&nbsp;change&nbsp;news&nbsp;stories,&nbsp;but&nbsp;only&nbsp;the<br>
+ones&nbsp;she&nbsp;created&nbsp;herself"&nbsp;or&nbsp;"Mary&nbsp;may&nbsp;only&nbsp;change&nbsp;news&nbsp;stories&nbsp;that&nbsp;have&nbsp;a<br>
+certain&nbsp;status&nbsp;or&nbsp;publication&nbsp;date."<br>
+&nbsp;<br>
+The&nbsp;permissions&nbsp;listed&nbsp;above&nbsp;are&nbsp;automatically&nbsp;created&nbsp;for&nbsp;each&nbsp;model.</tt></dl>
+
+<dl><dt><strong>model_name</strong> = 'permission'</dl>
+
+<dl><dt><strong>titulo</strong> = 'Permiso'</dl>
+
+<hr>
+Methods inherited from <a href="zend_django.views.html#GenericUpdate">zend_django.views.GenericUpdate</a>:<br>
+<dl><dt><a name="Update-base_render"><strong>base_render</strong></a>(self, request, form)</dt></dl>
+
+<dl><dt><a name="Update-get"><strong>get</strong></a>(self, request, pk)</dt></dl>
+
+<dl><dt><a name="Update-post"><strong>post</strong></a>(self, request, pk)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="zend_django.views.html#GenericUpdate">zend_django.views.GenericUpdate</a>:<br>
+<dl><dt><strong>__metaclass__</strong> = &lt;class 'abc.ABCMeta'&gt;<dd><tt>Metaclass&nbsp;for&nbsp;defining&nbsp;Abstract&nbsp;Base&nbsp;Classes&nbsp;(ABCs).<br>
+&nbsp;<br>
+Use&nbsp;this&nbsp;metaclass&nbsp;to&nbsp;create&nbsp;an&nbsp;ABC.&nbsp;&nbsp;An&nbsp;ABC&nbsp;can&nbsp;be&nbsp;subclassed<br>
+directly,&nbsp;and&nbsp;then&nbsp;acts&nbsp;as&nbsp;a&nbsp;mix-in&nbsp;class.&nbsp;&nbsp;You&nbsp;can&nbsp;also&nbsp;register<br>
+unrelated&nbsp;concrete&nbsp;classes&nbsp;(even&nbsp;built-in&nbsp;classes)&nbsp;and&nbsp;unrelated<br>
+ABCs&nbsp;as&nbsp;'virtual&nbsp;subclasses'&nbsp;--&nbsp;these&nbsp;and&nbsp;their&nbsp;descendants&nbsp;will<br>
+be&nbsp;considered&nbsp;subclasses&nbsp;of&nbsp;the&nbsp;registering&nbsp;ABC&nbsp;by&nbsp;the&nbsp;built-in<br>
+issubclass()&nbsp;function,&nbsp;but&nbsp;the&nbsp;registering&nbsp;ABC&nbsp;won't&nbsp;show&nbsp;up&nbsp;in<br>
+their&nbsp;MRO&nbsp;(Method&nbsp;Resolution&nbsp;Order)&nbsp;nor&nbsp;will&nbsp;method<br>
+implementations&nbsp;defined&nbsp;by&nbsp;the&nbsp;registering&nbsp;ABC&nbsp;be&nbsp;callable&nbsp;(not<br>
+even&nbsp;via&nbsp;super()).</tt></dl>
+
+<dl><dt><strong>html_template</strong> = 'zend_django/html/form.html'</dl>
+
+<hr>
+Methods inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><a name="Update-__init__"><strong>__init__</strong></a>(self, **kwargs)</dt><dd><tt>Constructor.&nbsp;Called&nbsp;in&nbsp;the&nbsp;URLconf;&nbsp;can&nbsp;contain&nbsp;helpful&nbsp;extra<br>
+keyword&nbsp;arguments,&nbsp;and&nbsp;other&nbsp;things.</tt></dd></dl>
+
+<dl><dt><a name="Update-dispatch"><strong>dispatch</strong></a>(self, request, *args, **kwargs)</dt></dl>
+
+<dl><dt><a name="Update-http_method_not_allowed"><strong>http_method_not_allowed</strong></a>(self, request, *args, **kwargs)</dt></dl>
+
+<dl><dt><a name="Update-options"><strong>options</strong></a>(self, request, *args, **kwargs)</dt><dd><tt>Handle&nbsp;responding&nbsp;to&nbsp;requests&nbsp;for&nbsp;the&nbsp;OPTIONS&nbsp;HTTP&nbsp;verb.</tt></dd></dl>
+
+<dl><dt><a name="Update-setup"><strong>setup</strong></a>(self, request, *args, **kwargs)</dt><dd><tt>Initialize&nbsp;attributes&nbsp;shared&nbsp;by&nbsp;all&nbsp;view&nbsp;methods.</tt></dd></dl>
+
+<hr>
+Class methods inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><a name="Update-as_view"><strong>as_view</strong></a>(**initkwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Main&nbsp;entry&nbsp;point&nbsp;for&nbsp;a&nbsp;request-response&nbsp;process.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Data and other attributes inherited from <a href="django.views.generic.base.html#View">django.views.generic.base.View</a>:<br>
+<dl><dt><strong>http_method_names</strong> = ['get', 'post', 'put', 'patch', 'delete', 'head', 'options', 'trace']</dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-template_base_path"><strong>template_base_path</strong></a>(file)</dt></dl>
+</td></tr></table>
+</body></html>
