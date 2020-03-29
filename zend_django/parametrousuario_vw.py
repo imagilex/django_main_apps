@@ -1,3 +1,14 @@
+"""
+Vistas relacionadas con el modelo ParametroUsuario (Parámetros de Usuario)
+
+Vistas
+------
+- List
+- Read
+- Create
+- Update
+- Delete
+"""
 from django.db.models import Q
 
 from .parametros_models import ParametroUsuario as main_model
@@ -28,15 +39,6 @@ class List(GenericList):
             return list(self.main_data_model.objects.filter(
                 Q(seccion__icontains=search_value) |
                 Q(nombre__icontains=search_value)))
-
-    def post(self, request):
-        if "search" == request.POST.get('action', ''):
-            search_value = request.POST.get('valor', '')
-        else:
-            search_value = self.main_data_model.get_valor(
-                request.user, 'basic_search', self.model_name)
-        return self.base_render(
-            request, self.get_data(search_value), search_value)
 
 
 class Read(GenericRead):
