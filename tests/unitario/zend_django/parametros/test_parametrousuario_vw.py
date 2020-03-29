@@ -2,9 +2,9 @@ from time import time
 
 import zend_django.parametrousuario_vw as views
 
-from zend_django.functional_tests.utils_test import ViewsTests
 from zend_django.parametros_models import PARAM_TYPES
 from zend_django.parametros_models import ParametroUsuario as main_model
+from zend_django.pruebas_funcionales.util_pruebas import ViewsTests
 
 
 class TestParametroUsuarioViews(ViewsTests):

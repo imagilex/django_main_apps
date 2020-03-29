@@ -1,3 +1,14 @@
+"""
+Vistas relacionadas con el modelo MenuOpc (Opciones de Menú Principal)
+
+Vistas
+------
+- List
+- Read
+- Create
+- Update
+- Delete
+"""
 from django.shortcuts import render
 from django.views import View
 

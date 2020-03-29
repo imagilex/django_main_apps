@@ -1,6 +1,6 @@
 from django.urls import reverse
 
-from zend_django.functional_tests.utils_test import URLsTests
+from zend_django.pruebas_funcionales.util_pruebas import URLsTests
 
 import zend_django.user_vw as views
 

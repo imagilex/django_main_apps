@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module zend_django.templatetags.op_helpers</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="zend_django.html"><font color="#ffffff">zend_django</font></a>.<a href="zend_django.templatetags.html"><font color="#ffffff">templatetags</font></a>.op_helpers</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cdjango_apps%5Cdjango_main_apps%5Czend_django%5Ctemplatetags%5Cop_helpers.py">c:\django_apps\django_main_apps\zend_django\templatetags\op_helpers.py</a></font></td></tr></table>
+    <p><tt>Funciones&nbsp;de&nbsp;ayuda&nbsp;para&nbsp;integracion&nbsp;de&nbsp;iconos&nbsp;y&nbsp;etiquetas&nbsp;en<br>
+templates&nbsp;HMTL&nbsp;para&nbsp;operaciones&nbsp;CRUD&nbsp;sobre&nbsp;los&nbsp;modelos<br>
+&nbsp;<br>
+Cargar&nbsp;con&nbsp;{%&nbsp;load&nbsp;op_helpers&nbsp;%}</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="django.template.html">django.template</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-action_icon"><strong>action_icon</strong></a>(action)</dt><dd><tt>Simple&nbsp;tag:&nbsp;{%&nbsp;action_icon&nbsp;action&nbsp;%}<br>
+Obetiene&nbsp;el&nbsp;icono&nbsp;correspondiente&nbsp;a&nbsp;una&nbsp;accion<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+action&nbsp;:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Acción&nbsp;de&nbsp;la&nbsp;cual&nbsp;se&nbsp;obtendrá&nbsp;el&nbsp;icono<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Cadena&nbsp;segura&nbsp;con&nbsp;el&nbsp;icono&nbsp;registrado&nbsp;en&nbsp;el&nbsp;diccionario<br>
+&nbsp;&nbsp;&nbsp;&nbsp;op_icons.Action_icons['action']&nbsp;o&nbsp;bien&nbsp;la&nbsp;misma&nbsp;cadena&nbsp;de&nbsp;action<br>
+&nbsp;&nbsp;&nbsp;&nbsp;en&nbsp;caso&nbsp;de&nbsp;que&nbsp;la&nbsp;clave&nbsp;no&nbsp;exista</tt></dd></dl>
+ <dl><dt><a name="-action_label"><strong>action_label</strong></a>(action)</dt><dd><tt>Simple&nbsp;tag:&nbsp;{%&nbsp;action_label&nbsp;action&nbsp;%}<br>
+Obetiene&nbsp;la&nbsp;etiqueta&nbsp;correspondiente&nbsp;a&nbsp;una&nbsp;accion<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+action&nbsp;:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Acción&nbsp;de&nbsp;la&nbsp;cual&nbsp;se&nbsp;obtendrá&nbsp;la&nbsp;etiqueta<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Cadena&nbsp;segura&nbsp;con&nbsp;la&nbsp;cadena&nbsp;registrado&nbsp;en&nbsp;el&nbsp;diccionario<br>
+&nbsp;&nbsp;&nbsp;&nbsp;op_icons.Action_labels['action']&nbsp;o&nbsp;bien&nbsp;la&nbsp;misma&nbsp;cadena&nbsp;de&nbsp;action<br>
+&nbsp;&nbsp;&nbsp;&nbsp;en&nbsp;caso&nbsp;de&nbsp;que&nbsp;la&nbsp;clave&nbsp;no&nbsp;exista</tt></dd></dl>
+ <dl><dt><a name="-action_smart_button"><strong>action_smart_button</strong></a>(operation)</dt><dd><tt>Simple&nbsp;tag:&nbsp;{%&nbsp;action_smart_button&nbsp;action&nbsp;%}<br>
+Obetiene&nbsp;el&nbsp;contenido&nbsp;para&nbsp;un&nbsp;botón&nbsp;de&nbsp;una&nbsp;accion.&nbsp;etiqueta&nbsp;e&nbsp;icono<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+action&nbsp;:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Acción&nbsp;de&nbsp;la&nbsp;cual&nbsp;se&nbsp;generá&nbsp;el&nbsp;contenido<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Cadena&nbsp;segura&nbsp;con&nbsp;el&nbsp;contenido&nbsp;registrado&nbsp;en&nbsp;el&nbsp;diccionario<br>
+&nbsp;&nbsp;&nbsp;&nbsp;op_icons.Action_icons['action']&nbsp;y&nbsp;op_labels.Action_labels['action']<br>
+&nbsp;&nbsp;&nbsp;&nbsp;o&nbsp;bien&nbsp;la&nbsp;misma&nbsp;cadena&nbsp;de&nbsp;action&nbsp;en&nbsp;caso&nbsp;de&nbsp;que&nbsp;la&nbsp;clave&nbsp;no&nbsp;exista</tt></dd></dl>
+ <dl><dt><a name="-crud_icon"><strong>crud_icon</strong></a>(operation)</dt><dd><tt>Simple&nbsp;tag:&nbsp;{%&nbsp;crud_icon&nbsp;operation&nbsp;%}<br>
+Obetiene&nbsp;el&nbsp;icono&nbsp;correspondiente&nbsp;a&nbsp;una&nbsp;operación&nbsp;CRUD<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+operation&nbsp;:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Operacion&nbsp;de&nbsp;la&nbsp;cual&nbsp;se&nbsp;obtendrá&nbsp;el&nbsp;icono<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Cadena&nbsp;segura&nbsp;con&nbsp;el&nbsp;icono&nbsp;registrado&nbsp;en&nbsp;el&nbsp;diccionario<br>
+&nbsp;&nbsp;&nbsp;&nbsp;op_icons.CRUD_icons['operacion']&nbsp;o&nbsp;bien&nbsp;la&nbsp;misma&nbsp;cadena&nbsp;de&nbsp;operacion<br>
+&nbsp;&nbsp;&nbsp;&nbsp;en&nbsp;caso&nbsp;de&nbsp;que&nbsp;la&nbsp;clave&nbsp;no&nbsp;exista</tt></dd></dl>
+ <dl><dt><a name="-crud_label"><strong>crud_label</strong></a>(operation)</dt><dd><tt>Simple&nbsp;tag:&nbsp;{%&nbsp;crud_label&nbsp;operation&nbsp;%}<br>
+Obetiene&nbsp;la&nbsp;etiqueta&nbsp;correspondiente&nbsp;a&nbsp;una&nbsp;operación&nbsp;CRUD<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+operation&nbsp;:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Operacion&nbsp;de&nbsp;la&nbsp;cual&nbsp;se&nbsp;obtendrá&nbsp;la&nbsp;etiqueta<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Cadena&nbsp;segura&nbsp;con&nbsp;la&nbsp;etiqueta&nbsp;registrada&nbsp;en&nbsp;el&nbsp;diccionario<br>
+&nbsp;&nbsp;&nbsp;&nbsp;op_labels.CRUD_labels['operacion']&nbsp;o&nbsp;bien&nbsp;la&nbsp;misma&nbsp;cadena&nbsp;de&nbsp;operacion<br>
+&nbsp;&nbsp;&nbsp;&nbsp;en&nbsp;caso&nbsp;de&nbsp;que&nbsp;la&nbsp;clave&nbsp;no&nbsp;exista</tt></dd></dl>
+ <dl><dt><a name="-crud_smart_button"><strong>crud_smart_button</strong></a>(operation)</dt><dd><tt>Simple&nbsp;tag:&nbsp;{%&nbsp;crud_smart_button&nbsp;operation&nbsp;%}<br>
+Obetiene&nbsp;el&nbsp;contenido&nbsp;para&nbsp;un&nbsp;botón&nbsp;de&nbsp;una&nbsp;operación&nbsp;CRUD,<br>
+etiqueta&nbsp;e&nbsp;icono<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+operation&nbsp;:&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Operacion&nbsp;de&nbsp;la&nbsp;cual&nbsp;se&nbsp;se&nbsp;generará&nbsp;el&nbsp;contenido<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Cadena&nbsp;segura&nbsp;con&nbsp;el&nbsp;contenido&nbsp;registrado&nbsp;en&nbsp;el&nbsp;diccionario<br>
+&nbsp;&nbsp;&nbsp;&nbsp;op_icons['operacion']&nbsp;y&nbsp;op_labels.CRUD_labels['operacion']&nbsp;o&nbsp;bien&nbsp;la<br>
+&nbsp;&nbsp;&nbsp;&nbsp;misma&nbsp;cadena&nbsp;de&nbsp;operacion&nbsp;en&nbsp;caso&nbsp;de&nbsp;que&nbsp;la&nbsp;clave&nbsp;no&nbsp;exista</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>Action_icons</strong> = {'call': '&lt;i class="fas fa-mobile-alt"&gt;&lt;/i&gt;', 'cancel': '&lt;i class="far fa-times-circle"&gt;&lt;/i&gt;', 'ok': '&lt;i class="far fa-check-circle"&gt;&lt;/i&gt;', 'reset_password': '&lt;i class="fas fa-key"&gt;&lt;/i&gt;', 'save': '&lt;i class="far fa-save"&gt;&lt;/i&gt;', 'send_mail': '&lt;i class="far fa-envelope"&gt;&lt;/i&gt;', 'send_whatsapp': '&lt;i class="fab fa-whatsapp"&gt;&lt;/i&gt;'}<br>
+<strong>Action_labels</strong> = {'call': 'Llamar', 'cancel': 'Cancelar', 'ok': 'Aceptar', 'reset_password': 'Re-establecer contraseña', 'save': 'Guardar', 'send_mail': 'Enviar EMail', 'send_whatsapp': "Enviar mensaje por What's App"}<br>
+<strong>CRUD_icons</strong> = {'create': '&lt;i class="far fa-file"&gt;&lt;/i&gt;', 'create_f': '&lt;i class="far fa-file"&gt;&lt;/i&gt;', 'delete': '&lt;i class="far fa-trash-alt"&gt;&lt;/i&gt;', 'list': '&lt;i class="fas fa-list-ul"&gt;&lt;/i&gt;', 'read': '&lt;i class="far fa-eye"&gt;&lt;/i&gt;', 'update': '&lt;i class="far fa-edit"&gt;&lt;/i&gt;'}<br>
+<strong>CRUD_labels</strong> = {'create': 'Nuevo', 'create_f': 'Nueva', 'delete': 'Eliminar', 'list': 'Listar Todos', 'read': 'Ver', 'update': 'Actualizar'}<br>
+<strong>register</strong> = &lt;django.template.library.Library object&gt;</td></tr></table>
+</body></html>

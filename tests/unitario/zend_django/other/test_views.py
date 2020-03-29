@@ -1,6 +1,6 @@
 from django.urls import reverse
 
-from zend_django.functional_tests.utils_test import ViewsTests
+from zend_django.pruebas_funcionales.util_pruebas import ViewsTests
 
 
 class TestsViewMigration(ViewsTests):
@@ -13,4 +13,4 @@ class TestsViewMigration(ViewsTests):
         url = reverse('aplicar_migraciones_vw')
         response = self.client.get(url)
         self.assertContains(response, "Migraciones", status_code=200)
-        self.assertContains(response, "data_0001_initial", status_code=200)
+        self.assertContains(response, "zend_django", status_code=200)

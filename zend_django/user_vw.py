@@ -1,3 +1,15 @@
+"""
+Vistas relacionadas con el modelo User (Usuarios)
+
+Vistas
+------
+- List
+- Read
+- Create
+- Update
+- Delete
+- ResetPassword
+"""
 from django.contrib.auth.models import User as main_model
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
@@ -6,7 +18,6 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.views import View
 
-from .parametros_models import ParametroUsuario
 from .user_forms import frmUser as base_form
 from .user_forms import frmUserBottom
 from .user_forms import frmUserLeft
@@ -50,21 +61,6 @@ class List(GenericList):
                 Q(profile__apellido_materno__icontains=search_value) |
                 Q(email__icontains=search_value) |
                 Q(username__icontains=search_value)).order_by('username'))
-
-    def get(self, request):
-        search_value = ParametroUsuario.get_valor(
-            request.user, 'basic_search', self.model_name)
-        return self.base_render(
-            request, self.get_data(search_value), search_value)
-
-    def post(self, request):
-        if "search" == request.POST.get('action', ''):
-            search_value = request.POST.get('valor', '')
-        else:
-            search_value = ParametroUsuario.get_valor(
-                request.user, 'basic_search', self.model_name)
-        return self.base_render(
-            request, self.get_data(search_value), search_value)
 
 
 class Read(GenericRead):
@@ -218,6 +214,19 @@ class Delete(GenericDelete):
 
 
 class ResetPassword(View):
+    """
+    Reseteo de contraseñas
+
+    Miembros
+    --------
+    - main_data_model = User
+
+    Métodos
+    -------
+    - base_render(request, form)
+    - get(request, username='')
+    - post(request, username='')
+    """
     main_data_model = main_model
 
     def base_render(self, request, form):

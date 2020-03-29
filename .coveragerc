@@ -13,6 +13,7 @@ omit =
   run_auto_qa.py
   run_req.py
   run_git_pull_and_update.py
+  run_pydoc.py
   *admin.py
   *test*.py
   *mock*
