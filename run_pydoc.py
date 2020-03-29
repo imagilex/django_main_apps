@@ -13,8 +13,11 @@ def main():
         ['python', '-m', 'pydoc', '-w', '.\\'])
     
     for file in glob.glob("*.html"):
-        os.remove(os.path.join(docs_dir, file))
-        shutil.move(file, docs_dir)
+        if "main_app" not in file:
+            os.remove(os.path.join(docs_dir, file))
+            shutil.move(file, docs_dir)
+        else:
+            os.remove(file)
 
 if __name__ == "__main__":
     main()
