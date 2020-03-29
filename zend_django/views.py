@@ -82,9 +82,14 @@ class GenericList(View):
         return self.base_render(
             request, self.get_data(search_value), search_value)
 
-    @abc.abstractmethod
     def post(self, request):
-        pass
+        if "search" == request.POST.get('action', ''):
+            search_value = request.POST.get('valor', '')
+        else:
+            search_value = ParametroUsuario.get_valor(
+                request.user, 'basic_search', self.model_name)
+        return self.base_render(
+            request, self.get_data(search_value), search_value)
 
 
 class GenericRead(View):
@@ -173,7 +178,7 @@ class GenericCreate(View):
             'top': [{'form': self.base_data_form()}]})
 
     def post(self, request):
-        form = self.base_data_form(request.POST)
+        form = self.base_data_form(request.POST, files=request.FILES)
         if form.is_valid():
             obj = form.save()
             return HttpResponseRedirect(reverse(
@@ -232,7 +237,8 @@ class GenericUpdate(View):
         if not self.main_data_model.objects.filter(pk=pk).exists():
             return HttpResponseRedirect(reverse('item_no_encontrado'))
         obj = self.main_data_model.objects.get(pk=pk)
-        form = self.base_data_form(instance=obj, data=request.POST)
+        form = self.base_data_form(
+            instance=obj, data=request.POST, files=request.FILES)
         if form.is_valid():
             obj = form.save()
             return HttpResponseRedirect(reverse(

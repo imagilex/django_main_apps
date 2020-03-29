@@ -40,15 +40,6 @@ class List(GenericList):
                 Q(seccion__icontains=search_value) |
                 Q(nombre__icontains=search_value)))
 
-    def post(self, request):
-        if "search" == request.POST.get('action', ''):
-            search_value = request.POST.get('valor', '')
-        else:
-            search_value = self.main_data_model.get_valor(
-                request.user, 'basic_search', self.model_name)
-        return self.base_render(
-            request, self.get_data(search_value), search_value)
-
 
 class Read(GenericRead):
     titulo_descripcion = "Parámetro"
