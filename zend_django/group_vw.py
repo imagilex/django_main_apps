@@ -1,9 +1,19 @@
+"""
+Vistas relacionadas con el modelo Group (Perifles de usuario)
+
+Vistas
+------
+- List
+- Read
+- Create
+- Update
+- Delete
+"""
 from django.contrib.auth.models import Group as main_model
 from django.contrib.auth.models import Permission
 from django.db.models import Q
 
 from .group_forms import frmGroup as base_form
-from .parametros_models import ParametroUsuario
 from .views import GenericCreate
 from .views import GenericDelete
 from .views import GenericList
@@ -29,15 +39,6 @@ class List(GenericList):
         else:
             return list(self.main_data_model.objects.filter(
                 Q(name__icontains=search_value)))
-
-    def post(self, request):
-        if "search" == request.POST.get('action', ''):
-            search_value = request.POST.get('valor', '')
-        else:
-            search_value = ParametroUsuario.get_valor(
-                request.user, 'basic_search', self.model_name)
-        return self.base_render(
-            request, self.get_data(search_value), search_value)
 
 
 class Read(GenericRead):

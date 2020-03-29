@@ -1,3 +1,13 @@
+"""
+Vistas relacionadas con el acceso a la herramienta a través de la apertura
+y cierre de sesiones
+
+Vistas
+------
+- Login
+- Logout
+- ImIn
+"""
 from django.contrib import auth
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
@@ -12,6 +22,9 @@ def template_base_path(file):
 
 
 class Login(View):
+    """
+    Acceso a la herramienta, apertura de sesisón
+    """
     html_template = template_base_path('login')
     base_data_form = frmLogin
 
@@ -41,6 +54,9 @@ class Login(View):
 
 
 class Logout(View):
+    """
+    Cierre de sesión
+    """
 
     def base_render(self, request):
         auth.logout(request)
@@ -54,6 +70,11 @@ class Logout(View):
 
 
 class ImIn(View):
+    """
+    Acceso inicial una vez que se inicia sesión en la herramienta o bien se
+    trata de accesar a vistas para las cuales no se cuenta con permiso de
+    acceso.
+    """
     html_template = "zend_django/html/html_struct.html"
 
     def base_render(self, request):
