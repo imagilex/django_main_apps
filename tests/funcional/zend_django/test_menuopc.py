@@ -1,8 +1,8 @@
 from django.contrib.auth.models import Permission
 from django.urls import reverse
 
-from zend_django.functional_tests.utils_test import FuncionalTest
 from zend_django.menuopc_models import MenuOpc as main_model
+from zend_django.pruebas_funcionales.util_pruebas import FuncionalTest
 
 
 class TestMenuOpcFunctional(FuncionalTest):
