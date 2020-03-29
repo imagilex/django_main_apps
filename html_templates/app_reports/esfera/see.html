@@ -1,0 +1,9 @@
+{% extends "zend_django/html/form.html" %}
+
+{% block extraafter %}
+<div class="row">
+    <div class="col-sm-2 offset-sm-5 text-center">
+        <img src="{{ MEDIA_URL }}{{ titulo.icono }}" class="img-fluid" />
+    </div>
+</div>
+{% endblock %}

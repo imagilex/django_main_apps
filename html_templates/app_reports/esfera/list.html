@@ -1,0 +1,65 @@
+{% extends "zend_django/html/html_struct.html" %}
+{% load i18n %}
+{% load op_helpers %}
+
+{% block content %}
+
+<table class="table table-striped table-sm table-responsive-md">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Sigla</th>
+            <th colspan="3" class="text-center">
+                {% if perms.app_reports.add_esfera %}
+                <a data-action="create" href="{% url 'esfera_create' %}" class="btn btn-outline-secondary" role="button" title="{% crud_label 'create' %}">
+                    {% crud_icon 'create' %} {% crud_label 'create' %}
+                </a>
+                {% endif %}
+            </th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>Nombre</th>
+            <th>Sigla</th>
+            <th colspan="3" class="text-center">
+                {% if perms.app_reports.add_esfera %}
+                <a data-action="create" href="{% url 'esfera_create' %}" class="btn btn-outline-secondary" role="button" title="{% crud_label 'create' %}">
+                    {% crud_icon 'create' %} {% crud_label 'create' %}
+                </a>
+                {% endif %}
+            </th>
+        </tr>
+    </tfoot>
+    <tbody id="data-tbl">
+        {% for reg in data %}
+            <tr data-object-id="{{ reg.pk }}">
+                <td>{{ reg.nombre }}</td>
+                <td>{{ reg.sigla }}</td>
+                <td class="text-center">
+                    {% if perms.app_reports.view_esfera %}
+                    <a data-action="read" href="{% url 'esfera_read' pk=reg.pk %}" class="btn btn-outline-secondary" role="button" title="{% crud_label 'read' %}">
+                        {% crud_icon 'read' %}
+                    </a>
+                    {% endif %}
+                </td>
+                <td class="text-center">
+                    {% if perms.app_reports.change_esfera %}
+                    <a data-action="update" href="{% url 'esfera_update' pk=reg.pk %}" class="btn btn-outline-secondary" role="button" title="{% crud_label 'update' %}">
+                        {% crud_icon 'update' %}
+                    </a>
+                    {% endif %}
+                </td>
+                <td class="text-center">
+                    {% if perms.app_reports.delete_esfera %}
+                    <button data-action="delete" onclick="App.showDeletingConfirmation(`{% url 'esfera_delete' pk=reg.pk %}`, `permiso`)" type="button" class="btn btn-outline-secondary" title="{% crud_label 'delete' %}">
+                        {% crud_icon 'delete' %}
+                    </button>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
