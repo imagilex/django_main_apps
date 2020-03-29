@@ -1,7 +1,17 @@
+"""
+Vistas relacionadas con el modelo Permission (Permisos)
+
+Vistas
+------
+- List
+- Read
+- Create
+- Update
+- Delete
+"""
 from django.contrib.auth.models import Permission as main_model
 from django.db.models import Q
 
-from .parametros_models import ParametroUsuario
 from .permission_forms import frmPermission as base_form
 from .views import GenericCreate
 from .views import GenericDelete
@@ -31,15 +41,6 @@ class List(GenericList):
                 Q(content_type__model__icontains=search_value) |
                 Q(content_type__app_label__icontains=search_value) |
                 Q(codename__icontains=search_value)))
-
-    def post(self, request):
-        if "search" == request.POST.get('action', ''):
-            search_value = request.POST.get('valor', '')
-        else:
-            search_value = ParametroUsuario.get_valor(
-                request.user, 'basic_search', self.model_name)
-        return self.base_render(
-            request, self.get_data(search_value), search_value)
 
 
 class Read(GenericRead):

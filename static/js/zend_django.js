@@ -100,7 +100,7 @@ class clsApp {
         App.openPanel( html, "Confirmación de Eliminación");
         return false;
     }
-    isEmpty( valor ) {
+    isEmpty(valor) {
         return "" == valor || 0.0 == parseFloat( valor );
     }
     validate_required_fields( container ) {

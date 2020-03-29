@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module zend_django.templatetags.mainopc_helpers</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="zend_django.html"><font color="#ffffff">zend_django</font></a>.<a href="zend_django.templatetags.html"><font color="#ffffff">templatetags</font></a>.mainopc_helpers</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cdjango_apps%5Cdjango_main_apps%5Czend_django%5Ctemplatetags%5Cmainopc_helpers.py">c:\django_apps\django_main_apps\zend_django\templatetags\mainopc_helpers.py</a></font></td></tr></table>
+    <p><tt>Funciones&nbsp;de&nbsp;ayuda&nbsp;para&nbsp;la&nbsp;generación,&nbsp;automaticación&nbsp;y&nbsp;correcta&nbsp;ejecución<br>
+del&nbsp;menú&nbsp;principal&nbsp;y&nbsp;sus&nbsp;opciones<br>
+&nbsp;<br>
+Cargar&nbsp;con&nbsp;{%&nbsp;load&nbsp;mainopc_helpers&nbsp;%}</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="django.template.html">django.template</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-main_menu"><strong>main_menu</strong></a>(context, opciones=None, nivel=0, user_id=0)</dt><dd><tt>Inclusion&nbsp;tag:&nbsp;{%&nbsp;main_menu&nbsp;opciones&nbsp;nivel&nbsp;user_id&nbsp;%}<br>
+Genera&nbsp;las&nbsp;etiquetas&nbsp;para&nbsp;generar&nbsp;el&nbsp;menú&nbsp;principal&nbsp;en&nbsp;la&nbsp;barra&nbsp;superior<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+context&nbsp;:&nbsp;ContextRequest<br>
+opciones&nbsp;:&nbsp;array_like&nbsp;MenuOpc<br>
+nivel&nbsp;:&nbsp;int&nbsp;[0]<br>
+user_id&nbsp;:&nbsp;int&nbsp;[0]&nbsp;User.pk<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+dict<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Diccionario&nbsp;con&nbsp;las&nbsp;claves<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'nivel':&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'opciones':&nbsp;array_like&nbsp;MenuOpc<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'user_id':&nbsp;int</tt></dd></dl>
+ <dl><dt><a name="-print_menu_opc_adm"><strong>print_menu_opc_adm</strong></a>(context, perms, opcion, nivel=-1)</dt><dd><tt>Inclusion&nbsp;tag:&nbsp;{%&nbsp;print_menu_opc_adm&nbsp;perms&nbsp;opcion&nbsp;nivel&nbsp;%}<br>
+Genera&nbsp;las&nbsp;etiquetas&nbsp;para&nbsp;generar&nbsp;el&nbsp;árbol&nbsp;de&nbsp;permisos&nbsp;con&nbsp;sangrias<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+context&nbsp;:&nbsp;ContextRequest<br>
+perms&nbsp;:&nbsp;ContextRequest.perms<br>
+opcion&nbsp;:&nbsp;MenuOpc<br>
+nivel&nbsp;:&nbsp;int&nbsp;[-1]<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+dict<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Diccionario&nbsp;con&nbsp;las&nbsp;claves<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'nivel':&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'reg':&nbsp;MenuOpc<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'perms':&nbsp;context[perms]</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>register</strong> = &lt;django.template.library.Library object&gt;</td></tr></table>
+</body></html>

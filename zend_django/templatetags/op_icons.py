@@ -1,3 +1,24 @@
+"""
+Definición de iconos para operaciones CRUD y acciones
+
+CRUD:
+ - create
+ - create_f
+ - read
+ - update
+ - delete
+ -list
+
+Action:
+ - save
+ - ok
+ - cancel
+ - send_mail
+ - call
+ - send_whatsapp
+ - reset_password
+"""
+
 CRUD_icons = {
     'create': '<i class="far fa-file"></i>',
     'create_f': '<i class="far fa-file"></i>',

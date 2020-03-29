@@ -1,3 +1,18 @@
+"""
+Definición de modelos de Parámetros
+
+Modelos
+-------
+- ParametroSistema      => Parámetros de sistema
+- ParametroUsuario      => Parámetros de usuario
+- ParametroUsuarioValor => Parámetros de usuario - valor
+
+Constantes
+----------
+- PARAM_TYPES
+- PARAM_TYPES_Tuples
+- parametro_upload_to
+"""
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -23,6 +38,19 @@ PARAM_TYPES_Tuples = (
 
 
 def get_param_type_to_show(type):
+    """
+    Obtiene el valor para mostrar de un tipo de parámetro
+
+    Parameters
+    ----------
+    type : string
+        Tipo de parámetro [ENTERO, CADENA, TEXTO_LARGO, IMAGEN, ARCHIVO]
+
+    Returns
+    -------
+    string
+        Valor para mostrar del tipo de parámetro
+    """
     for param in PARAM_TYPES_Tuples:
         if param[0] == type:
             return param[1]
@@ -30,6 +58,9 @@ def get_param_type_to_show(type):
 
 
 class ParametroSistema(models.Model):
+    """
+    Modelo de Parámetros del Sistema
+    """
     seccion = models.CharField(max_length=100)
     nombre = models.CharField(max_length=100)
     nombre_para_mostrar = models.CharField(max_length=100)
@@ -50,17 +81,29 @@ class ParametroSistema(models.Model):
 
     @property
     def tipo_txt(self):
+        """
+        Tipo de parámetro, version para mostrar
+        """
         return get_param_type_to_show(self.tipo)
 
     @staticmethod
     def get(seccion, nombre):
         """
-        Obtiene el valor de un setting
+        Obtiene el valor del parámetro
 
-        (string) section    Seccion del setting
-        (string) nombre     Nombre del setting
+        Parameters
+        ----------
+        seccion : string
+            Seccion del parámetro
 
-        return string
+        nombre : string
+            Nombre del parámetro
+
+        Returns
+        -------
+        string
+            Valor del parámetro o "Parámetro se Sistema no encontrado" en
+            caso de que no exista el parametro solicitado
         """
         try:
             return ParametroSistema.objects.get(
@@ -70,6 +113,9 @@ class ParametroSistema(models.Model):
 
 
 class ParametroUsuario(models.Model):
+    """
+    Modelo de Parámetros de Usuario
+    """
     seccion = models.CharField(max_length=100)
     nombre = models.CharField(max_length=100)
     valor_default = models.TextField(blank=True)
@@ -89,23 +135,62 @@ class ParametroUsuario(models.Model):
 
     @property
     def tipo_txt(self):
+        """
+        Tipo de parámetro, version para mostrar
+        """
         return get_param_type_to_show(self.tipo)
 
     @staticmethod
     def get_default(seccion, nombre):
         """
-        Obtiene el valor de un setting
+        Obtiene el valor por default del parámetro
 
-        (string) section    Seccion del setting
-        (string) nombre     Nombre del setting
+        Parameters
+        ----------
+        seccion : string
+            Seccion del parámetro
 
-        return string
+        nombre : string
+            Nombre del parámetro
+
+        Returns
+        -------
+        string
+            Valor default del parámetro
+
+        Raises
+        ------
+        ParametroUsuario.DoesNotExist
+            Cuando no existe la combinación de la seccion y el nombre del
+            parámetro
         """
         return ParametroUsuario.objects.get(
             seccion=seccion, nombre=nombre).valor_default
 
     @staticmethod
     def get_valor(usuario, seccion, nombre):
+        """
+        Obtiene el valor del parámetro para con un usuario especifico
+
+        Parameters
+        ----------
+        usuario : objeto User
+            Usuario del cual se obtendra el valor del parámetro
+
+        seccion : string
+            Seccion del parámetro
+
+        nombre : string
+            Nombre del parámetro
+
+        Returns
+        -------
+        string
+            Valor del parámetro para con el usuario o bien el valor default
+            del parámetro en caso de que no se halla establecido anteriormente,
+            En caso de que el parámetro no exista entonces se devuelve
+            "Parámetro de Usuario no encontrado" o cadena vacía
+        """
         try:
             val = ParametroUsuarioValor.objects.get(
                 user=usuario, parametro=ParametroUsuario.objects.get(
@@ -126,6 +211,29 @@ class ParametroUsuario(models.Model):
 
     @staticmethod
     def set_valor(usuario, seccion, nombre, valor):
+        """
+        Establece el valor de un parámetro para con un usuario
+
+        Parameters
+        ----------
+        usuario : objeto User
+            Usuario del cual se obtendra el valor del parámetro
+
+        seccion : string
+            Seccion del parámetro
+
+        nombre : string
+            Nombre del parámetro
+
+        valor : string
+            Valor a establecer en el parámetro
+
+        Returns
+        -------
+        boolean
+            Falso en caso de que el parámetro no exista u ocurra un error al
+            asignar, True en caso de que la asignación sea correcta
+        """
         try:
             parametro = ParametroUsuario.objects.get(
                 seccion=seccion, nombre=nombre)
@@ -139,6 +247,9 @@ class ParametroUsuario(models.Model):
 
 
 class ParametroUsuarioValor(models.Model):
+    """
+    Modelo de Parámetros de Usuario Valor
+    """
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='+')
     parametro = models.ForeignKey(
