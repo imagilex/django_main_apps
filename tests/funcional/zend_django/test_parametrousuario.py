@@ -1,4 +1,4 @@
-from zend_django.functional_tests.utils_test import FuncionalTest
+from zend_django.pruebas_funcionales.util_pruebas import FuncionalTest
 
 from zend_django.parametros_models import PARAM_TYPES
 from zend_django.parametros_models import ParametroUsuario as main_model

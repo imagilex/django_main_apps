@@ -2,7 +2,7 @@ from django.db.models import Q
 from django.urls import reverse
 from time import time
 
-from zend_django.functional_tests.utils_test import ViewsTests
+from zend_django.pruebas_funcionales.util_pruebas import ViewsTests
 from zend_django.templatetags.op_helpers import action_label
 from zend_django.templatetags.op_helpers import crud_label
 
