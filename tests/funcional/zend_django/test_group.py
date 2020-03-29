@@ -1,4 +1,4 @@
-from zend_django.functional_tests.utils_test import FuncionalTest
+from zend_django.pruebas_funcionales.util_pruebas import FuncionalTest
 
 from django.contrib.auth.models import Group as main_model
 

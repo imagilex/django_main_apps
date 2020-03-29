@@ -144,6 +144,7 @@ media/
 *.synctex.gz
 *.toc
 *.out
+*.lof
 
 # No ArgoUML Files
 *.zargo~

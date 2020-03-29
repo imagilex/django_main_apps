@@ -2,7 +2,7 @@ from django.urls import reverse
 
 import zend_django.parametrosistema_vw as views
 
-from zend_django.functional_tests.utils_test import URLsTests
+from zend_django.pruebas_funcionales.util_pruebas import URLsTests
 
 
 class TestMenuOpcUrls(URLsTests):

@@ -1,3 +1,14 @@
+"""
+Vistas relacionadas con el modelo ParametroSistema (Parámetros de Sistema)
+
+Vistas
+------
+- List
+- Read
+- Create
+- Update
+- Delete
+"""
 from django.conf import settings
 from django.db.models import Q
 from django.shortcuts import render
@@ -6,7 +17,6 @@ from os import mkdir
 from os import path
 
 from .parametros_models import ParametroSistema as main_model
-from .parametros_models import ParametroUsuario
 from .parametros_models import parametro_upload_to
 from .parametrosistema_forms import frmParametroSistema as base_form
 from .views import GenericCreate
@@ -37,15 +47,6 @@ class List(GenericList):
                 Q(nombre__icontains=search_value) |
                 Q(nombre_para_mostrar__icontains=search_value)))
 
-    def post(self, request):
-        if "search" == request.POST.get('action', ''):
-            search_value = request.POST.get('valor', '')
-        else:
-            search_value = ParametroUsuario.get_valor(
-                request.user, 'basic_search', self.model_name)
-        return self.base_render(
-            request, self.get_data(search_value), search_value)
-
 
 class Read(GenericRead):
     titulo_descripcion = "Parámetro"
@@ -73,6 +74,22 @@ class Delete(GenericDelete):
 
 
 class Set(View):
+    """
+    Vista para establecer los valores de los Parámetros de Sistema.
+
+    Miembros
+    --------
+    - html_template = template_base_path("set")
+    - titulo = "Parámetros"
+    - titulo_descripcion = "de sistema (establecer)"
+    - main_data_model = main_model
+    - model_name = "parametrosistema"
+
+    Métodos
+    -------
+    - get(request)
+    - post(request)
+    """
     html_template = template_base_path("set")
     titulo = "Parámetros"
     titulo_descripcion = "de sistema (establecer)"

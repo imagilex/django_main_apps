@@ -60,6 +60,24 @@ action_label(action): string
 action_smart_button(operation): string
 \end{lstlisting}
 
+\section{html\_struct.html}
+
+\begin{tabular}{|l|l|}
+	\hline
+	Llamada como & zend\_django/html/html\_struct.html \\
+	\hline
+	Carga & html\_helpers \\
+	& op\_helpers \\
+	& parametros\_helpers \\
+	\hline
+\end{tabular}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.65]{./diagram/html_struct_html}
+	\caption{html\_struct.html}
+\end{figure}
+
 \section{toolbar.html}
 
 \begin{lstlisting}[language=Python]
@@ -72,3 +90,31 @@ toolbar = [
 {'type': 'search'},
 ]
 \end{lstlisting}
+
+\section{form.html}
+
+\begin{tabular}{|l|l|}
+	\hline
+	Llamada como & zend\_django/html/form.html \\
+	\hline
+	Extiende & zend\_django/html/html\_struct.html \\
+	\hline
+	Carga & crispy\_forms\_tags \\
+	& op\_helpers \\
+	\hline
+\end{tabular}
+
+\begin{lstlisting}
+forms = {
+	'top': [{'title':'XXXX', 'form': form_object}, ...],
+	'left': [...],
+	'right': [...],
+	'bottom': [...],
+}
+\end{lstlisting}
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.65]{./diagram/forms_html}
+	\caption{forms.html}
+\end{figure}
