@@ -1,0 +1,10 @@
+{% load html_helpers %}
+
+{% for app in apps %}
+    <!-- Inlcuyendo {{ app }} -->
+    {% if app|inicio_template_exists %}
+        {% include app|add:"/inicio.html" %}
+    {% else %}
+        <!-- No se encontro el template {{app}}/inicio.html -->
+    {% endif %}
+{% endfor %}
