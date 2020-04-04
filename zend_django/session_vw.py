@@ -86,6 +86,7 @@ class ImIn(View):
             'read_only': False,
             'alertas': [],
             'req_chart': False,
+            'include_iniciales': True,
         })
 
     def get(self, request):
