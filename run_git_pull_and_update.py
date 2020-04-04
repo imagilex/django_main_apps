@@ -22,9 +22,9 @@ branches = [
 ]
 
 file = "pull_updates.txt"
-broken = False
 
 def main():
+    broken = False
     with open(file, 'w') as stdout_file:
         code = subprocess.call(
             ['git', 'fetch', 'upstream'],
