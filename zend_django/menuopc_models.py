@@ -7,7 +7,8 @@ Modelos
 """
 from django.contrib.auth.models import Permission
 from django.db import models
-from django.urls import reverse, NoReverseMatch
+from django.urls import NoReverseMatch
+from django.urls import reverse
 
 
 class MenuOpc(models.Model):

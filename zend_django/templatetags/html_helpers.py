@@ -8,9 +8,9 @@ la forma:
 
 Cargar con {% load html_helpers %}
 """
-from django.template.loader import get_template
 from django import template
 from django.conf import settings
+from django.template.loader import get_template
 
 register = template.Library()
 
@@ -160,6 +160,7 @@ def template_exists(plantilla):
     except template.TemplateDoesNotExist:
         return False
 
+
 @register.filter
 def inicio_template_exists(app):
     """
@@ -179,13 +180,14 @@ def incluir_inciales_app(context):
     Returns
     -------
     dict
-        Diccionario con las claves 
+        Diccionario con las claves
         {
             'app' : list,
             'context': context
         }
     """
     return {'apps': get_apps(), 'context': context}
+
 
 @register.filter
 def get_from_context(context, key):
