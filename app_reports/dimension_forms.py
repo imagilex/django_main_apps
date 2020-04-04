@@ -11,7 +11,7 @@ frmDimensionReporte
 """
 from django import forms
 
-from .dimension_models import DimensionReporte
+from .dimension_models import DimensionReporte, validate_cstr_esfera_padre, ValidationError
 
 class frmDimensionReporte(forms.ModelForm):
     """
@@ -31,3 +31,27 @@ class frmDimensionReporte(forms.ModelForm):
             'esfera',
             'padre',
         ]
+
+    def is_valid(self):
+        """
+        Agrega la validacion de cstr_esfera_padre
+
+        Returns
+        -------
+        boolean
+            True si es un formulario válido, Falso en otro caso
+        """
+        valido = False
+        try:
+            valido = super(frmDimensionReporte, self).is_valid()
+            obj = DimensionReporte(
+                dimension = self.cleaned_data['dimension'],
+                esfera = self.cleaned_data['esfera'],
+                padre = self.cleaned_data['padre']
+            )
+            validate_cstr_esfera_padre(obj)
+        except ValidationError as e:
+            self.add_error(None, e)
+            valido = False
+        finally:
+            return valido

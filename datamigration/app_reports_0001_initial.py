@@ -1,8 +1,10 @@
 from django.contrib.auth.models import Permission
+from django.contrib.contenttypes.models import ContentType
 
 from zend_django.parametros_models import PARAM_TYPES
 from zend_django.models import ParametroUsuario, MenuOpc
 from zend_django.templatetags.op_labels import CRUD_labels
+from app_reports.reporte_models import Reporte
 
 def update_permisos():
     for p in Permission.objects.filter(codename__icontains='add_'):
@@ -23,7 +25,7 @@ def update_permisos():
 
 def migration():
     conf = MenuOpc.objects.get_or_create(
-        nombre="Configuracion")[0]
+        nombre="Configuracion", posicion=1000)[0]
     repomain = MenuOpc.objects.get_or_create(
         nombre="Reportes", posicion=4, padre=conf)[0]
     esfera = MenuOpc.objects.get_or_create(
@@ -35,6 +37,9 @@ def migration():
         vista="dimensionreporte_list")[0]
     reportes = MenuOpc.objects.get_or_create(
         nombre="Reportes", posicion=3, padre=repomain, vista="reporte_list")[0]
+    load_rep = MenuOpc.objects.get_or_create(
+        nombre="Cargar Reportes", posicion=5,
+        padre=conf, vista='reporte_load')[0]
 
     esfera.permisos_requeridos.set([
         Permission.objects.get(codename="add_esfera"),
@@ -53,6 +58,12 @@ def migration():
         Permission.objects.get(codename="change_reporte"),
         Permission.objects.get(codename="delete_reporte"),
         Permission.objects.get(codename="view_reporte"),
+        ])
+    load_rep.permisos_requeridos.set([
+        Permission.objects.get_or_create(
+            codename="load_reporte",
+            name="Cargar datos en reportes",
+            content_type=ContentType.objects.get_for_model(Reporte))[0],
         ])
 
     if not ParametroUsuario.objects.filter(

@@ -40,6 +40,9 @@ urlpatterns = [
     path('eliminar/<pk>/', permission_required(
         f'{app_label}.delete_{obj}')(views.Delete.as_view()),
         name=f"{obj}_delete"),
+    path('cargar-datos/', permission_required(
+        f'{app_label}.load_{obj}')(views.Load.as_view()),
+        name=f"{obj}_load"),
     path('<pk>/', permission_required(
         f'{app_label}.view_{obj}')(views.Read.as_view()),
         name=f"{obj}_read"),

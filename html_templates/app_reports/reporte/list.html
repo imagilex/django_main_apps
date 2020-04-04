@@ -38,7 +38,13 @@
     <tbody id="data-tbl">
         {% for reg in data %}
             <tr data-object-id="{{ reg.pk }}">
-                <td>{{ reg.nombre }}</td>
+                <td>
+                    <div class="float-right">
+                        <span class="badge badge-pill badge-info" data-toggle="tooltip" title="Campos"> {{ reg.num_of_fields }} </span>
+                        <span class="badge badge-pill badge-light" data-toggle="tooltip" title="Campos Llave"> {{ reg.num_of_keys }} </span>
+                    </div>
+                    {{ reg.nombre }}
+                </td>
                 <td>{{ reg.dimension }}</td>
                 <td>{{ reg.frecuencia_txt }}</td>
                 <td>{{ reg.responsable }}</td>
@@ -58,7 +64,7 @@
                 </td>
                 <td class="text-center">
                     {% if perms.app_reports.delete_reporte %}
-                    <button data-action="delete" onclick="App.showDeletingConfirmation(`{% url 'reporte_delete' pk=reg.pk %}`, `permiso`)" type="button" class="btn btn-outline-secondary" title="{% crud_label 'delete' %}">
+                    <button data-action="delete" onclick="App.showDeletingConfirmation(`{% url 'reporte_delete' pk=reg.pk %}`, `reporte`)" type="button" class="btn btn-outline-secondary" title="{% crud_label 'delete' %}">
                         {% crud_icon 'delete' %}
                     </button>
                     {% endif %}

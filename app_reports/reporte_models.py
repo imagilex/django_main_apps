@@ -6,6 +6,7 @@ Modelos
 - Reporte
 - CampoReporte
 - Relacion
+- PermisoReporte
 
 Constantes
 ----------
@@ -19,9 +20,15 @@ Constantes
 """
 from django.db import models
 from django.contrib.auth.models import Permission, User
+from django.contrib.contenttypes.models import ContentType
+from django.utils.text import slugify
+from django.db import connections
+import pandas as pd
 import csv
 
 from .dimension_models import DimensionReporte
+
+cnn_name = 'app_reports'
 
 FRECUENCIA = {
     'DIARIO': 'daily',
@@ -69,10 +76,10 @@ RELACION_TYPES_Tuples = (
 )
 
 QUOTING_TYPES = {
-    'QUOTE_ALL': csv.QUOTE_ALL,
-    'QUOTE_MINIMAL': csv.QUOTE_MINIMAL,
-    'QUOTE_NONNUMERIC': csv.QUOTE_NONNUMERIC,
-    'QUOTE_NONE': csv.QUOTE_NONE,
+    'QUOTE_ALL': str(csv.QUOTE_ALL),
+    'QUOTE_MINIMAL': str(csv.QUOTE_MINIMAL),
+    'QUOTE_NONNUMERIC': str(csv.QUOTE_NONNUMERIC),
+    'QUOTE_NONE': str(csv.QUOTE_NONE),
 }
 
 QUOTING_TYPES_Tuples = (
@@ -163,6 +170,10 @@ def get_quoting_type_to_show(type):
             return param[1]
     return ""
 
+def dimension_available():
+    padres = DimensionReporte.objects.exclude(padre=None).values('padre')
+    hojas = DimensionReporte.objects.exclude(pk__in=padres).values('pk')
+    return {'pk__in': hojas}
 
 class Reporte(models.Model):
     """
@@ -170,7 +181,9 @@ class Reporte(models.Model):
     """
     nombre = models.CharField(max_length=100)
     dimension = models.ForeignKey(
-        to=DimensionReporte, on_delete=models.CASCADE, related_name="reportes")
+        to=DimensionReporte, on_delete=models.CASCADE,
+        # related_name="reportes", limit_choices_to=dimension_available)
+        related_name="reportes")
     frecuencia = models.CharField(
         max_length=20, choices=FRECUENCIA_Tuples,
         default=FRECUENCIA['DIARIO'])
@@ -179,15 +192,14 @@ class Reporte(models.Model):
     delimiter = models.CharField(max_length=5, default=',')
     doublequote = models.BooleanField(default=True)
     escapechar = models.CharField(max_length=5, blank=True)
-    # TODO: Reemplazar en escapechar por None si la cadena esta vacía
-    lineterminator = models.CharField(max_length=5, default='\r\n')
-    # TODO: Reemplazar en lineterminator \\r => \r, \\n => \n
+    lineterminator = models.CharField(max_length=5, default='\\n')
     quotechar = models.CharField(max_length=5, default='"')
     quoting = models.CharField(
         max_length=20, choices=QUOTING_TYPES_Tuples,
         default=QUOTING_TYPES['QUOTE_MINIMAL'])
     skipinitialspace = models.BooleanField(default=False)
     strict = models.BooleanField(default=False)
+    primer_linea_con_encabezados = models.BooleanField(default=True)
 
     class Meta:
         ordering = ['dimension', 'nombre']
@@ -209,7 +221,63 @@ class Reporte(models.Model):
         Tipo de input con base en la frecuencia
         """
         return INPUT_TYPES[self.frecuencia]
+    
+    @property
+    def right_delimiter(self):
+        return Reporte.replace_secuence_caracter(self.delimiter)
 
+    @property
+    def right_escapechar(self):
+        if "" == self.escapechar:
+            return None
+        return Reporte.replace_secuence_caracter(self.escapechar)
+
+    @property
+    def right_lineterminator(self):
+        return Reporte.replace_secuence_caracter(self.lineterminator)
+
+    @property
+    def right_quotechar(self):
+        return Reporte.replace_secuence_caracter(self.quotechar)
+
+    @property
+    def num_of_fields(self):
+        return len(self.campos.all())
+
+    @property
+    def num_of_keys(self):
+        return len(self.campos.filter(es_llave=True))
+
+    @staticmethod
+    def replace_secuence_caracter(cadena):
+        """
+        Reemplaza las secuencias de escape escritas en el campo
+
+        Parameters
+        ----------
+        cadena : string
+            cadena en la cual se reemplazaran las secuenciass de escape
+
+        Secuencias a reemplazar
+        -----------------------
+        - \\r => \r
+        - \\n => \n
+        - \\' => \'
+        - \\" => \"
+        - \\t => \t
+        - \\v => \v
+        """
+        replaces = [
+            ["\\r", "\r"],
+            ["\\n", "\n"],
+            ["\\'", "\'"],
+            ['\\"', '\"'],
+            ["\\t", "\t"],
+            ["\\v", "\v"],
+        ]
+        for seq in replaces:
+            cadena = cadena.replace(seq[0], seq[1])
+        return cadena
     
     @property
     def quoting_txt(self):
@@ -218,20 +286,49 @@ class Reporte(models.Model):
         """
         return get_quoting_type_to_show(self.quoting)
 
-    def crear_tabla(self):
-        pass
+    @property
+    def table_name(self):
+        return f"reporte_{self.pk}"
 
-    def actualizar_tabla(self):
-        pass
+    def save(self, *args, **kwargs):
+        is_new = self.pk is None
+        super(Reporte, self).save(*args, **kwargs)
+        self.admin_permisos()
+        if is_new:
+            self.crear_tabla()
+
+    def delete(self, *args, **kwargs):
+        self.eliminar_permisos()
+        self.eliminar_tabla()
+        super(Reporte, self).delete(*args, **kwargs)
+
+    def crear_tabla(self):
+        with connections[cnn_name].cursor() as cursor:
+            cursor.execute(
+                f"CREATE TABLE IF NOT EXISTS {self.table_name} (" \
+                + "_pk_ BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, " \
+                + "_statistic_dt_ DATE NOT NULL" \
+                + ");")
 
     def eliminar_tabla(self):
-        pass
+        with connections[cnn_name].cursor() as cursor:
+            cursor.execute(
+                f"DROP TABLE IF EXISTS {self.table_name};")
 
-    def generar_permisos(self):
-        pass
+    def admin_permisos(self):
+        p = Permission.objects.get_or_create(
+            codename=f"view_reporte_{self.pk:04d}",            
+            content_type=ContentType.objects.get_for_model(Reporte)
+        )[0]
+        p.name=f"Reporte {self.pk}_{self.nombre}"
+        p.save()
 
     def eliminar_permisos(self):
-        pass
+        p = Permission.objects.get_or_create(
+            codename=f"view_reporte_{self.pk:04d}",            
+            content_type=ContentType.objects.get_for_model(Reporte)
+        )[0]
+        p.delete()
 
 
 class CampoReporte(models.Model):
@@ -247,6 +344,7 @@ class CampoReporte(models.Model):
         default=FIELD_TYPES['ENTERO'])
     valor_default = models.CharField(max_length=100, blank=True)
     mostrar = models.BooleanField(default=True)
+    es_llave = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['reporte__nombre', 'posicion', 'campo', ]
@@ -261,6 +359,59 @@ class CampoReporte(models.Model):
         Tipo de campo, version para mostrar
         """
         return get_field_type_to_show(self.tipo)
+
+    @property
+    def field_name(self):
+        return f"campo_{self.pk}"
+
+    @property
+    def field_definition(self):
+        if self.tipo == FIELD_TYPES['DECIMAL']:
+            tipo = "DECIMAL(16,6)"
+        elif self.tipo == FIELD_TYPES['ENTERO']:
+            tipo = "INT"
+        else:
+            tipo = "VARCHAR(250) CHARACTER SET utf8 COLLATE utf8_spanish_ci"
+        if "" != self.valor_default:
+            default = f"DEFAULT '{self.valor_default}'"
+        else:
+            default = ""
+        definition = f"`{self.field_name}` {tipo} NULL {default} "
+        definition += f"COMMENT 'Campo {self.campo}' ;"
+        return definition
+
+    def save(self, *args, **kwargs):
+        is_new = self.pk is None
+        super(CampoReporte, self).save(*args, **kwargs)
+        if is_new:
+            self.crear_nuevo_bd()
+        else:
+            self.actualizar_bd()
+
+    def delete(self, *args, **kwargs):
+        self.eliminar_bd()
+        super(CampoReporte, self).delete(*args, **kwargs)
+
+    def crear_nuevo_bd(self):
+        with connections[cnn_name].cursor() as cursor:
+            cursor.execute(
+                f"ALTER TABLE `{self.reporte.table_name}` " \
+                + f"ADD {self.field_definition};"
+            )
+
+    def actualizar_bd(self):
+        with connections[cnn_name].cursor() as cursor:
+            cursor.execute(
+                f"ALTER TABLE `{self.reporte.table_name}` " \
+                + f"CHANGE `{self.field_name}` {self.field_definition};"
+            )
+
+    def eliminar_bd(self):
+        with connections[cnn_name].cursor() as cursor:
+            cursor.execute(
+                f"ALTER TABLE `{self.reporte.table_name}` " \
+                + f"DROP `{self.field_name}`"
+            )
 
 
 class Relacion(models.Model):
@@ -296,15 +447,40 @@ class Relacion(models.Model):
         return get_relation_type_to_show(self.tipo)
 
 
-class PermisoReporte(models.Model):
-    """
-    Modelo para relacionar los reportes y los permisos que generan
-    """
-    reporte = models.ForeignKey(
-        to=Reporte, on_delete=models.CASCADE, related_name="permisos")
-    permiso = models.ForeignKey(
-        to=Permission, on_delete=models.CASCADE, related_name="reportes")
-
-    class Meta:
-        ordering = ['reporte__nombre', 'permiso__codename']
-        unique_together = ['reporte', 'permiso']
+def file2Pandas(reporte, archivo, discover=False):
+    if reporte.primer_linea_con_encabezados:
+        enc = 0
+    else:
+        enc = None
+    cols = [f'campo_{c.pk}' for c in reporte.campos.all()]
+    if discover:
+        dataFrame = pd.read_csv(
+            archivo,
+            header=0,
+            delimiter=reporte.right_delimiter,
+            skipinitialspace=reporte.skipinitialspace,
+            nrows=1000,
+            lineterminator=reporte.right_lineterminator,
+            quotechar=reporte.right_quotechar,
+            quoting=int(reporte.quoting),
+            doublequote=reporte.doublequote,
+            encoding="ISO-8859-1",
+            #encoding="utf-8",
+            escapechar=reporte.right_escapechar,
+            )
+    else:
+        dataFrame = pd.read_csv(
+            archivo,
+            header=enc,
+            names=cols,
+            delimiter=reporte.right_delimiter,
+            skipinitialspace=reporte.skipinitialspace,
+            lineterminator=reporte.right_lineterminator,
+            quotechar=reporte.right_quotechar,
+            quoting=int(reporte.quoting),
+            doublequote=reporte.doublequote,
+            encoding="ISO-8859-1",
+            #encoding="utf-8",
+            escapechar=reporte.right_escapechar,
+            )
+    return dataFrame

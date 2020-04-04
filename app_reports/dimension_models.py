@@ -27,8 +27,8 @@ def check_cstr_esfera_padre(dimension):
         True si paso la verificación, False en caso contrario
     """
     return (
-        (dimension.esfera is None and dimension.dimension is not None) 
-        or (dimension.esfera is not None and dimension.dimension is None))
+        (dimension.esfera is None and dimension.padre is not None) 
+        or (dimension.esfera is not None and dimension.padre is None))
 
 def validate_cstr_esfera_padre(dimension):
     """
@@ -48,7 +48,7 @@ def validate_cstr_esfera_padre(dimension):
     if not check_cstr_esfera_padre(dimension):
         raise ValidationError(
             "Debe selecionar una esfera o una dimension padre, no ambos. "
-            + f"Esfera = {dimension.esfera}; Dimension = {dimension.dimension}"
+            + f"Esfera = {dimension.esfera}; Padre = {dimension.padre}"
         )
 
 class DimensionReporte(models.Model):
@@ -66,8 +66,18 @@ class DimensionReporte(models.Model):
         to="DimensionReporte", on_delete=models.CASCADE,
         related_name="subdimensiones", null=True, blank=True)
 
+    @property
+    def full_name(self):
+        fn = ""
+        if self.padre is None:
+            fn += f"{self.esfera.sigla}"
+        else:
+            fn += self.padre.full_name
+        fn += f" / {self.dimension}"
+        return fn
+
     class Meta:
-        ordering = ['esfera', 'padre__dimension', 'dimension']
+        ordering = ['dimension', 'esfera', 'padre__dimension', ]
         constraints = [
             CheckConstraint(
                 check=(
@@ -77,8 +87,8 @@ class DimensionReporte(models.Model):
         ]
 
     def __str__(self):
-        return self.dimension
+        return self.full_name
 
     def save(self, *args, **kwargs):
         validate_cstr_esfera_padre(self)
-        super(DimensionReporte, self).save(*ärgs, **kwargs)
+        super(DimensionReporte, self).save(*args, **kwargs)

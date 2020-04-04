@@ -1,13 +1,23 @@
 """
-Formularios para modelo Reporte, con inclusion de CampoReporte
+Formularios para modelo Reporte
 
 Formularios
 -----------
 frmReporte
     Formulario Completo
+    - nombre
     - dimension
-    - esfera
-    - padre
+    - frecuencia
+    - responsable
+    - delimiter
+    - doublequote
+    - escapechar
+    - lineterminator
+    - quotechar
+    - quoting
+    - skipinitialspace
+    - strict
+    - primer_linea_con_encabezados
 
 frmReporteLeft
     Formulario izquierdo
@@ -26,14 +36,7 @@ frmReporteright
     - quoting
     - skipinitialspace
     - strict
-
-frmCampoReporte
-    Formulario Completo
-    - campo
-    - posicion
-    - tipo
-    - valor_default
-    - mostrar
+    - primer_linea_con_encabezados
 """
 from django import forms
 
@@ -57,6 +60,7 @@ class frmReporte(forms.ModelForm):
     - quoting
     - skipinitialspace
     - strict
+    - primer_linea_con_encabezados
     """
 
     class Meta:
@@ -67,13 +71,14 @@ class frmReporte(forms.ModelForm):
             'frecuencia',
             'responsable',
             'delimiter',
-            'doublequote',
             'escapechar',
             'lineterminator',
             'quotechar',
             'quoting',
+            'doublequote',
             'skipinitialspace',
             'strict',
+            'primer_linea_con_encabezados',
         ]
 
 
@@ -113,40 +118,19 @@ class frmReporteright(forms.ModelForm):
     - quoting
     - skipinitialspace
     - strict
+    - primer_linea_con_encabezados
     """
 
     class Meta:
         model = Reporte
         fields = [
             'delimiter',
-            'doublequote',
             'escapechar',
             'lineterminator',
             'quotechar',
             'quoting',
+            'doublequote',
             'skipinitialspace',
             'strict',
-        ]
-
-class frmCampoReporte(forms.ModelForm):
-    """
-    Formulario para el modelo CampoReporte
-
-    Campos
-    ------
-    - campo
-    - posicion
-    - tipo
-    - valor_default
-    - mostrar
-    """
-
-    class Meta:
-        model = CampoReporte
-        fields = [
-            'campo',
-            'posicion',
-            'tipo',
-            'valor_default',
-            'mostrar',
+            'primer_linea_con_encabezados',
         ]

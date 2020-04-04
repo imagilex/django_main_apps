@@ -7,12 +7,11 @@ Clases cargadas:
  - DimensionReporte
  - Reporte
  - CampoReporte
- - PermisoReporte
  - Relacion
 """
 from django.contrib import admin
 
-from .models import Esfera, DimensionReporte, Reporte, CampoReporte, PermisoReporte, Relacion
+from .models import Esfera, DimensionReporte, Reporte, CampoReporte, Relacion
 
 @admin.register(Esfera)
 class EsferaAdm(admin.ModelAdmin):
@@ -68,7 +67,8 @@ class CampoReporteAdm(admin.ModelAdmin):
         'tipo', 'valor_default', 'mostrar', ]
     list_display_links = ['id', ]
     search_fields = ['campo', 'posicion', ]
-    list_editable = ['reporte', 'campo', 'posicion',
+    list_editable = [
+        'reporte', 'campo', 'posicion',
         'tipo', 'valor_default', 'mostrar', ]
 
     class Meta:
@@ -88,18 +88,3 @@ class RelacionAdm(admin.ModelAdmin):
 
     class Meta:
         model = Relacion
-
-
-@admin.register(PermisoReporte)
-class PermisoReporteAdm(admin.ModelAdmin):
-    """
-    Módulo de administración de permisos a reportes en el Panel de
-    Administración Django
-    """
-    list_display = ['id', 'reporte', 'permiso', ]
-    list_display_links = ['id', ]
-    search_fields = []
-    list_editable = ['reporte', 'permiso', ]
-
-    class Meta:
-        model = PermisoReporte

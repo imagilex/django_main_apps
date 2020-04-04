@@ -10,4 +10,5 @@ urlpatterns = [
     path('esfera/', include('app_reports.esfera_urls')),
     path('dimension-de-reportes/', include('app_reports.dimension_urls')),
     path('reporte/', include('app_reports.reporte_urls')),
+    path('campos/<pk_reporte>/', include('app_reports.camporeporte_urls')),
 ]

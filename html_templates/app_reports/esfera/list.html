@@ -52,7 +52,7 @@
                 </td>
                 <td class="text-center">
                     {% if perms.app_reports.delete_esfera %}
-                    <button data-action="delete" onclick="App.showDeletingConfirmation(`{% url 'esfera_delete' pk=reg.pk %}`, `permiso`)" type="button" class="btn btn-outline-secondary" title="{% crud_label 'delete' %}">
+                    <button data-action="delete" onclick="App.showDeletingConfirmation(`{% url 'esfera_delete' pk=reg.pk %}`, `esfera`, `la`)" type="button" class="btn btn-outline-secondary" title="{% crud_label 'delete' %}">
                         {% crud_icon 'delete' %}
                     </button>
                     {% endif %}

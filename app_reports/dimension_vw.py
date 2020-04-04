@@ -40,18 +40,10 @@ class List(GenericList):
                 self.main_data_model.objects.all())
         else:
             return list(self.main_data_model.objects.filter(
-                Q(seccion__icontains=search_value) |
-                Q(nombre__icontains=search_value) |
-                Q(nombre_para_mostrar__icontains=search_value)))
-
-    def post(self, request):
-        if "search" == request.POST.get('action', ''):
-            search_value = request.POST.get('valor', '')
-        else:
-            search_value = ParametroUsuario.get_valor(
-                request.user, 'basic_search', self.model_name)
-        return self.base_render(
-            request, self.get_data(search_value), search_value)
+                Q(dimension__icontains=search_value) |
+                Q(esfera__sigla__icontains=search_value) |
+                Q(esfera__nombre__icontains=search_value) |
+                Q(padre__dimension__icontains=search_value)))
 
 
 class Read(GenericRead):

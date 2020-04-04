@@ -26,9 +26,5 @@ class Esfera(models.Model):
         ordering = ['sigla', 'nombre']
 
     def __str__(self):
-        cad = f"""
-        <span title="{self.nombre}" data-toggle="tooltip">
-            {self.sigla}
-        </span>
-        """
+        cad = f"({self.sigla}) {self.nombre}"
         return mark_safe(cad)

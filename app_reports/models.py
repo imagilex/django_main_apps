@@ -10,4 +10,4 @@ Modelos definidos en la aplicacion
 """
 from .esfera_models import Esfera
 from .dimension_models import DimensionReporte
-from .reporte_models import Reporte, Relacion, CampoReporte, PermisoReporte
+from .reporte_models import Reporte, Relacion, CampoReporte
