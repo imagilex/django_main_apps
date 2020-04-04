@@ -55,6 +55,21 @@ Returns<br>
 -------<br>
 list<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Lista&nbsp;con&nbsp;las&nbsp;aplicaciones&nbsp;registradas</tt></dd></dl>
+ <dl><dt><a name="-get_from_context"><strong>get_from_context</strong></a>(context, key)</dt></dl>
+ <dl><dt><a name="-incluir_inciales_app"><strong>incluir_inciales_app</strong></a>(context)</dt><dd><tt>Inclusion&nbsp;tag:&nbsp;{%&nbsp;incluir_inciales_app&nbsp;%}<br>
+Genera&nbsp;las&nbsp;etiquetas&nbsp;para&nbsp;incluir&nbsp;los&nbsp;js&nbsp;correspondientes&nbsp;a&nbsp;las<br>
+aplicaciones&nbsp;instaladas<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+dict<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Diccionario&nbsp;con&nbsp;las&nbsp;claves<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'app'&nbsp;:&nbsp;list,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'context':&nbsp;context<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}</tt></dd></dl>
+ <dl><dt><a name="-inicio_template_exists"><strong>inicio_template_exists</strong></a>(app)</dt><dd><tt>Simple&nbsp;Tag:&nbsp;{%&nbsp;if&nbsp;"app"|inicio_template_exists&nbsp;%}<br>
+Devuelve&nbsp;verdadero&nbsp;si&nbsp;el&nbsp;template&nbsp;inicial&nbsp;existe</tt></dd></dl>
  <dl><dt><a name="-requiere_ui_css"><strong>requiere_ui_css</strong></a>(context)</dt><dd><tt>Inclusion&nbsp;tag:&nbsp;{%&nbsp;requiere_ui_css&nbsp;%}<br>
 Genera&nbsp;las&nbsp;etiquetas&nbsp;para&nbsp;incluir&nbsp;los&nbsp;css&nbsp;de&nbsp;apoyo&nbsp;para<br>
 navegadores&nbsp;que&nbsp;no&nbsp;soportan/implementan&nbsp;controles&nbsp;html5,&nbsp;como&nbsp;safari.<br>
@@ -103,6 +118,8 @@ dict<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Diccionario&nbsp;con&nbsp;las&nbsp;claves&nbsp;'apps'&nbsp;:&nbsp;list&nbsp;y&nbsp;'req_ui'&nbsp;:&nbsp;True<br>
 &nbsp;&nbsp;&nbsp;&nbsp;en&nbsp;caso&nbsp;de&nbsp;que&nbsp;sí&nbsp;se&nbsp;requieran&nbsp;controles&nbsp;UI&nbsp;o&nbsp;diccionario<br>
 &nbsp;&nbsp;&nbsp;&nbsp;vacío&nbsp;({})&nbsp;en&nbsp;caso&nbsp;de&nbsp;que&nbsp;no&nbsp;se&nbsp;requieran&nbsp;los&nbsp;controles</tt></dd></dl>
+ <dl><dt><a name="-template_exists"><strong>template_exists</strong></a>(plantilla)</dt><dd><tt>Simple&nbsp;Tag:&nbsp;{%&nbsp;if&nbsp;"my_template_name"|template_exists&nbsp;%}<br>
+Devuelve&nbsp;verdadero&nbsp;si&nbsp;el&nbsp;template&nbsp;existe</tt></dd></dl>
 </td></tr></table><p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#55aa55">
