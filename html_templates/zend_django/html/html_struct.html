@@ -83,6 +83,11 @@
 
 				</h1>
             {% endif %}
+
+            <!-- Templates Iniciales -->
+            {% if include_iniciales %}
+                {% incluir_inciales_app %}
+            {% endif %}
             
             <!-- html_struct/extrabefore -->
             {% block extrabefore %}

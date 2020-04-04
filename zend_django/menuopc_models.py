@@ -7,7 +7,7 @@ Modelos
 """
 from django.contrib.auth.models import Permission
 from django.db import models
-from django.urls import reverse
+from django.urls import reverse, NoReverseMatch
 
 
 class MenuOpc(models.Model):
@@ -41,7 +41,10 @@ class MenuOpc(models.Model):
             URL de la vista o None en caso de que no halla una vista asociada
         """
         if "" != self.vista:
-            return reverse(self.vista)
+            try:
+                return reverse(self.vista)
+            except NoReverseMatch:
+                pass
         return None
 
     def user_has_option(self, user):

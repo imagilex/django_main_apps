@@ -1,0 +1,22 @@
+{% load html_helpers %}
+<!--
+
+{{ apps|safe }}
+==========================
+{{ context|safe }}
+==========================
+<h1>{{ context|get_from_context:"titulo" }}</h1>
+==========================
+<h5>{{ context|get_from_context:"titulo_descripcion" }}</h5>
+==========================
+{% with context|get_from_context:"perms" as perms %}
+    {% if perms.zend_django.change_menuopc %}
+        Si puedo cambiar opciones del menu main
+    {% endif %}
+    {% if perms.zend_django.sin_permiso %}
+        No Tengo Permiso
+    {% else %}
+        No tengo permiso de no tener permiso
+    {% endif %}
+{% endwith %}
+-->

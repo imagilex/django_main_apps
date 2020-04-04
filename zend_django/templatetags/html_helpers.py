@@ -8,7 +8,7 @@ la forma:
 
 Cargar con {% load html_helpers %}
 """
-
+from django.template.loader import get_template
 from django import template
 from django.conf import settings
 
@@ -146,3 +146,47 @@ def requiere_ui_js(context):
             or "phone" in ua:
         return {}
     return apps
+
+
+@register.filter
+def template_exists(plantilla):
+    """
+    Simple Tag: {% if "my_template_name"|template_exists %}
+    Devuelve verdadero si el template existe
+    """
+    try:
+        get_template(plantilla)
+        return True
+    except template.TemplateDoesNotExist:
+        return False
+
+@register.filter
+def inicio_template_exists(app):
+    """
+    Simple Tag: {% if "app"|inicio_template_exists %}
+    Devuelve verdadero si el template inicial existe
+    """
+    return template_exists(f'{app}/inicio.html')
+
+
+@register.inclusion_tag('zend_django/html/inicio_app.html', takes_context=True)
+def incluir_inciales_app(context):
+    """
+    Inclusion tag: {% incluir_inciales_app %}
+    Genera las etiquetas para incluir los js correspondientes a las
+    aplicaciones instaladas
+
+    Returns
+    -------
+    dict
+        Diccionario con las claves 
+        {
+            'app' : list,
+            'context': context
+        }
+    """
+    return {'apps': get_apps(), 'context': context}
+
+@register.filter
+def get_from_context(context, key):
+    return context.get(key)
