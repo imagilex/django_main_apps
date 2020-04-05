@@ -40,7 +40,8 @@ frmReporteright
 """
 from django import forms
 
-from .reporte_models import Reporte, CampoReporte
+from .reporte_models import CampoReporte
+from .reporte_models import Reporte
 
 class frmReporte(forms.ModelForm):
     """

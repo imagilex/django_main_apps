@@ -1,10 +1,11 @@
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 
-from zend_django.parametros_models import PARAM_TYPES
-from zend_django.models import ParametroUsuario, MenuOpc
-from zend_django.templatetags.op_labels import CRUD_labels
 from app_reports.reporte_models import Reporte
+from zend_django.models import MenuOpc
+from zend_django.models import ParametroUsuario
+from zend_django.parametros_models import PARAM_TYPES
+from zend_django.templatetags.op_labels import CRUD_labels
 
 def update_permisos():
     for p in Permission.objects.filter(codename__icontains='add_'):

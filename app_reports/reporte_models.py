@@ -18,13 +18,15 @@ Constantes
 - RELACION_TYPES
 - RELACION_Tuples
 """
-from django.db import models
-from django.contrib.auth.models import Permission, User
-from django.contrib.contenttypes.models import ContentType
-from django.utils.text import slugify
-from django.db import connections
-import pandas as pd
 import csv
+import pandas as pd
+
+from django.contrib.auth.models import Permission
+from django.contrib.auth.models import User
+from django.contrib.contenttypes.models import ContentType
+from django.db import connections
+from django.db import models
+from django.utils.text import slugify
 
 from .dimension_models import DimensionReporte
 
@@ -472,7 +474,6 @@ def file2Pandas(reporte, archivo, discover=False):
         dataFrame = pd.read_csv(
             archivo,
             header=enc,
-            names=cols,
             delimiter=reporte.right_delimiter,
             skipinitialspace=reporte.skipinitialspace,
             lineterminator=reporte.right_lineterminator,
@@ -483,4 +484,5 @@ def file2Pandas(reporte, archivo, discover=False):
             #encoding="utf-8",
             escapechar=reporte.right_escapechar,
             )
+        dataFrame.columns = cols
     return dataFrame

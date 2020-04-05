@@ -11,7 +11,11 @@ Clases cargadas:
 """
 from django.contrib import admin
 
-from .models import Esfera, DimensionReporte, Reporte, CampoReporte, Relacion
+from .models import CampoReporte
+from .models import DimensionReporte
+from .models import Esfera
+from .models import Relacion
+from .models import Reporte
 
 @admin.register(Esfera)
 class EsferaAdm(admin.ModelAdmin):

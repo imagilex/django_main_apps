@@ -7,23 +7,28 @@ Vistas
 - Update
 - GetDataTypes
 """
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
-from django.http import JsonResponse
-from django.urls import reverse
-from django.views import View
 import pandas as pd
 import re
 
+from django.http import HttpResponseRedirect
+from django.http import JsonResponse
+from django.shortcuts import render
+from django.urls import reverse
+from django.views import View
+
+from .camporeporte_forms import frmCampoReporte as base_form
+from .reporte_models import CampoReporte as main_model
+from .reporte_models import FIELD_TYPES_Tuples
+from .reporte_models import Reporte
+from .reporte_models import file2Pandas
+from zend_django.templatetags.op_helpers import crud_icon
+from zend_django.templatetags.op_helpers import crud_smart_button
+from zend_django.templatetags.utils import GenerateReadCRUDToolbar
 from zend_django.views import GenericCreate
 from zend_django.views import GenericDelete
 from zend_django.views import GenericList
 from zend_django.views import GenericRead
 from zend_django.views import GenericUpdate
-from .reporte_models import CampoReporte as main_model, Reporte, FIELD_TYPES_Tuples, file2Pandas
-from .camporeporte_forms import frmCampoReporte as base_form
-from zend_django.templatetags.utils import GenerateReadCRUDToolbar
-from zend_django.templatetags.op_helpers import crud_smart_button, crud_icon
 
 
 def template_base_path(file):

@@ -9,27 +9,41 @@ Vistas
 - Update
 - Delete
 """
+import contextlib, io
+import re
+import sys
+import warnings, MySQLdb
+
+from datetime import date
+from datetime import timedelta
 from django.conf import settings
-from django.db.models import Q
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
-from django.urls import reverse
 from django.contrib import messages
 from django.db import connections
-from datetime import date, timedelta
+from django.db.models import Q
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+from django.urls import reverse
+from io import StringIO # as cStringIO
 from sqlalchemy import create_engine
 
+from .reporte_forms import frmReporte as base_form
+from .reporte_forms import frmReporteLeft
+from .reporte_forms import frmReporteright
+from .reporte_models import CampoReporte
+from .reporte_models import FRECUENCIA
+from .reporte_models import Reporte as main_model
+from .reporte_models import cnn_name
+from .reporte_models import file2Pandas
+from zend_django.models import ParametroUsuario
+from zend_django.templatetags.op_helpers import crud_label
+from zend_django.templatetags.op_helpers import mark_safe
+from zend_django.templatetags.utils import GenerateReadCRUDToolbar
 from zend_django.views import GenericCreate
 from zend_django.views import GenericDelete
 from zend_django.views import GenericList
 from zend_django.views import GenericRead
-from zend_django.views import GenericUpdate, View
-from .reporte_models import Reporte as main_model, file2Pandas, FRECUENCIA
-from zend_django.models import ParametroUsuario
-from .reporte_forms import frmReporte as base_form, frmReporteLeft, frmReporteright
-from zend_django.templatetags.utils import GenerateReadCRUDToolbar
-from zend_django.templatetags.op_helpers import crud_label
-from .reporte_models import cnn_name
+from zend_django.views import GenericUpdate
+from zend_django.views import View
 
 
 def template_base_path(file):
@@ -197,10 +211,17 @@ class Load(View):
         fecha = request.POST.get('date')
         conservar = "on" == request.POST.get('preserve_previous_data', '')
         archivo = request.FILES['archivo']
-        df = file2Pandas(reporte, archivo)
+        error = ""
+        try:
+            df = file2Pandas(reporte, archivo)
+        except ValueError as e:
+            error = f"El archivo cargado ({archivo}) no tiene " \
+                + "la misma cantidad de campos requeridos por " \
+                + f"el reporte ({reporte.dimension} / " \
+                + f"<strong>{reporte}</strong>)<br /><br />{e}"
+            messages.error(request, mark_safe(error))
         if FRECUENCIA['DIARIO'] == reporte.frecuencia:
             statistic_dt = fecha
-            messages.error(request, f'Fecha = {statistic_dt}')
         elif FRECUENCIA['SEMANAL'] == reporte.frecuencia:
             inicio_año = date(int(fecha[0:4]), 1, 1)
             if(inicio_año.weekday()>3):
@@ -209,23 +230,83 @@ class Load(View):
                 inicio_año = inicio_año - timedelta(inicio_año.weekday())
             semanas = timedelta(days=(int(fecha.split('W')[1]) - 1) * 7)
             statistic_dt = inicio_año + semanas
-            messages.error(request, f'Fecha = {statistic_dt}')
         elif FRECUENCIA['MENSUAL'] == reporte.frecuencia:
             statistic_dt = fecha + "-01"
-            messages.error(request, f'Fecha = {statistic_dt}')
         elif FRECUENCIA['UNICO'] == reporte.frecuencia:
             statistic_dt = date.today()
-            messages.error(request, f'Fecha = {statistic_dt}')
-        df['_statistic_dt_'] = date.today()
-        db = connections.databases[cnn_name]['NAME']
-        usr = connections.databases[cnn_name]['USER']
-        pwd = connections.databases[cnn_name]['PASSWORD']
-        host = connections.databases[cnn_name]['HOST']
-        port = connections.databases[cnn_name]['PORT']
-        cnn = create_engine(f'mysql+pymysql://{usr}:{pwd}@{host}/{db}')
-        df.to_sql(
-            reporte.table_name, cnn,
-            index=False, if_exists='append')
-        messages.success(
-            request, f'{reporte} ({archivo}) cargado correctamente')
+        cnn = createCnn()
+        fstr = io.StringIO()
+        if "" == error:
+            if not conservar:
+                eliminarReporte(reporte, statistic_dt, request=request)
+            with contextlib.redirect_stderr(fstr):
+                df['_statistic_dt_'] = statistic_dt
+                df.to_sql(
+                    reporte.table_name, cnn,
+                    index=False, if_exists='append', method='multi')
+            wrns = fstr.getvalue()
+            msg = f'{reporte} ({archivo}) cargado '
+            if "" != wrns:
+                wrns = checkWarnings(wrns)
+                msg += "con warnings<br /><br />" + wrns
+                messages.warning(request, mark_safe(msg))
+            else:
+                msg += "correctamente"
+                messages.success(request, msg)
         return self.base_render(request)
+
+
+def eliminarReporte(reporte, statistic_dt, connection_name=None, request=None):
+    if connection_name is None:
+        connection_name = cnn_name
+    if FRECUENCIA['UNICO'] == reporte.frecuencia:
+        with connections[cnn_name].cursor() as cursor:
+            cursor.execute(f"TRUNCATE {reporte.table_name};")
+        if request:
+            messages.success(request, f"Reporte {reporte} borrado.")
+    else:
+        with connections[cnn_name].cursor() as cursor:
+            cursor.execute(
+                f"DELETE FROM {reporte.table_name} " \
+                + f"WHERE _statistic_dt_ = '{statistic_dt}';")
+        if request:
+            messages.success(
+                request, f"Reporte {reporte} borrado para {statistic_dt}")
+
+
+def createCnn(connection_name=None):
+    if connection_name is None:
+        connection_name = cnn_name
+    db = connections.databases[connection_name]['NAME']
+    usr = connections.databases[connection_name]['USER']
+    pwd = connections.databases[connection_name]['PASSWORD']
+    host = connections.databases[connection_name]['HOST']
+    port = connections.databases[connection_name]['PORT']
+    cnn = create_engine(f'mysql+pymysql://{usr}:{pwd}@{host}/{db}')
+    return cnn
+
+def checkWarnings(warnings, join_lineas="<br />"):
+    lineas = []
+    campos = {}
+    reWrapperLin = re.compile(
+        r'^.*\.py:\d+:\sWarning: \((.*)"\)$', re.IGNORECASE)
+    reNumErr = re.compile(
+        r'^(\d+),\s"', re.IGNORECASE)
+    reCampo = re.compile(r'campo_(\d+)')
+    reRm_Result = re.compile(r'^\s*result.*query\)$')
+    for linea in warnings.split('\n'):
+        linea = reWrapperLin.sub(r'\1', linea)
+        linea = reNumErr.sub(r'\1: ', linea)
+        campo = reCampo.search(linea)
+        if campo:
+            pk_campo = campo.group(1)
+            if campos.get(pk_campo, None) is None:
+                objCampo = CampoReporte.objects.get(pk=int(pk_campo))
+                campos[pk_campo] = objCampo
+            else:
+                objCampo = campos.get(pk_campo, None)
+        linea = reRm_Result.sub('', linea)
+        linea = reCampo.sub(f"{objCampo}", linea)
+        if "" != linea:
+            lineas.append(linea)
+    return join_lineas.join(lineas)

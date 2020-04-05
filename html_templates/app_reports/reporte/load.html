@@ -4,25 +4,6 @@
 
 {% block content %}
 
-{% if messages %}
-{% for message in messages %}
-{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-<div class="alert alert-danger alert-dismissible fade show" role="alert">
-{% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
-{% elif message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-{% else %}
-<div class="alert alert-secondary alert-dismissible fade show" role="alert">
-{% endif %}
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-    {{ message }}
-</div>
-{% endfor %}
-{% endif %}
-
 <div class="row">
     <div class="col-sm-3">
         <div class="nav flex-column nav-pills border rounded" id="v-reports-tab" role="tablist" aria-orientation="vertical">
@@ -59,8 +40,8 @@
                     <div class="row">
                         <div class="form-group col-sm-6">
                             <div id="div_id_preserve_previous_data" class="form-check">
-                                <input type="checkbox" name="preserve_previous_data" class="checkboxinput form-check-input" id="id_preserve_previous_data" />
-                                <label for="id_preserve_previous_data" class="form-check-label">
+                                <input type="checkbox" name="preserve_previous_data" class="checkboxinput form-check-input" id="id_preserve_previous_data_{{reporte.pk}}" />
+                                <label for="id_preserve_previous_data_{{reporte.pk}}" class="form-check-label">
                                     Conservar datos anteriores
                                 </label>
                                 <small id="hint_id_preserve_previous_data" class="form-text text-muted">
