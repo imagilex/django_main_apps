@@ -26,7 +26,6 @@ from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
 from django.db import connections
 from django.db import models
-from django.utils.text import slugify
 
 from .dimension_models import DimensionReporte
 
@@ -172,10 +171,12 @@ def get_quoting_type_to_show(type):
             return param[1]
     return ""
 
+
 def dimension_available():
     padres = DimensionReporte.objects.exclude(padre=None).values('padre')
     hojas = DimensionReporte.objects.exclude(pk__in=padres).values('pk')
     return {'pk__in': hojas}
+
 
 class Reporte(models.Model):
     """
@@ -223,7 +224,7 @@ class Reporte(models.Model):
         Tipo de input con base en la frecuencia
         """
         return INPUT_TYPES[self.frecuencia]
-    
+
     @property
     def right_delimiter(self):
         return Reporte.replace_secuence_caracter(self.delimiter)
@@ -280,7 +281,7 @@ class Reporte(models.Model):
         for seq in replaces:
             cadena = cadena.replace(seq[0], seq[1])
         return cadena
-    
+
     @property
     def quoting_txt(self):
         """
@@ -307,9 +308,9 @@ class Reporte(models.Model):
     def crear_tabla(self):
         with connections[cnn_name].cursor() as cursor:
             cursor.execute(
-                f"CREATE TABLE IF NOT EXISTS {self.table_name} (" \
-                + "_pk_ BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, " \
-                + "_statistic_dt_ DATE NOT NULL" \
+                f"CREATE TABLE IF NOT EXISTS {self.table_name} ("
+                + "_pk_ BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, "
+                + "_statistic_dt_ DATE NOT NULL"
                 + ");")
 
     def eliminar_tabla(self):
@@ -319,15 +320,15 @@ class Reporte(models.Model):
 
     def admin_permisos(self):
         p = Permission.objects.get_or_create(
-            codename=f"view_reporte_{self.pk:04d}",            
+            codename=f"view_reporte_{self.pk:04d}",
             content_type=ContentType.objects.get_for_model(Reporte)
         )[0]
-        p.name=f"Reporte {self.pk}_{self.nombre}"
+        p.name = f"Reporte {self.pk}_{self.nombre}"
         p.save()
 
     def eliminar_permisos(self):
         p = Permission.objects.get_or_create(
-            codename=f"view_reporte_{self.pk:04d}",            
+            codename=f"view_reporte_{self.pk:04d}",
             content_type=ContentType.objects.get_for_model(Reporte)
         )[0]
         p.delete()
@@ -397,21 +398,21 @@ class CampoReporte(models.Model):
     def crear_nuevo_bd(self):
         with connections[cnn_name].cursor() as cursor:
             cursor.execute(
-                f"ALTER TABLE `{self.reporte.table_name}` " \
+                f"ALTER TABLE `{self.reporte.table_name}` "
                 + f"ADD {self.field_definition};"
             )
 
     def actualizar_bd(self):
         with connections[cnn_name].cursor() as cursor:
             cursor.execute(
-                f"ALTER TABLE `{self.reporte.table_name}` " \
+                f"ALTER TABLE `{self.reporte.table_name}` "
                 + f"CHANGE `{self.field_name}` {self.field_definition};"
             )
 
     def eliminar_bd(self):
         with connections[cnn_name].cursor() as cursor:
             cursor.execute(
-                f"ALTER TABLE `{self.reporte.table_name}` " \
+                f"ALTER TABLE `{self.reporte.table_name}` "
                 + f"DROP `{self.field_name}`"
             )
 
@@ -429,7 +430,7 @@ class Relacion(models.Model):
         to=CampoReporte,
         on_delete=models.CASCADE,
         related_name="relacion_derecha")
-    
+
     class Meta:
         ordering = [
             'campo_izquierda__reporte__nombre', 'campo_izquierda__campo',
@@ -467,7 +468,7 @@ def file2Pandas(reporte, archivo, discover=False):
             quoting=int(reporte.quoting),
             doublequote=reporte.doublequote,
             encoding="ISO-8859-1",
-            #encoding="utf-8",
+            # encoding="utf-8",
             escapechar=reporte.right_escapechar,
             )
     else:
@@ -481,7 +482,7 @@ def file2Pandas(reporte, archivo, discover=False):
             quoting=int(reporte.quoting),
             doublequote=reporte.doublequote,
             encoding="ISO-8859-1",
-            #encoding="utf-8",
+            # encoding="utf-8",
             escapechar=reporte.right_escapechar,
             )
         dataFrame.columns = cols

@@ -17,6 +17,7 @@ from .models import Esfera
 from .models import Relacion
 from .models import Reporte
 
+
 @admin.register(Esfera)
 class EsferaAdm(admin.ModelAdmin):
     """
@@ -53,8 +54,8 @@ class ReporteAdm(admin.ModelAdmin):
     """
     list_display = ['id', 'nombre', 'dimension', 'frecuencia', ]
     list_display_links = ['id', ]
-    search_fields = [ 'nombre', ]
-    list_editable = [ 'nombre', 'dimension', 'frecuencia', ]
+    search_fields = ['nombre', ]
+    list_editable = ['nombre', 'dimension', 'frecuencia', ]
 
     class Meta:
         model = Reporte

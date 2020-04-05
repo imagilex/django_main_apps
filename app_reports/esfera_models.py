@@ -14,6 +14,7 @@ from django.utils.safestring import mark_safe
 
 esfera_upload_to = "esferas"
 
+
 class Esfera(models.Model):
     """
     Modelo de Esfera

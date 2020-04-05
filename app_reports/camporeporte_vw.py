@@ -7,9 +7,6 @@ Vistas
 - Update
 - GetDataTypes
 """
-import pandas as pd
-import re
-
 from django.http import HttpResponseRedirect
 from django.http import JsonResponse
 from django.shortcuts import render
@@ -23,12 +20,6 @@ from .reporte_models import Reporte
 from .reporte_models import file2Pandas
 from zend_django.templatetags.op_helpers import crud_icon
 from zend_django.templatetags.op_helpers import crud_smart_button
-from zend_django.templatetags.utils import GenerateReadCRUDToolbar
-from zend_django.views import GenericCreate
-from zend_django.views import GenericDelete
-from zend_django.views import GenericList
-from zend_django.views import GenericRead
-from zend_django.views import GenericUpdate
 
 
 def template_base_path(file):
@@ -42,7 +33,7 @@ class List(View):
         data = list(reporte.campos.all())
         toolbar = []
         if request.user.has_perm("app_reports.view_reporte"):
-            lbl = crud_icon('read') +' <span class="d-none d-sm-inline">'
+            lbl = crud_icon('read') + ' <span class="d-none d-sm-inline">'
             lbl += 'Ver Reporte</span>'
             toolbar.append({
                 'type': 'link_pk',
@@ -74,8 +65,9 @@ class List(View):
     def post(self, request, pk_reporte):
         return self.base_render(request, pk_reporte)
 
+
 class Update(View):
-    
+
     def base_render(self, request, pk_reporte):
         reporte = Reporte.objects.get(pk=pk_reporte)
         data = list(reporte.campos.all())
@@ -115,7 +107,7 @@ class Update(View):
 
     def get(self, request, pk_reporte):
         return self.base_render(request, pk_reporte)
-    
+
     def post(self, request, pk_reporte):
         post = request.POST
         if "update_fields" == post.get("action"):
@@ -132,7 +124,7 @@ class Update(View):
                 if "new_" in id_field:
                     c = main_model.objects.create(reporte=rep, **data)
                 else:
-                    obj = main_model.objects.get(pk =id_field)
+                    obj = main_model.objects.get(pk=id_field)
                     frm = base_form(instance=obj, data=data)
                     if frm.has_changed():
                         frm.save()
@@ -149,6 +141,7 @@ class Update(View):
             'mostrar': post.get(f'mostrar_{id}', '') == "on",
             'es_llave': post.get(f'es_llave_{id}', '') == "on",
         }
+
 
 class GetDataTypes(View):
     """

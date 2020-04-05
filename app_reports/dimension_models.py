@@ -12,6 +12,7 @@ from django.db.models import Q
 
 from .esfera_models import Esfera
 
+
 def check_cstr_esfera_padre(dimension):
     """
     Verifica que una dimension de reporte tenga asociada una esfera o una
@@ -28,8 +29,9 @@ def check_cstr_esfera_padre(dimension):
         True si paso la verificación, False en caso contrario
     """
     return (
-        (dimension.esfera is None and dimension.padre is not None) 
+        (dimension.esfera is None and dimension.padre is not None)
         or (dimension.esfera is not None and dimension.padre is None))
+
 
 def validate_cstr_esfera_padre(dimension):
     """
@@ -51,6 +53,7 @@ def validate_cstr_esfera_padre(dimension):
             "Debe selecionar una esfera o una dimension padre, no ambos. "
             + f"Esfera = {dimension.esfera}; Padre = {dimension.padre}"
         )
+
 
 class DimensionReporte(models.Model):
     """
@@ -82,7 +85,7 @@ class DimensionReporte(models.Model):
         constraints = [
             CheckConstraint(
                 check=(
-                    Q(esfera__isnull=True, padre__isnull=False) | 
+                    Q(esfera__isnull=True, padre__isnull=False) |
                     Q(esfera__isnull=False, padre__isnull=True)),
                 name="cstr_esfera_padre")
         ]

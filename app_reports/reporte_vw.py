@@ -9,21 +9,20 @@ Vistas
 - Update
 - Delete
 """
-import contextlib, io
+import contextlib
+import io
 import re
-import sys
-import warnings, MySQLdb
+import warnings
 
 from datetime import date
 from datetime import timedelta
-from django.conf import settings
 from django.contrib import messages
 from django.db import connections
 from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-from io import StringIO # as cStringIO
+from io import StringIO
 from sqlalchemy import create_engine
 
 from .reporte_forms import frmReporte as base_form
@@ -34,7 +33,6 @@ from .reporte_models import FRECUENCIA
 from .reporte_models import Reporte as main_model
 from .reporte_models import cnn_name
 from .reporte_models import file2Pandas
-from zend_django.models import ParametroUsuario
 from zend_django.templatetags.op_helpers import crud_label
 from zend_django.templatetags.op_helpers import mark_safe
 from zend_django.templatetags.utils import GenerateReadCRUDToolbar
@@ -85,7 +83,7 @@ class Read(GenericRead):
             request, self.model_name, obj.pk, self.main_data_model)
         if request.user.has_perm("app_reports.view_camporeporte"):
             label = ('<i class="fas fa-columns"></i>'
-            '<span class="d-none d-sm-inline"> Campos</span>')
+                     '<span class="d-none d-sm-inline"> Campos</span>')
             toolbar.append({
                 'type': 'rlink',
                 'label': label,
@@ -190,7 +188,8 @@ class Delete(GenericDelete):
 class Load(View):
 
     def base_render(self, request):
-        reportes = list(main_model.objects.all().order_by('dimension__full_name', 'nombre'))
+        reportes = list(main_model.objects.all().order_by(
+            'dimension__full_name', 'nombre'))
         return render(request, template_base_path('load'), {
             'titulo': "Carga de Datos",
             'titulo_descripcion': "Reportes",
@@ -224,7 +223,7 @@ class Load(View):
             statistic_dt = fecha
         elif FRECUENCIA['SEMANAL'] == reporte.frecuencia:
             inicio_año = date(int(fecha[0:4]), 1, 1)
-            if(inicio_año.weekday()>3):
+            if(inicio_año.weekday() > 3):
                 inicio_año = inicio_año + timedelta(7-inicio_año.weekday())
             else:
                 inicio_año = inicio_año - timedelta(inicio_año.weekday())
@@ -267,7 +266,7 @@ def eliminarReporte(reporte, statistic_dt, connection_name=None, request=None):
     else:
         with connections[cnn_name].cursor() as cursor:
             cursor.execute(
-                f"DELETE FROM {reporte.table_name} " \
+                f"DELETE FROM {reporte.table_name} "
                 + f"WHERE _statistic_dt_ = '{statistic_dt}';")
         if request:
             messages.success(
@@ -284,6 +283,7 @@ def createCnn(connection_name=None):
     port = connections.databases[connection_name]['PORT']
     cnn = create_engine(f'mysql+pymysql://{usr}:{pwd}@{host}/{db}')
     return cnn
+
 
 def checkWarnings(warnings, join_lineas="<br />"):
     lineas = []

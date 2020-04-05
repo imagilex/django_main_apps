@@ -9,15 +9,10 @@ Vistas
 - Update
 - Delete
 """
-from django.conf import settings
 from django.db.models import Q
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
-from django.urls import reverse
 
 from .esfera_forms import frmEsfera as base_form
 from .esfera_models import Esfera as main_model
-from zend_django.models import ParametroUsuario
 from zend_django.views import GenericCreate
 from zend_django.views import GenericDelete
 from zend_django.views import GenericList

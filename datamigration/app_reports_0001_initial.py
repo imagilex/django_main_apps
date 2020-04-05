@@ -7,6 +7,7 @@ from zend_django.models import ParametroUsuario
 from zend_django.parametros_models import PARAM_TYPES
 from zend_django.templatetags.op_labels import CRUD_labels
 
+
 def update_permisos():
     for p in Permission.objects.filter(codename__icontains='add_'):
         p.name = str(p.name).replace('Can add', 'Agregar')
@@ -19,10 +20,11 @@ def update_permisos():
     for p in Permission.objects.filter(codename__icontains='delete_'):
         p.name = str(p.name).replace('Can delete', CRUD_labels['delete'])
         p.save()
-        
+
     for p in Permission.objects.filter(codename__icontains='view_'):
         p.name = str(p.name).replace('Can view', CRUD_labels['read'])
         p.save()
+
 
 def migration():
     conf = MenuOpc.objects.get_or_create(

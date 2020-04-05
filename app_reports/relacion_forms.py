@@ -13,6 +13,7 @@ from django import forms
 
 from .reporte_models import Relacion
 
+
 class frmRelacion(forms.ModelForm):
     """
     Formulario principal de Relación

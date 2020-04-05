@@ -17,7 +17,8 @@ import os
 
 from abc import ABCMeta
 from datetime import datetime
-from django.db import connection, IntegrityError
+from django.db import IntegrityError
+from django.db import connection
 from django.db.models import ProtectedError
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
