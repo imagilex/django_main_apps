@@ -333,6 +333,50 @@ class Reporte(models.Model):
         )[0]
         p.delete()
 
+    def accesible_by(self, user):
+        return user.has_perm(f"app_reports.view_reporte_{self.pk:04d}")
+
+    def get_fechas(self):
+        fechas = []
+        with connections[cnn_name].cursor() as cursor:
+            cursor.execute(
+                "SELECT DISTINCT _statistic_dt_ AS dt "
+                + f"FROM {self.table_name} "
+                + "ORDER BY _statistic_dt_ DESC")
+            for row in dictfetchall(cursor):
+                txt = row['dt'].strftime('%d-%m-%Y')
+                val = row['dt'].strftime('%Y-%m-%d')
+                fechas.append({'value': val, 'text': txt})
+        return fechas
+
+    def cols2Select(self):
+        campos = ", ".join([
+            f"{c.field_name} AS '{c.campo}'"
+            for c in self.campos.filter(mostrar=True)])
+        return campos
+
+    def doSimpleSelect(self, dt):
+        sql = f"SELECT {self.cols2Select()} \n" \
+            + f"FROM {self.table_name} \n" \
+            + f"WHERE _statistic_dt_ = '{dt}'"
+        rows = []
+        fields = []
+        with connections[cnn_name].cursor() as cursor:
+            cursor.execute(sql)
+            print(cursor.description)
+            fields = [col[0] for col in cursor.description]
+            rows = list(cursor.fetchall())
+        return {'rows': rows, 'fields': fields}
+
+
+def dictfetchall(cursor):
+    "Return all rows from a cursor as a dict"
+    columns = [col[0] for col in cursor.description]
+    return [
+        dict(zip(columns, row))
+        for row in cursor.fetchall()
+    ]
+
 
 class CampoReporte(models.Model):
     """

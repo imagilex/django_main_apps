@@ -96,3 +96,12 @@ class DimensionReporte(models.Model):
     def save(self, *args, **kwargs):
         validate_cstr_esfera_padre(self)
         super(DimensionReporte, self).save(*args, **kwargs)
+
+    def accesible_by(self, user):
+        for reporte in self.reportes.all():
+            if reporte.accesible_by(user):
+                return True
+        for dimension in self.subdimensiones.all():
+            if dimension.accesible_by(user):
+                return True
+        return False

@@ -42,10 +42,52 @@ let Add2Tbl_FieldRow = (
     });
 }
 
+let App_Reports_load_bootstrapTable = () => {
+    $.ajaxSetup({
+        cache: true,
+        timeout: 10*1000
+    });
+    $.getScript("https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js",function( data, textStatus, jqxhr ) {
+        console.log(data);
+        console.log(textStatus);
+        console.log(jqxhr.status);
+        console.log("Script Cargado: bootstrap-table.min.js");
+        App_Reports_load_bootstrapTableToolbar();
+        App_Reports_load_bootstrapTableLocaleAll();
+    });
+    $.ajaxSetup({
+        cache: false,
+    });
+}
+
+let App_Reports_load_bootstrapTableToolbar = () => {
+    $.getScript("https://unpkg.com/bootstrap-table@1.16.0/dist/extensions/toolbar/bootstrap-table-toolbar.min.js",function( data, textStatus, jqxhr ) {
+        console.log(data);
+        console.log(textStatus);
+        console.log(jqxhr.status);
+        console.log("Script Cargado: bootstrap-table-toolbar.min.js");
+    });
+}
+
+let App_Reports_load_bootstrapTableLocaleAll = () => {
+    $.getScript("https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table-locale-all.min.js",function( data, textStatus, jqxhr ) {
+        console.log(data);
+        console.log(textStatus);
+        console.log(jqxhr.status);
+        console.log("Script Cargado: bootstrap-table-locale-all.min.js");
+        let $table = $('#data-tbl-complete')
+        $table.bootstrapTable();
+        $table.bootstrapTable('refreshOptions', {
+            locale: 'es-MX'
+        });
+    });
+}
+
 $(document).ready(()=>{
     try {
         AddRows_Fields();
     } catch (error) {}
+    App_Reports_load_bootstrapTable();
 });
 
 let OpenFrmDataTypes_4fields = () => {

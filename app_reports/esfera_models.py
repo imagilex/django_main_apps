@@ -29,3 +29,9 @@ class Esfera(models.Model):
     def __str__(self):
         cad = f"({self.sigla}) {self.nombre}"
         return mark_safe(cad)
+
+    def accesible_by(self, user):
+        for dimension in self.reportes.all():
+            if dimension.accesible_by(user):
+                return True
+        return False

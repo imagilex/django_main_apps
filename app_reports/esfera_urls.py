@@ -19,6 +19,7 @@ permiso_requerido = {app_label}.{Perm}_{obj}
 vista = {obj}_{View}
 
 """
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
 from django.urls import path
 
@@ -40,6 +41,10 @@ urlpatterns = [
     path('eliminar/<pk>/', permission_required(
         f'{app_label}.delete_{obj}')(views.Delete.as_view()),
         name=f"{obj}_delete"),
+    path('reportes/<pk_esfera>/', login_required(
+        views.DesplegarReporte.as_view()), name=f"{obj}_reportes"),
+    path('reportes/<pk_esfera>/<pk_reporte>/', login_required(
+        views.DesplegarReporte.as_view()), name=f"{obj}_reportes"),
     path('<pk>/', permission_required(
         f'{app_label}.view_{obj}')(views.Read.as_view()),
         name=f"{obj}_read"),

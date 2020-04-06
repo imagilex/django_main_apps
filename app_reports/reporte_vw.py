@@ -242,7 +242,7 @@ class Load(View):
                 df['_statistic_dt_'] = statistic_dt
                 df.to_sql(
                     reporte.table_name, cnn,
-                    index=False, if_exists='append', method='multi')
+                    index=False, if_exists='append')
             wrns = fstr.getvalue()
             msg = f'{reporte} ({archivo}) cargado '
             if "" != wrns:

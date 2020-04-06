@@ -118,9 +118,6 @@ class Update(View):
             rep = Reporte.objects.get(pk=pk_reporte)
             for id_field in post.getlist('id_field', []):
                 data = self.get_data_post(post, id_field)
-                print(id_field)
-                print(data)
-                print("new_" in id_field)
                 if "new_" in id_field:
                     c = main_model.objects.create(reporte=rep, **data)
                 else:

@@ -36,7 +36,13 @@
     <tbody id="data-tbl">
         {% for reg in data %}
             <tr data-object-id="{{ reg.pk }}">
-                <td>{{ reg.dimension }}</td>
+                <td>
+                    <div class="float-right">
+                        <span class="badge badge-pill badge-info" data-toggle="tooltip" title="Reportes"> {{ reg.reportes.all|length }} </span>
+                        <span class="badge badge-pill badge-light" data-toggle="tooltip" title="Subdimensiones"> {{ reg.subdimensiones.all|length }} </span>
+                    </div>
+                    {{ reg.dimension }}
+                </td>
                 <td>{% if reg.esfera %}{{ reg.esfera }}{% endif %}</td>
                 <td>{% if reg.padre %}{{ reg.padre }}{% endif %}</td>
                 <td class="text-center">

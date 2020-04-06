@@ -34,7 +34,12 @@
     <tbody id="data-tbl">
         {% for reg in data %}
             <tr data-object-id="{{ reg.pk }}">
-                <td>{{ reg.nombre }}</td>
+                <td>
+                    <div class="float-right">
+                        <span class="badge badge-pill badge-info" data-toggle="tooltip" title="Dimensiones Directas"> {{ reg.reportes.all|length }} </span>
+                    </div>
+                    {{ reg.nombre }}
+                </td>
                 <td>{{ reg.sigla }}</td>
                 <td class="text-center">
                     {% if perms.app_reports.view_esfera %}
