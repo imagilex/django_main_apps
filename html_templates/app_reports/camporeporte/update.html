@@ -1,0 +1,122 @@
+{% extends "zend_django/html/html_struct.html" %}
+{% load i18n %}
+{% load op_helpers %}
+
+{% block content %}
+
+<form method="post" autocomplete="off" enctype="multipart/form-data" id="main-form" action="">
+    {% csrf_token %}
+    <input value="update_fields" id="action" name="action" type="hidden" />
+    <input value="" id="deleted_fields" name="deleted_fields" type="hidden" />
+    <table class="table table-striped table-sm table-responsive-md">
+        <thead>
+            <tr>
+                <th>Eliminar</th>
+                <th>Posicion</th>
+                <th>Campo</th>
+                <th>Tipo</th>
+                <th>Default</th>
+                <th>Mostrar</th>
+                <th>Es Llave</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Eliminar</th>
+                <th>Posicion</th>
+                <th>Campo</th>
+                <th>Tipo</th>
+                <th>Default</th>
+                <th>Mostrar</th>
+                <th>Es Llave</th>
+            </tr>
+        </tfoot>
+        <tbody id="data-tbl">
+        </tbody>
+    </table>
+    <div class="row">
+        <button type="submit" class="btn btn-outline-primary" id="btn-save" title="{% action_label 'save' %}">
+            {% action_icon 'save' %} {% action_label 'save' %}
+        </button>
+    </div>
+</form>
+
+{% verbatim %}
+<script type="text/x-handlebars-template" id="field-form-line-template">
+    <tr>
+        <td class="text-center">
+            <input value="{{pk}}" type="checkbox" class="checkboxinput form-check-input" />
+            <input value="{{pk}}" name="id_field" type="hidden" />
+        </td>
+        <td>
+            <input value="{{posicion}}" name="posicion_{{pk}}" type="number" min="1" class="textinput textInput form-control" required="required" />
+        </td>
+        <td>
+            <input value="{{campo}}" name="campo_{{pk}}" type="text" maxlength="100" class="textinput textInput form-control" required="required" />
+        </td>
+        <td>
+            <select name="tipo_{{pk}}" id="tipo_{{pk}}" required="required" class="select form-control">
+                {% endverbatim %}
+                {% for tc in tipos_campo %}
+                <option value="{{ tc.0 }}">
+                    {{ tc.1 }}
+                </option>
+                {% endfor %}
+                {% verbatim %}
+            </select>
+        </td>
+        <td>
+            <input value="{{valor_default}}" name="valor_default_{{pk}}" type="text" maxlength="100" class="textinput textInput form-control" />
+        </td>
+        <td class="text-center">
+            {{#if mostrar}}
+            <input name="mostrar_{{pk}}" type="checkbox" class="checkboxinput form-check-input" checked="checked" />
+            {{else}}
+            <input name="mostrar_{{pk}}" type="checkbox" class="checkboxinput form-check-input" />
+            {{/if}}
+        </td>
+        <td class="text-center">
+            {{#if es_llave}}
+            <input name="es_llave_{{pk}}" type="checkbox" class="checkboxinput form-check-input" checked="checked" />
+            {{else}}
+            <input name="es_llave_{{pk}}" type="checkbox" class="checkboxinput form-check-input" />
+            {{/if}}
+        </td>
+    </tr>
+</script>
+<script type="text/x-handlebars-template" id="frm-get_data_types-template">
+    <form method="post" autocomplete="off" enctype="multipart/form-data" id="types-form" action="" onsubmit="return false;">
+        {% endverbatim %}
+        {% csrf_token %}
+        {% verbatim %}
+        <div id="div_id_archivo" class="form-group">
+            <label for="id_archivo" class=" requiredField">
+                Archivo<span class="asteriskField">*</span>
+            </label>
+            <div class="">
+                <input type="file" name="archivo" value="Reporte Inicial" maxlength="100" class="textinput textInput form-control" required="" id="id_archivo" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;"> 
+            </div>
+        </div>
+        <button onclick="GetDataTypes_4fields()" type="button" class="btn btn-outline-primary" id="btn-get-data-types" title="Obtener Campos">
+            <i class="fas fa-dna"></i> Obtener Campos
+        </button>
+    </form>
+</script>
+{% endverbatim %}
+
+<script type="text/javascript">
+    let AddRows_Fields = () => {
+    {% for reg in data %}
+        Add2Tbl_FieldRow(
+            `{{ reg.pk }}`, `{{ reg.posicion }}`,
+            `{{ reg.campo }}`, `{{ reg.valor_default }}`,
+            {% if reg.mostrar %}true{% else %}false{% endif %},
+            {% if reg.es_llave %}true{% else %}false{% endif %},
+            `{{ reg.tipo }}`
+            );
+    {% endfor %}
+    };
+    let urlGetCampos = `{% url 'camporeporte_getdatatypes' pk_reporte=reporte.pk %}`;
+</script>
+
+{% endblock %}

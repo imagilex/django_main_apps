@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
 
     'zend_django',
+    'app_reports',
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,20 @@
+{% load app_reports_tags %}
+
+{% if dimension|dimension_accesible_by:user %}
+    {% if nivel == 1 %}
+        <div class="btn-group" role="group">
+            <button class="btn btn-outline-info dropdown-toggle" type="button" id="btnMnuOpcDim_{{dimension.pk}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ dimension.dimension }}
+            </button>
+            {% include "app_reports/esfera/menu_dropdown.html" %}
+        </div>
+    {% else %}
+        <div class="dropdown-submenu">
+            <a href="#" class="dropdown-item dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                {{ dimension.dimension }}
+                <span class="caret"></span>
+            </a>
+            {% include "app_reports/esfera/menu_dropdown.html" %}
+        </div>
+    {% endif %}
+{% endif %}

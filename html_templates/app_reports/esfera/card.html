@@ -1,0 +1,16 @@
+{% load html_helpers %}
+
+<div class="card-columns">
+    {% for esfera in esferas %}
+
+    <div class="card">
+        <div class="card-body">
+            <a href="{% url 'esfera_reportes' pk_esfera=esfera.pk %}" role="button" class="btn btn-outline-primary btn-block btn-lg">
+                <img src="{{ context|get_from_context:'MEDIA_URL' }}{{ esfera.icono }}" class="card-img-top" alt="..." />
+                {{ esfera.nombre }}
+            </a>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
