@@ -17,6 +17,7 @@ import os
 
 from abc import ABCMeta
 from datetime import datetime
+from django.db import IntegrityError
 from django.db import connection
 from django.db.models import ProtectedError
 from django.http import HttpResponseRedirect
@@ -273,6 +274,8 @@ class GenericDelete(View):
             obj.delete()
             return HttpResponseRedirect(reverse(f'{self.model_name}_list'))
         except ProtectedError:
+            return HttpResponseRedirect(reverse('item_con_relaciones'))
+        except IntegrityError:
             return HttpResponseRedirect(reverse('item_con_relaciones'))
 
 

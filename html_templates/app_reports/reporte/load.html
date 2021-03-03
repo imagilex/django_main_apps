@@ -1,0 +1,89 @@
+{% extends "zend_django/html/html_struct.html" %}
+{% load i18n %}
+{% load op_helpers %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-sm-3">
+        <div class="nav flex-column nav-pills border rounded" id="v-reports-tab" role="tablist" aria-orientation="vertical">
+            {% for reporte in reportes %}
+            <a id="v-report-{{ reporte.pk }}-tab" aria-controls="v-report-{{ reporte.pk }}" href="#v-report-{{ reporte.pk }}" class="nav-link" data-toggle="pill" role="tab" aria-selected="false">
+                {{ reporte }}<br />
+                <small class="text-muted">
+                    {{ reporte.dimension }}
+                </small>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col-sm-9">
+        <div class="tab-content" id="v-reports-tabContent">
+            {% for reporte in reportes %}
+            <div id="v-report-{{ reporte.pk }}" aria-labelledby="v-report-{{ reporte.pk }}-tab" class="tab-pane fade" role="tabpanel">
+                <h5>
+                    {{ reporte }} <br />
+                    <small class="text-muted">{{ reporte.dimension }}</small>
+                </h5>
+                <form method="post" autocomplete="off" enctype="multipart/form-data" id="data-form" >
+                    {% csrf_token %}
+                    <input type="hidden" name="id_reporte" value="{{ reporte.pk }}" />
+                    <div id="div_id_archivo" class="form-group">
+                        <label for="id_archivo" class=" requiredField">
+                            Archivo<span class="asteriskField">*</span>
+                        </label>
+                        <div class="">
+                            <input type="file" name="archivo" value="Reporte Inicial" maxlength="100" class="textinput textInput form-control" required="" id="id_archivo" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;"> 
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <div id="div_id_preserve_previous_data" class="form-check">
+                                <input type="checkbox" name="preserve_previous_data" class="checkboxinput form-check-input" id="id_preserve_previous_data_{{reporte.pk}}" />
+                                <label for="id_preserve_previous_data_{{reporte.pk}}" class="form-check-label">
+                                    Conservar datos anteriores
+                                </label>
+                                <small id="hint_id_preserve_previous_data" class="form-text text-muted">
+                                    Indica si los datos cargados previamente serán conservados o eliminados.
+                                </small>
+                            </div>
+                        </div>
+
+                        {% if reporte.frecuencia == "single" %}
+                        {% else %}
+                        <div id="div_id_date" class="form-group col-sm-6">
+                            <label for="id_date" class=" requiredField">
+                                Fecha<span class="asteriskField">*</span>
+                            </label>
+                            <div class="">
+                                {% if reporte.frecuencia == "daily" %}
+                                <input type="date" name="date" value="" class="textinput textInput form-control" required="required" id="id_date" />
+                                {% endif %}
+                                {% if reporte.frecuencia == "weekly" %}
+                                <input type="week" name="date" value="" class="textinput textInput form-control" required="required" id="id_date" />
+                                {% endif %}
+                                {% if reporte.frecuencia == "monthly" %}
+                                <input type="month" name="date" value="" class="textinput textInput form-control" required="required" id="id_date" />
+                                {% endif %}
+                                <small id="hint_id_date" class="form-text text-muted">
+                                    Este reporte es de frecuencia {{ reporte.frecuencia_txt }}
+                                </small>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <button type="submit" class="btn btn-outline-primary" id="btn-get-data-types" title="Cargar Información">
+                        <i class="fas fa-file-upload"></i> Cargar Información
+                    </button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{{reportes}}
+
+{% endblock %}
