@@ -1,0 +1,91 @@
+{% extends "zend_django/html/html_struct.html" %}
+{% load app_reports_tags %}
+
+{% block content %}
+<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
+
+<h1>
+    <img src="{{ MEDIA_URL }}{{ esfera.icono }}" class="d-inline-block align-middle" height="30" />
+    {{ esfera.sigla }}
+</h1>
+
+<div class="btn-group" role="group">
+    {% for dimension in esfera.reportes.all %}
+        {% dimension_as_menu esfera dimension user %}
+    {% endfor %}
+</div>
+
+{% if reporte %}
+
+{% if fechas %}
+    <div class="float-right">
+        <form class="form-inline mr-1 ml-1" method="post" action="" autocomplete="off">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="post_date">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Fecha:</span>
+                </div>
+                <select name="date" required="required" class="form-control">
+                    <option value=""></option>
+                    {% for f in fechas %}
+                        <option value="{{ f.value }}" {% if f.value == fecha%}selected="selected"{% endif %}>{{ f.text }}</option>
+                    {% endfor %}
+                </select>
+                <div class="input-group-append">
+                    <button title="Mostrar Reporte" class="btn btn-outline-secondary" type="submit">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endif %}
+
+<h3>{{ reporte }} <small class="text-muted">{{ reporte.dimension }}</small></h3>
+
+{% if data and enc %}
+
+<style type="text/css">
+    .table.table-report {
+        font-size: smaller;
+    }
+</style>
+
+<table class="table-report table table-striped table-sm table-responsive"
+        data-toggle="table"
+        data-pagination="true"
+        data-search="true"
+        data-show-fullscreen="true"
+        data-show-pagination-switch="true"
+        data-show-columns="true"
+        data-buttons-class="outline-secondary"
+        data-locale="es-MX"
+        data-advanced-search="true"
+        data-id-table="data-tbl-complete"
+
+        id="data-tbl-complete"
+        >
+    <thead>
+        <tr>
+            {% for field in enc %}
+            <th data-sortable="true">{{ field }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody id="data-tbl">
+        {% for reg in data %}
+            <tr>
+                {% for field in reg %}
+                <td>{% if field %}{{ field }}{% endif %}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endif %}
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% load app_reports_tags %}
+
+<div class="dropdown-menu" aria-labelledby="btnMnuOpcDim_{{dimension.pk}}">
+    {% for subdimension in dimension.subdimensiones.all %}
+        {% dimension_as_menu esfera subdimension user nivel %}
+    {% endfor %}
+    {% for reporte in dimension.reportes.all %}
+        {% if reporte|reporte_accesible_by:user %}
+            <a class="dropdown-item" href="{% url 'esfera_reportes' pk_esfera=esfera.pk pk_reporte=reporte.pk %}">
+                {{ reporte }}
+            </a>
+        {% endif %}
+    {% endfor %}
+</div>
