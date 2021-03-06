@@ -153,3 +153,10 @@ media/
 .vscode/*
 main_app_tool/asgi.py
 # manage.py
+
+# updatables in prod
+.htaccess
+logs
+logs/*
+passenger_wsgi.py
+tmp/*
